@@ -1,26 +1,36 @@
 <div align="center">
 
-![Intro](./assets/hero.svg?v=2)
+![Hero](./assets/hero.svg?v=3)
 
 <br>
 
-![About](./assets/about-life.svg?v=2)
+![About & Capabilities](./assets/about-life.svg?v=3)
 
 <br>
 
-![Stack](./assets/stack.svg?v=2)
+![Engine Room & Tech Stack](./assets/stack.svg?v=3)
 
 <br>
 
-![Featured Repositories](./assets/projects.svg?v=2)
+</div>
+
+### 🚀 Featured Repositories
+
+| Project | What it does | Focus |
+| :--- | :--- | :---: |
+| [**ai-educator**](https://github.com/mayukhbyte/ai-educator) | AI-powered tutoring system with multi-level doubt solving, natural speech explanations & adaptive quizzes | `AI + Learning` |
+| [**Paypaal-pro**](https://github.com/mayukhbyte/Paypaal-pro) | Autonomous agent financial operations engine with AI dispute synthesis, stock liquidation & escrow payouts | `Fintech + AI Agents` |
+| [**aizen-detector**](https://github.com/mayukhbyte/aizen-detector) | Real-time URL safety & phishing crawler evaluating 21 concurrent Go goroutines and 39 security signals | `Security + Go` |
 
 <br>
 
-![ID Dashboard](./assets/id-dashboard.svg?v=2)
+<div align="center">
+
+![Builder Credentials](./assets/id-dashboard.svg?v=3)
 
 <br>
 
-![Connect](./assets/connect.svg?v=2)
+![Connect](./assets/connect.svg?v=3)
 
 <br>
 
@@ -33,46 +43,6 @@
 <br>
 <br>
 
+<sub>Designed &amp; Maintained by <b>Mayukh Bhattacharjee</b> (<a href="https://github.com/mayukhbyte">@mayukhbyte</a>) · Engineered with Deep Navy &amp; Electric Blue / Crimson Aesthetics.</sub>
+
 </div>
-
----
-
-## 🚀 Flagship Repositories
-
-### 1. 🎓 [ai-educator](https://github.com/mayukhbyte/ai-educator)
-> **AI-Assisted Tutor & Adaptive Learning Platform**
-- **Overview**: An intelligent tutoring ecosystem designed for student mastery, featuring dynamic doubt solving at basic, medium, and comprehensive explanation levels.
-- **Key Capabilities**: Natural speech synthesis and voice explanations via Web Speech API, automated adaptive quizzes tailored to skill levels, syllabus-based exam generator, and comprehensive student analytics.
-- **Tech Stack**: `React 18` · `TypeScript` · `Vite` · `Material-UI` · `Node.js` · `OpenAI GPT-4o` · `Supabase`
-
-### 2. 💳 [Paypaal-pro](https://github.com/mayukhbyte/Paypaal-pro)
-> **Autonomous Agent Financial & Treasury Platform**
-- **Overview**: Sovereign autonomous financial operations engine with integrated multi-factor trading recommendations, inventory liquidation, and vault controls.
-- **Key Capabilities**: Automated dispute win-probability calculations, statutory legal rebuttal generator (PayPal Seller Protection Sec. 11), dual-document procurement & PO scanner, milestone developer escrow release, and live Server-Sent Events (SSE) telemetry.
-- **Tech Stack**: `Node.js` · `Express` · `Autonomous Agent Engine` · `SSE Streams` · `Fintech Security`
-
-### 3. 🛡️ [aizen-detector](https://github.com/mayukhbyte/aizen-detector)
-> **Real-Time URL Safety & Phishing Threat Detection Engine**
-- **Overview**: High-throughput URL safety inspection engine analyzing arbitrary web links with deep redirection resolution and zero user tracking.
-- **Key Capabilities**: Evaluates **21 concurrent goroutines** across **7 distinct security categories** generating **39 discrete signals** (Punycode/IDN spoofing, TLS certificate chains, typosquatting, entropy analysis, and credential phishing inspection).
-- **Tech Stack**: `Go (Golang)` · `Gin Framework` · `SvelteKit 5` · `Vercel Serverless` · `OpenAPI/Swagger`
-
-<br>
-
----
-
-## 📊 Summary Matrix
-
-| Repository | Focus Domain | Architecture | Status | Link |
-| :--- | :--- | :--- | :---: | :---: |
-| **ai-educator** | EdTech & AI Tutoring | React 18 + Node.js + OpenAI | `Active` | [View Code →](https://github.com/mayukhbyte/ai-educator) |
-| **Paypaal-pro** | Autonomous Agent Fintech | Express + Vault + Dispute Engine | `Active` | [View Code →](https://github.com/mayukhbyte/Paypaal-pro) |
-| **aizen-detector** | Cybersecurity & Threat Intel | Concurrent Go Backend + SvelteKit | `Live` | [View Code →](https://github.com/mayukhbyte/aizen-detector) |
-
-<br>
-
----
-
-<p align="center">
-  <sub>Designed &amp; Maintained by <b>Mayukh Bhattacharjee</b> (<a href="https://github.com/mayukhbyte">@mayukhbyte</a>) · Engineered with Deep Navy &amp; Electric Blue / Crimson Aesthetics.</sub>
-</p>

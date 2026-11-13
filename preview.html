@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mayukh Bhattacharjee - GitHub Profile Preview</title>
+  <title>Mayukh Bhattacharjee - Playbook Profile Preview</title>
   <style>
     body {
       background-color: #030712;
@@ -20,12 +20,12 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
     }
     .header-banner {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      border: 1px solid rgba(36, 123, 255, 0.3);
-      padding: 20px 28px;
+      background: linear-gradient(135deg, #090f1f, #0f1b36);
+      border: 1px solid rgba(36, 123, 255, 0.4);
+      padding: 18px 24px;
       border-radius: 12px;
       display: flex;
       justify-content: space-between;
@@ -46,16 +46,16 @@
       background: rgba(36, 123, 255, 0.15);
       border: 1px solid #247bff;
       color: #60a5fa;
-      font-size: 12px;
+      font-size: 11px;
       padding: 4px 12px;
       border-radius: 20px;
       font-family: monospace;
     }
     .svg-wrapper {
-      background: #070b16;
+      background: #050813;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     img.card-asset {
       width: 100%;
@@ -63,15 +63,16 @@
       display: block;
     }
     .projects-card {
-      background: #0d1424;
+      background: #080e1c;
       border: 1px solid #1e293b;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 24px;
     }
     .projects-card h2 {
       margin-top: 0;
       font-size: 18px;
       color: #38bdf8;
+      font-family: monospace;
     }
     table {
       width: 100%;
@@ -104,25 +105,15 @@
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13.5px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid transparent;
+      text-decoration: none;
     }
-    .btn-linkedin {
-      background: #0A66C2;
-      color: #ffffff;
-    }
-    .btn-github {
-      background: #181717;
-      color: #ffffff;
-      border-color: #334155;
-    }
-    .btn-email {
-      background: #EA4335;
-      color: #ffffff;
-    }
+    .btn-linkedin { background: #0A66C2; color: #ffffff; }
+    .btn-github { background: #181717; color: #ffffff; border: 1px solid #334155; }
+    .btn-email { background: #EA4335; color: #ffffff; }
   </style>
 </head>
 <body>
@@ -130,39 +121,65 @@
     <div class="header-banner">
       <div>
         <h1>MAYUKH BHATTACHARJEE (@mayukhbyte)</h1>
-        <p>Interactive Playbook Preview · 6 Animated SVG Cards</p>
+        <p>Interactive Playbook Preview · Exact Reel Design</p>
       </div>
-      <div class="tag">PLAYBOOK v2.0</div>
+      <div class="tag">REEL SPEC v3.0</div>
     </div>
 
     <!-- 01 HERO -->
     <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/hero.svg?v=2" alt="Hero">
+      <img class="card-asset" src="./assets/hero.svg?v=3" alt="Hero">
     </div>
 
     <!-- 02 ABOUT -->
     <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/about-life.svg?v=2" alt="About Life & Capabilities">
+      <img class="card-asset" src="./assets/about-life.svg?v=3" alt="About Life">
     </div>
 
     <!-- 03 STACK -->
     <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/stack.svg?v=2" alt="Stack & Orbits">
+      <img class="card-asset" src="./assets/stack.svg?v=3" alt="My Engine Room">
     </div>
 
-    <!-- 04 FEATURED REPOSITORIES -->
-    <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/projects.svg?v=2" alt="Featured Repositories">
+    <!-- REPO TABLE (Matching Top of Image 3) -->
+    <div class="projects-card">
+      <h2>🚀 Featured Repositories</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>What it does</th>
+            <th>Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://github.com/mayukhbyte/ai-educator" target="_blank"><strong>ai-educator</strong></a></td>
+            <td>AI-powered tutoring system with multi-level doubt solving, natural speech explanations & adaptive quizzes</td>
+            <td><code>AI + Learning</code></td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/mayukhbyte/Paypaal-pro" target="_blank"><strong>Paypaal-pro</strong></a></td>
+            <td>Autonomous agent financial operations engine with AI dispute synthesis, stock liquidation & escrow payouts</td>
+            <td><code>Fintech + AI Agents</code></td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/mayukhbyte/aizen-detector" target="_blank"><strong>aizen-detector</strong></a></td>
+            <td>Real-time URL safety & phishing crawler evaluating 21 concurrent Go goroutines and 39 security signals</td>
+            <td><code>Security + Go</code></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- 05 ID DASHBOARD -->
+    <!-- 04 BUILDER CREDENTIALS -->
     <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/id-dashboard.svg?v=2" alt="ID Dashboard">
+      <img class="card-asset" src="./assets/id-dashboard.svg?v=3" alt="Builder Credentials">
     </div>
 
-    <!-- 06 CONNECT -->
+    <!-- 05 CONNECT -->
     <div class="svg-wrapper">
-      <img class="card-asset" src="./assets/connect.svg?v=2" alt="Connect">
+      <img class="card-asset" src="./assets/connect.svg?v=3" alt="Start a Conversation">
     </div>
 
     <!-- Real Clickable Links -->
@@ -170,41 +187,6 @@
       <a class="badge-btn btn-linkedin" href="https://www.linkedin.com/in/mayukh-bhattacharjee-607522389?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">LinkedIn Profile</a>
       <a class="badge-btn btn-github" href="https://github.com/mayukhbyte" target="_blank">GitHub Profile</a>
       <a class="badge-btn btn-email" href="mailto:mayukhbhttchrj@gmail.com">Send Email</a>
-    </div>
-
-    <!-- Projects Table -->
-    <div class="projects-card">
-      <h2>🚀 Flagship Engineering Repositories</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Repository</th>
-            <th>Description</th>
-            <th>Stack</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>ai-educator</strong></td>
-            <td>Intelligent AI tutoring platform with GPT-4o doubt solving & adaptive quizzes</td>
-            <td><code>React 18</code> <code>TypeScript</code> <code>OpenAI</code></td>
-            <td><a href="https://github.com/mayukhbyte/ai-educator" target="_blank">View Repo</a></td>
-          </tr>
-          <tr>
-            <td><strong>Paypaal-pro</strong></td>
-            <td>Autonomous agent fintech engine with AI dispute synthesis & stock liquidation</td>
-            <td><code>Node.js</code> <code>Express</code> <code>Fintech</code></td>
-            <td><a href="https://github.com/mayukhbyte/Paypaal-pro" target="_blank">View Repo</a></td>
-          </tr>
-          <tr>
-            <td><strong>aizen-detector</strong></td>
-            <td>Real-time URL security crawler with 21 concurrent Go goroutines & 39 signals</td>
-            <td><code>Go</code> <code>SvelteKit 5</code> <code>Vercel</code></td>
-            <td><a href="https://github.com/mayukhbyte/aizen-detector" target="_blank">View Repo</a></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </body>
