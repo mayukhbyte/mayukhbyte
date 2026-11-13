@@ -1,26 +1,26 @@
 <div align="center">
 
-![Hero](./assets/hero.svg?v=9)
+![Hero](./assets/hero2.svg)
 
 <br>
 
-![About & Philosophy](./assets/about-life.svg?v=9)
+![About & Philosophy](./assets/about-life2.svg)
 
 <br>
 
-![Engine Room & Tech Stack](./assets/stack.svg?v=9)
+![Engine Room & Tech Stack](./assets/stack2.svg)
 
 <br>
 
-![Featured Repositories](./assets/projects-table.svg?v=9)
+![Featured Repositories](./assets/projects-table2.svg)
 
 <br>
 
-![Builder Credentials](./assets/id-dashboard.svg?v=9)
+![Builder Credentials](./assets/id-dashboard2.svg)
 
 <br>
 
-![Connect](./assets/connect.svg?v=9)
+![Connect](./assets/connect2.svg)
 
 <br>
 

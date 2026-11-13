@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="420" viewBox="0 0 860 420" fill="none">
+<defs>
+  <linearGradient id="st-bg" x1="0" y1="0" x2="860" y2="420" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#02040a"/>
+    <stop offset="50%" stop-color="#060e22"/>
+    <stop offset="100%" stop-color="#02040a"/>
+  </linearGradient>
+  <linearGradient id="st-border" x1="0" y1="0" x2="860" y2="420" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
+    <stop offset="50%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#ff0055" stop-opacity="0.6"/>
+  </linearGradient>
+  <radialGradient id="st-glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25"/>
+    <stop offset="60%" stop-color="#247bff" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<rect width="860" height="420" rx="16" fill="url(#st-bg)"/>
+<rect x="0.5" y="0.5" width="859" height="419" rx="15.5" stroke="url(#st-border)" stroke-width="1.2"/>
+
+<!-- Header -->
+<g transform="translate(36, 28)">
+  <text x="0" y="10" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="1.5">03 / MY ENGINE ROOM</text>
+  <text x="0" y="38" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="0.5">TOOLS CHANGE. CURIOSITY DOESN'T.</text>
+  <text x="0" y="58" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="1.5">LANGUAGES / SYSTEMS / INTELLIGENCE</text>
+</g>
+
+<!-- LEFT: 3D Constellation Orbit Diagram (Mayukh's Stack) -->
+<g transform="translate(40, 110)">
+  <circle cx="170" cy="120" r="130" fill="url(#st-glow)"/>
+
+  <!-- Orbits -->
+  <ellipse cx="170" cy="120" rx="140" ry="55" fill="none" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(-25 170 120)"/>
+  <ellipse cx="170" cy="120" rx="140" ry="55" fill="none" stroke="#247bff" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(35 170 120)"/>
+  <ellipse cx="170" cy="120" rx="130" ry="50" fill="none" stroke="#ff0055" stroke-width="1" stroke-opacity="0.3" transform="rotate(85 170 120)"/>
+
+  <!-- Center Isometric 3D Cube (MB) -->
+  <g transform="translate(170, 120)">
+    <!-- Top Face -->
+    <polygon points="0,-28 24,-14 0,0 -24,-14" fill="#0c2d64" stroke="#00f0ff" stroke-width="1.2"/>
+    <!-- Left Face -->
+    <polygon points="-24,-14 0,0 0,28 -24,14" fill="#081d42" stroke="#00f0ff" stroke-width="1.2"/>
+    <!-- Right Face -->
+    <polygon points="0,0 24,-14 24,14 0,28" fill="#061633" stroke="#00f0ff" stroke-width="1.2"/>
+    <!-- MB Monogram -->
+    <text x="0" y="7" text-anchor="middle" fill="#00f0ff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="1">MB</text>
+  </g>
+
+  <!-- Constellation Nodes (From Mayukh's actual repos) -->
+  <!-- Top: Python -->
+  <g transform="translate(170, 30)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#fbbf24" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#fbbf24" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9" font-weight="800">Python</text>
+  </g>
+
+  <!-- Left: TypeScript -->
+  <g transform="translate(50, 110)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#3178c6" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#3178c6" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="900">TS</text>
+  </g>
+
+  <!-- Right: Go (from Aizen-detector-url) -->
+  <g transform="translate(290, 110)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#00add8" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#00add8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="900">Go</text>
+  </g>
+
+  <!-- Bottom-Left: React -->
+  <g transform="translate(90, 185)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#61dafb" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#61dafb" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="800">React</text>
+  </g>
+
+  <!-- Bottom-Right: Node / Supabase -->
+  <g transform="translate(250, 185)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#3ecf8e" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#3ecf8e" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="800">Node</text>
+  </g>
+
+  <!-- Connecting Rays -->
+  <line x1="170" y1="48" x2="170" y2="92" stroke="#fbbf24" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="68" y1="110" x2="146" y2="120" stroke="#3178c6" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="272" y1="110" x2="194" y2="120" stroke="#00add8" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="108" y1="185" x2="155" y2="135" stroke="#61dafb" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="232" y1="185" x2="185" y2="135" stroke="#3ecf8e" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+  <!-- Orbiting Satellite Particle -->
+  <circle cx="310" cy="70" r="5" fill="#ff0055"/>
+  <circle cx="310" cy="70" r="10" fill="#ff0055" fill-opacity="0.3"/>
+
+  <text x="170" y="245" text-anchor="middle" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9" font-weight="700" letter-spacing="1">CODE IS THE TOOL. IMPACT IS THE POINT.</text>
+</g>
+
+<!-- RIGHT: Real Categorized Tech Cards (From Mayukh's actual repos) -->
+<g transform="translate(420, 100)">
+  <!-- 01 / LANGUAGES -->
+  <g transform="translate(0, 0)">
+    <text x="0" y="10" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="1">01 / LANGUAGES</text>
+    <g transform="translate(0, 18)">
+      <!-- TypeScript -->
+      <rect x="0" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="8" y="11" width="20" height="20" rx="3" fill="#3178c6"/>
+      <text x="18" y="25" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="900">TS</text>
+      <text x="34" y="20" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700">TypeScript</text>
+      <text x="34" y="31" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="7.5">TYPED RUNTIME</text>
+
+      <!-- JavaScript -->
+      <rect x="105" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="113" y="11" width="20" height="20" rx="3" fill="#f7df1e"/>
+      <text x="123" y="25" text-anchor="middle" fill="#000000" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="900">JS</text>
+      <text x="139" y="20" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700">JavaScript</text>
+      <text x="139" y="31" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="7.5">MODERN ES6+</text>
+
+      <!-- Python -->
+      <rect x="210" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="218" y="11" width="20" height="20" rx="3" fill="#3776ab"/>
+      <text x="228" y="25" text-anchor="middle" fill="#ffd343" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="900">Py</text>
+      <text x="244" y="20" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700">Python</text>
+      <text x="244" y="31" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="7.5">SCRIPTS &amp; AI</text>
+
+      <!-- Go -->
+      <rect x="315" y="0" width="85" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="323" y="11" width="20" height="20" rx="3" fill="#00add8"/>
+      <text x="333" y="25" text-anchor="middle" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9" font-weight="900">GO</text>
+      <text x="349" y="20" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700">Golang</text>
+      <text x="349" y="31" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="7.5">FAST CRAWLER</text>
+    </g>
+  </g>
+
+  <!-- 02 / FRONTEND -->
+  <g transform="translate(0, 80)">
+    <text x="0" y="10" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="1">02 / FRONTEND</text>
+    <g transform="translate(0, 18)">
+      <!-- React -->
+      <rect x="0" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" fill="#61dafb" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">React</text>
+      <text x="14" y="35" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">INTERACTIVE SPA</text>
+
+      <!-- Next.js -->
+      <rect x="135" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(135,0)" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">Next.js</text>
+      <text x="14" y="35" transform="translate(135,0)" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">SSR PLATFORMS</text>
+
+      <!-- Tailwind / Framer -->
+      <rect x="270" y="0" width="130" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(270,0)" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">Tailwind &amp; UI</text>
+      <text x="14" y="35" transform="translate(270,0)" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">3D &amp; MOTION UI</text>
+    </g>
+  </g>
+
+  <!-- 03 / BACKEND -->
+  <g transform="translate(0, 162)">
+    <text x="0" y="10" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="1">03 / BACKEND</text>
+    <g transform="translate(0, 18)">
+      <!-- Node & Express -->
+      <rect x="0" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" fill="#22c55e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">Node &amp; Express</text>
+      <text x="14" y="35" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">REST &amp; AGENT APIS</text>
+
+      <!-- Supabase & Firebase -->
+      <rect x="135" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(135,0)" fill="#3ecf8e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">Supabase &amp; Auth</text>
+      <text x="14" y="35" transform="translate(135,0)" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">FIREBASE &amp; PG</text>
+
+      <!-- MCP & AI APIs -->
+      <rect x="270" y="0" width="130" height="44" rx="6" fill="#061226" stroke="#ff0055" stroke-opacity="0.4"/>
+      <text x="14" y="22" transform="translate(270,0)" fill="#ff0055" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="800">MCP &amp; LLM APIs</text>
+      <text x="14" y="35" transform="translate(270,0)" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8">AUTONOMOUS AGENTS</text>
+    </g>
+  </g>
+
+  <!-- Bottom Tagline -->
+  <text x="0" y="255" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="1">BUILD / MENTOR / CREATE / REPEAT</text>
+</g>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="235" viewBox="0 0 860 235" fill="none">
+<defs>
+  <linearGradient id="pt-bg" x1="0" y1="0" x2="860" y2="235" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#02040a"/>
+    <stop offset="50%" stop-color="#060e22"/>
+    <stop offset="100%" stop-color="#02040a"/>
+  </linearGradient>
+  <linearGradient id="pt-border" x1="0" y1="0" x2="860" y2="235" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
+    <stop offset="50%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#ff0055" stop-opacity="0.6"/>
+  </linearGradient>
+</defs>
+
+<rect width="860" height="235" rx="14" fill="url(#pt-bg)"/>
+<rect x="0.5" y="0.5" width="859" height="234" rx="13.5" stroke="url(#pt-border)" stroke-width="1.2"/>
+
+<!-- Section Title matching Image 1: Things I've built -->
+<g transform="translate(25, 20)">
+  <text x="0" y="8" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" font-weight="700" letter-spacing="1">03 / FEATURED REPOSITORIES</text>
+  <text x="0" y="28" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="900" letter-spacing="0.5">Things I've built</text>
+</g>
+
+<!-- Clean Dark Grid Table matching Image 1 -->
+<g transform="translate(25, 60)">
+  <!-- Table Header -->
+  <rect x="0" y="0" width="810" height="32" fill="#08142c" stroke="#1e293b"/>
+  <text x="20" y="20" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">Project</text>
+  <text x="200" y="20" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">What it does</text>
+  <text x="670" y="20" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">Focus</text>
+
+  <!-- Row 1: Paypaal-pro -->
+  <rect x="0" y="32" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="58" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800">Paypaal-pro</text>
+  <text x="200" y="58" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
+  <text x="670" y="58" fill="#ff0055" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">Fintech + Agents</text>
+
+  <!-- Row 2: ai-educator -->
+  <rect x="0" y="74" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="100" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800">ai-educator</text>
+  <text x="200" y="100" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
+  <text x="670" y="100" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">AI + Learning</text>
+
+  <!-- Row 3: Aizen-detector-url -->
+  <rect x="0" y="116" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="142" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="800">Aizen-detector-url</text>
+  <text x="200" y="142" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
+  <text x="670" y="142" fill="#34d399" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="700">Security + Go</text>
+</g>
+</svg>
