@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayukh Bhattacharjee - GitHub Profile Preview</title>
+  <style>
+    body {
+      background-color: #030712;
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 880px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .header-banner {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border: 1px solid rgba(36, 123, 255, 0.3);
+      padding: 20px 28px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-banner h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .header-banner p {
+      margin: 4px 0 0 0;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .tag {
+      background: rgba(36, 123, 255, 0.15);
+      border: 1px solid #247bff;
+      color: #60a5fa;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: monospace;
+    }
+    .svg-wrapper {
+      background: #070b16;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    img.card-asset {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .projects-card {
+      background: #0d1424;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .projects-card h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #38bdf8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #1e293b;
+    }
+    th {
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .social-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      padding: 16px 0;
+    }
+    .badge-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+    }
+    .btn-linkedin {
+      background: #0A66C2;
+      color: #ffffff;
+    }
+    .btn-github {
+      background: #181717;
+      color: #ffffff;
+      border-color: #334155;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-banner">
+      <div>
+        <h1>MAYUKH BHATTACHARJEE (@mayukhbyte)</h1>
+        <p>Interactive Playbook Preview · 5 Animated SVG Cards</p>
+      </div>
+      <div class="tag">PLAYBOOK v1.0</div>
+    </div>
+
+    <!-- 01 HERO -->
+    <div class="svg-wrapper">
+      <img class="card-asset" src="./assets/hero.svg?v=1" alt="Hero">
+    </div>
+
+    <!-- 02 ABOUT -->
+    <div class="svg-wrapper">
+      <img class="card-asset" src="./assets/about-life.svg?v=1" alt="About Life & Capabilities">
+    </div>
+
+    <!-- 03 STACK -->
+    <div class="svg-wrapper">
+      <img class="card-asset" src="./assets/stack.svg?v=1" alt="Stack & Orbits">
+    </div>
+
+    <!-- 04 ID DASHBOARD -->
+    <div class="svg-wrapper">
+      <img class="card-asset" src="./assets/id-dashboard.svg?v=1" alt="ID Dashboard">
+    </div>
+
+    <!-- 05 CONNECT -->
+    <div class="svg-wrapper">
+      <img class="card-asset" src="./assets/connect.svg?v=1" alt="Connect">
+    </div>
+
+    <!-- Real Clickable Links -->
+    <div class="social-row">
+      <a class="badge-btn btn-linkedin" href="https://www.linkedin.com/in/mayukh-bhattacharjee-607522389" target="_blank">LinkedIn Profile</a>
+      <a class="badge-btn btn-github" href="https://github.com/mayukhbyte" target="_blank">GitHub Profile</a>
+      <a class="badge-btn btn-email" href="mailto:mayukhbhttchrj@gmail.com">Send Email</a>
+    </div>
+
+    <!-- Projects Table -->
+    <div class="projects-card">
+      <h2>🚀 Featured Projects</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Description</th>
+            <th>Stack</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>DreamFood AI</strong></td>
+            <td>Next-gen AI-powered food delivery app with Supabase & Firebase Auth</td>
+            <td><code>React</code> <code>Next.js</code> <code>Supabase</code></td>
+            <td><a href="https://github.com/mayukhbyte/dreamfood-ai" target="_blank">View Repo</a></td>
+          </tr>
+          <tr>
+            <td><strong>Water Analyser</strong></td>
+            <td>Water consumption & leak alert analysis system</td>
+            <td><code>Python</code> <code>Data Analysis</code> <code>IoT</code></td>
+            <td><a href="https://github.com/mayukhbyte/Water-analyser-and-leak-alert-analyser" target="_blank">View Repo</a></td>
+          </tr>
+          <tr>
+            <td><strong>Aizen Detector</strong></td>
+            <td>URL safety, fraud & malicious link analysis tool</td>
+            <td><code>Python</code> <code>Security</code></td>
+            <td><a href="https://github.com/mayukhbyte/aizen-detector" target="_blank">View Repo</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
