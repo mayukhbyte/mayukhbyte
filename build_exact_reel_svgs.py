@@ -26,10 +26,10 @@ FONT_MONO = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
 # ---------------------------------------------------------------------------
 # 1. assets/hero.svg (Deep Neon Dark + Vibrant Glow + Fixed Text Positions)
 # ---------------------------------------------------------------------------
-hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" viewBox="0 0 860 380" fill="none">
+hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="400" viewBox="0 0 860 400" fill="none">
 <defs>
   <!-- Deep Cyberpunk Neon Gradient Background -->
-  <linearGradient id="h-bg" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
+  <linearGradient id="h-bg" x1="0" y1="0" x2="860" y2="400" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
     <stop offset="35%" stop-color="#050a18"/>
     <stop offset="70%" stop-color="#081026"/>
@@ -37,7 +37,7 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
   </linearGradient>
   
   <!-- Vibrant Neon Glowing Border -->
-  <linearGradient id="h-border" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
+  <linearGradient id="h-border" x1="0" y1="0" x2="860" y2="400" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.9"/>
     <stop offset="45%" stop-color="#247bff" stop-opacity="0.5"/>
     <stop offset="75%" stop-color="#ff0055" stop-opacity="0.6"/>
@@ -76,7 +76,7 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
   </pattern>
 
   <clipPath id="h-port-clip">
-    <rect x="560" y="25" width="260" height="330" rx="18"/>
+    <rect x="560" y="20" width="268" height="358" rx="18"/>
   </clipPath>
 </defs>
 
@@ -86,55 +86,52 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 </style>
 
 <!-- Neon Base Background -->
-<rect width="860" height="380" rx="16" fill="url(#h-bg)"/>
-<rect width="860" height="380" rx="16" fill="url(#h-grid)"/>
+<rect width="860" height="400" rx="16" fill="url(#h-bg)"/>
+<rect width="860" height="400" rx="16" fill="url(#h-grid)"/>
 
 <!-- Glowing Ambient Lighting -->
-<circle cx="680" cy="180" r="190" fill="url(#h-glow-cyan)"/>
-<circle cx="750" cy="240" r="160" fill="url(#h-glow-crimson)"/>
-<circle cx="200" cy="140" r="180" fill="url(#h-glow-blue)"/>
+<circle cx="680" cy="195" r="200" fill="url(#h-glow-cyan)"/>
+<circle cx="750" cy="250" r="170" fill="url(#h-glow-crimson)"/>
+<circle cx="200" cy="150" r="190" fill="url(#h-glow-blue)"/>
 
 <!-- Neon Hairline Card Border -->
-<rect x="0.5" y="0.5" width="859" height="379" rx="15.5" stroke="url(#h-border)" stroke-width="1.2"/>
+<rect x="0.5" y="0.5" width="859" height="399" rx="15.5" stroke="url(#h-border)" stroke-width="1.2"/>
 
-<!-- LEFT COLUMN (Safe bounds: x=48 to 440, photo starts at x=560) -->
+<!-- LEFT COLUMN (Safe bounds: x=48 to 490, photo starts at x=560) -->
 <!-- Top Tag -->
-<g transform="translate(48, 42)">
+<g transform="translate(48, 44)">
   <rect width="140" height="25" rx="5" fill="#081329" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.6"/>
   <circle cx="13" cy="12.5" r="3.5" fill="#00f0ff"/>
   <text x="25" y="16.5" fill="#38bdf8" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="1">PORTFOLIO // 2026<tspan class="blink-cur" fill="#ff0055">_</tspan></text>
 </g>
 
 <!-- Big Bold Typography matching Reel -->
-<!-- Row 1: "MAYUKH" (White, font-size=44, baseline at y=118) -->
-<g transform="translate(48, 118)">
+<!-- Row 1: "MAYUKH" (White, font-size=44, baseline at y=116) -->
+<g transform="translate(48, 116)">
   <text x="0" y="0" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="44" font-weight="900" letter-spacing="-1">MAYUKH</text>
 </g>
 
-<!-- "/// BUILD. BEYOND." — independent block at absolute (x=252, y=74) -->
-<!-- MAYUKH cap ≈ y=118-32=86. BUILD.BEYOND. at y=74-100. -->
-<!-- BHATTACHARJEE cap ≈ y=178-26=152. Gap to BUILD.BEYOND bottom (y=100) = 52px. SAFE. -->
-<g transform="translate(252, 74)">
-  <rect x="0" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
-  <rect x="5" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
-  <rect x="10" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
-  <text x="18" y="13" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1.2">BUILD.</text>
-  <text x="18" y="26" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1.2">BEYOND.</text>
+<!-- "/// BUILD. BEYOND." — perfectly positioned badge with clean clearance from MAYUKH (starts at x=272, y=68) -->
+<g transform="translate(272, 68)">
+  <rect x="0" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
+  <rect x="6" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
+  <rect x="12" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
+  <text x="22" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11" font-weight="900" letter-spacing="1.2">BUILD.</text>
+  <text x="22" y="28" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="11" font-weight="900" letter-spacing="1.2">BEYOND.</text>
 </g>
 
-<!-- Row 2: "BHATTACHARJEE" in Radiant Neon Cyan/Blue, baseline at y=178, font-size=36 -->
-<!-- Width ≈ 13*36*0.62=291px → x=48 to x=339. No collision with BUILD.BEYOND (y=74-100). -->
-<g transform="translate(48, 178)">
+<!-- Row 2: "BHATTACHARJEE" baseline at y=176, font-size=36 -->
+<g transform="translate(48, 176)">
   <text x="0" y="0" fill="url(#h-cyan-glow)" font-family="{FONT_DISPLAY}" font-size="36" font-weight="900" letter-spacing="-0.5">BHATTACHARJEE</text>
 </g>
 
 <!-- Role Subtitle & Bio -->
-<text x="48" y="212" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700" letter-spacing="0.8">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
-<text x="48" y="237" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="13" font-weight="400">
+<text x="48" y="210" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700" letter-spacing="0.8">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
+<text x="48" y="233" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="13" font-weight="400">
   Building scalable software, intelligent AI systems &amp; web apps.
 </text>
-<text x="48" y="258" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="12" font-weight="400">
-  Creator of ai-educator, Paypaal-pro &amp; aizen-detector.
+<text x="48" y="253" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="12" font-weight="400">
+  Creator of Paypaal-pro, ai-educator &amp; Aizen-detector-url.
 </text>
 
 <!-- Bottom Metric Pills -->
@@ -145,7 +142,7 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 
   <rect x="95" y="0" width="135" height="28" rx="6" fill="#081022" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
   <text x="108" y="18" font-size="11">⭐</text>
-  <text x="126" y="18" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700">12 Public Repos</text>
+  <text x="126" y="18" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700">11 Public Repos</text>
 
   <rect x="240" y="0" width="145" height="28" rx="6" fill="#081022" stroke="#1e293b"/>
   <circle cx="254" cy="14" r="3.5" fill="#10b981"/>
@@ -154,14 +151,14 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 
 <!-- RIGHT CONTENT: Stylized Photo Cutout with Badge (Starts at x=560) -->
 <g>
-  <rect x="560" y="25" width="260" height="330" rx="18" fill="#050a16" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.6"/>
+  <rect x="560" y="20" width="268" height="358" rx="18" fill="#050a16" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.6"/>
   <g clip-path="url(#h-port-clip)">
-    <image x="555" y="15" width="270" height="345" href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+    <image x="555" y="12" width="278" height="368" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
   </g>
-  <rect x="560.5" y="25.5" width="259" height="329" rx="17.5" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
+  <rect x="560.5" y="20.5" width="267" height="357" rx="17.5" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
   
   <!-- Overlay Pill Badge centered on photo bottom -->
-  <g transform="translate(595, 305)">
+  <g transform="translate(595, 332)">
     <rect width="190" height="34" rx="8" fill="#060f24" stroke="#00f0ff" stroke-width="1.2"/>
     <rect x="12" y="10" width="4" height="14" fill="#00f0ff" rx="1"/>
     <rect x="18" y="10" width="4" height="14" fill="#ff0055" rx="1"/>
@@ -177,7 +174,7 @@ print("wrote assets/hero.svg")
 # ---------------------------------------------------------------------------
 # 2. assets/about-life.svg (Neon Cyberpunk Dual Card)
 # ---------------------------------------------------------------------------
-about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="390" viewBox="0 0 860 390" fill="none">
+about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="390" viewBox="0 0 860 390" fill="none">
 <defs>
   <linearGradient id="ab-bg" x1="0" y1="0" x2="860" y2="390" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
@@ -218,20 +215,20 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="390"
 <g transform="translate(30, 25)">
   <rect width="385" height="340" rx="14" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
   
-  <text x="22" y="28" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">FROM THOUGHT TO THING</text>
-  <text x="22" y="54" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="19" font-weight="900" letter-spacing="-0.5">IDEAS. BUILT DIFFERENT.</text>
+  <text x="22" y="28" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">01 / HOW I DO THINGS</text>
+  <text x="22" y="54" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="19" font-weight="900" letter-spacing="-0.5">BUILT DIFFERENT.</text>
 
   <!-- Blue Code-Bar Box -->
   <g transform="translate(22, 70)">
     <rect width="341" height="94" rx="8" fill="#091326" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
     <text x="14" y="20" fill="#38bdf8" font-family="{FONT_MONO}" font-size="9">github.com / mayukhbyte / build</text>
-    <text x="14" y="37" fill="#ffffff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">turn_curiosity_into_impact() {{</text>
+    <text x="14" y="37" fill="#ffffff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">curiosity_into_impact() {{</text>
     
     <!-- Step Pills -->
     <g transform="translate(14, 50)">
       <rect x="0" y="0" width="80" height="28" rx="5" fill="#0d1f3d" stroke="#00f0ff" stroke-width="0.8"/>
       <text x="8" y="13" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">01</text>
-      <text x="8" y="22" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="7.5">CREATE</text>
+      <text x="8" y="22" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="7.5">DISCOVER</text>
 
       <text x="86" y="18" fill="#64748b" font-family="{FONT_DISPLAY}" font-size="11">→</text>
 
@@ -258,8 +255,8 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="390"
     <text x="14" y="67" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Scalable systems. Useful intelligence.</text>
 
     <rect x="0" y="90" width="6" height="2" fill="#ff0055"/>
-    <text x="14" y="94" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="800">Autonomous Fintech &amp; Security</text>
-    <text x="14" y="109" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Concurrent Go crawling &amp; dispute automation.</text>
+    <text x="14" y="94" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="800">Community Mentorship</text>
+    <text x="14" y="109" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Making the next step less uncertain.</text>
   </g>
 </g>
 
@@ -278,19 +275,19 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="390"
     <g>
       <rect width="95" height="95" rx="8" fill="#0d1424" stroke="#00f0ff" stroke-width="0.8"/>
       <g clip-path="url(#thumb-clip)">
-        <image x="-5" y="-5" width="105" height="105" href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+        <image x="-5" y="-5" width="105" height="105" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
       </g>
       <rect y="74" width="95" height="21" rx="0" fill="#050a16" opacity="0.9"/>
       <text x="47" y="88" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="7.5" font-weight="700">MAYUKH / BUILDER</text>
     </g>
 
-    <!-- 3 Red Steps -->
+    <!-- 3 Red Steps matching Reel Photo 3 -->
     <g transform="translate(115, 8)">
       <text x="0" y="14" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">01</text>
       <text x="24" y="14" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">FIND THE GAP</text>
 
       <text x="0" y="44" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">02</text>
-      <text x="24" y="44" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">BUILD YOUR FLAG</text>
+      <text x="24" y="44" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">BUILD YOUR PLAN</text>
 
       <text x="0" y="74" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">03</text>
       <text x="24" y="74" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">TAKE THE LEAP</text>
@@ -451,7 +448,7 @@ with open(os.path.join(ASSETS_DIR, "stack.svg"), "w", encoding="utf-8") as f:
 print("wrote assets/stack.svg")
 
 # ---------------------------------------------------------------------------
-# 4. assets/projects-table.svg (Dark Neon Projects Table matching Image 3!)
+# 4. assets/projects-table.svg (Dark Neon Projects Table matching Reel!)
 # ---------------------------------------------------------------------------
 projects_table_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="230" viewBox="0 0 860 230" fill="none">
 <defs>
@@ -473,32 +470,32 @@ projects_table_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" hei
 <!-- Table Header Row -->
 <rect x="20" y="16" width="820" height="38" rx="6" fill="#071024" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
 <text x="40" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">PROJECT</text>
-<text x="210" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">WHAT IT DOES</text>
+<text x="230" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">WHAT IT DOES</text>
 <text x="700" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">FOCUS</text>
 
-<!-- Row 1: ai-educator -->
+<!-- Row 1: Paypaal-pro -->
 <g transform="translate(20, 60)">
   <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
-  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">ai-educator</text>
-  <text x="190" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
-  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081730" stroke="#00f0ff" stroke-width="0.8"/>
-  <text x="735" y="27" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">AI + Learning</text>
-</g>
-
-<!-- Row 2: Paypaal-pro -->
-<g transform="translate(20, 112)">
-  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
   <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">Paypaal-pro</text>
-  <text x="190" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
+  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
   <rect x="670" y="11" width="130" height="24" rx="4" fill="#240c1a" stroke="#ff0055" stroke-width="0.8"/>
   <text x="735" y="27" text-anchor="middle" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Fintech + Agents</text>
 </g>
 
-<!-- Row 3: aizen-detector -->
+<!-- Row 2: ai-educator -->
+<g transform="translate(20, 112)">
+  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
+  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">ai-educator</text>
+  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
+  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081730" stroke="#00f0ff" stroke-width="0.8"/>
+  <text x="735" y="27" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">AI + Learning</text>
+</g>
+
+<!-- Row 3: Aizen-detector-url -->
 <g transform="translate(20, 164)">
   <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
-  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">aizen-detector</text>
-  <text x="190" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
+  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">Aizen-detector-url</text>
+  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
   <rect x="670" y="11" width="130" height="24" rx="4" fill="#081e18" stroke="#34d399" stroke-width="0.8"/>
   <text x="735" y="27" text-anchor="middle" fill="#34d399" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Security + Go</text>
 </g>
@@ -511,7 +508,7 @@ print("wrote assets/projects-table.svg")
 # ---------------------------------------------------------------------------
 # 5. assets/id-dashboard.svg (Neon Lanyard Card & Dashboard)
 # ---------------------------------------------------------------------------
-id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="430" viewBox="0 0 860 430" fill="none">
+id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="430" viewBox="0 0 860 430" fill="none">
 <defs>
   <linearGradient id="id-bg" x1="0" y1="0" x2="860" y2="430" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
@@ -598,7 +595,7 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
 
     <rect x="18" y="44" width="164" height="150" rx="8" fill="#040813" stroke="#1e293b"/>
     <g clip-path="url(#lanyard-port)">
-      <image x="18" y="38" width="164" height="160" href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+      <image x="18" y="38" width="164" height="160" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
     </g>
     <g transform="translate(24, 168)">
       <rect width="95" height="18" rx="4" fill="#08152e" stroke="#00f0ff" stroke-width="0.8"/>
@@ -669,7 +666,7 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
   <g transform="translate(182, 0)">
     <rect width="170" height="85" rx="8" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
     <text x="14" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700">REPOSITORIES</text>
-    <text x="14" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">12</text>
+    <text x="14" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">11</text>
     <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">PUBLIC ACTIVE</text>
   </g>
 
@@ -685,28 +682,28 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
     <text x="0" y="14" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">MOST-STARRED / PUBLIC REPOSITORIES</text>
     <text x="520" y="14" fill="#ff0055" font-size="12">★</text>
 
-    <!-- Bar 1: ai-educator -->
+    <!-- Bar 1: Paypaal-pro -->
     <g transform="translate(0, 26)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">ai-educator</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">3</text>
-      <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="460" height="7" rx="3.5" fill="#00f0ff"/>
-    </g>
-
-    <!-- Bar 2: Paypaal-pro -->
-    <g transform="translate(0, 62)">
       <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">Paypaal-pro</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">2</text>
+      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 1</text>
       <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="370" height="7" rx="3.5" fill="#247bff"/>
+      <rect x="0" y="18" width="480" height="7" rx="3.5" fill="#ff0055"/>
     </g>
 
-    <!-- Bar 3: aizen-detector -->
-    <g transform="translate(0, 98)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">aizen-detector</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">2</text>
+    <!-- Bar 2: ai-educator -->
+    <g transform="translate(0, 62)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">ai-educator</text>
+      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 2</text>
       <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="290" height="7" rx="3.5" fill="#34d399"/>
+      <rect x="0" y="18" width="410" height="7" rx="3.5" fill="#00f0ff"/>
+    </g>
+
+    <!-- Bar 3: Aizen-detector-url -->
+    <g transform="translate(0, 98)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">Aizen-detector-url</text>
+      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 3</text>
+      <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
+      <rect x="0" y="18" width="340" height="7" rx="3.5" fill="#34d399"/>
     </g>
   </g>
 
@@ -729,7 +726,7 @@ print("wrote assets/id-dashboard.svg")
 # ---------------------------------------------------------------------------
 # 6. assets/connect.svg (Neon Connect Card)
 # ---------------------------------------------------------------------------
-connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="320" viewBox="0 0 860 320" fill="none">
+connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="320" viewBox="0 0 860 320" fill="none">
 <defs>
   <linearGradient id="cn-bg" x1="0" y1="0" x2="860" y2="320" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
@@ -768,7 +765,7 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="32
 
 <!-- Left: Character pointing towards connect buttons -->
 <g clip-path="url(#cn-char-clip)">
-  <image x="15" y="10" width="280" height="300" href="data:image/png;base64,{char_b64}" preserveAspectRatio="xMidYMid slice"/>
+  <image x="15" y="10" width="280" height="300" href="data:image/png;base64,{char_b64}" xlink:href="data:image/png;base64,{char_b64}" preserveAspectRatio="xMidYMid slice"/>
 </g>
 <rect x="24" y="19" width="267" height="282" rx="14" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
 
