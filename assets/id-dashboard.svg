@@ -23,7 +23,6 @@
   </linearGradient>
 </defs>
 <style>
-  /* Drop into place, settle with damped pendulum motion, then gentle +/-1.7-deg swing */
   @keyframes id-swing {
     0% { transform: rotate(0deg); }
     50% { transform: rotate(1.7deg); }
@@ -47,7 +46,7 @@
 <rect x="0.5" y="0.5" width="859" height="399" rx="15.5" stroke="url(#id-border)" stroke-width="1"/>
 
 <!-- Header -->
-<text x="45" y="38" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">VERIFIED CREDENTIALS // 03</text>
+<text x="45" y="38" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">VERIFIED CREDENTIALS // 04</text>
 <text x="45" y="65" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800">Lanyard ID &amp; Developer Dashboard</text>
 
 <!-- Hanging Lanyard Assembly (Left) -->
@@ -145,9 +144,9 @@
   <!-- Tile 3: Focus -->
   <g transform="translate(0, 140)">
     <rect width="250" height="120" rx="12" fill="#0d1424" stroke="#1e293b"/>
-    <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">CORE FOCUS</text>
-    <text x="20" y="68" fill="#ffffff" font-family="system-ui" font-size="20" font-weight="800">Full-Stack &amp; AI</text>
-    <text x="20" y="96" fill="#34d399" font-family="system-ui" font-size="12" font-weight="600">● Modern Web &amp; Vision</text>
+    <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">FLAGSHIP REPOSITORIES</text>
+    <text x="20" y="68" fill="#ffffff" font-family="system-ui" font-size="17" font-weight="800">ai-educator · Paypaal</text>
+    <text x="20" y="96" fill="#34d399" font-family="system-ui" font-size="12" font-weight="600">● aizen-detector</text>
   </g>
 
   <!-- Tile 4: Status -->
@@ -155,7 +154,7 @@
     <rect width="250" height="120" rx="12" fill="#0d1424" stroke="#247bff" stroke-opacity="0.3"/>
     <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">COLLABORATION STATUS</text>
     <text x="20" y="68" fill="#f8fafc" font-family="system-ui" font-size="20" font-weight="800">Open to Projects</text>
-    <text x="20" y="96" fill="#38bdf8" font-family="system-ui" font-size="12" font-weight="500">Freelance · Full-Time · Mentorship</text>
+    <text x="20" y="96" fill="#38bdf8" font-family="system-ui" font-size="12" font-weight="500">Freelance · Full-Time · AI Systems</text>
   </g>
 </g>
 </svg>

@@ -44,13 +44,13 @@
   <!-- Outer Glow -->
   <circle cx="0" cy="0" r="150" fill="#247bff" opacity="0.06" filter="blur(35px)"/>
 
-  <!-- Orbit 1 (Major: 340, Minor: 110, tilt -15deg) -->
+  <!-- Orbit 1 (Major: 330, Minor: 85, tilt -12deg) -->
   <ellipse cx="0" cy="0" rx="330" ry="85" fill="none" stroke="#247bff" stroke-width="1.2" stroke-opacity="0.35" stroke-dasharray="6 4" transform="rotate(-12)"/>
   
-  <!-- Orbit 2 (Major: 240, Minor: 70, tilt 10deg) -->
+  <!-- Orbit 2 (Major: 230, Minor: 65, tilt 14deg) -->
   <ellipse cx="0" cy="0" rx="230" ry="65" fill="none" stroke="#ff354f" stroke-width="1.2" stroke-opacity="0.3" stroke-dasharray="5 3" transform="rotate(14)"/>
 
-  <!-- Orbit 3 (Major: 140, Minor: 48, tilt -25deg) -->
+  <!-- Orbit 3 (Major: 135, Minor: 46, tilt -22deg) -->
   <ellipse cx="0" cy="0" rx="135" ry="46" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(-22)"/>
 
   <!-- Nucleus / Core -->
@@ -74,8 +74,8 @@
     <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">⚛️ React</text>
   </g>
   <g class="ob2" transform="translate(170, -50)">
-    <rect x="-40" y="-14" width="80" height="28" rx="14" fill="#0f172a" stroke="#339933" stroke-width="1.2"/>
-    <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">🟢 Node.js</text>
+    <rect x="-40" y="-14" width="80" height="28" rx="14" fill="#0f172a" stroke="#00ADD8" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">🐹 Go (Golang)</text>
   </g>
 
   <!-- Badges on Orbit 3 -->
@@ -97,9 +97,9 @@
     <text x="14" y="24" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">LANGUAGES</text>
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Python</text>
-      <rect x="72" y="0" width="76" height="24" rx="6" fill="#1e293b"/><text x="110" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">JavaScript</text>
-      <rect x="0" y="32" width="72" height="24" rx="6" fill="#1e293b"/><text x="36" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">TypeScript</text>
-      <rect x="78" y="32" width="56" height="24" rx="6" fill="#1e293b"/><text x="106" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">C / C++</text>
+      <rect x="72" y="0" width="46" height="24" rx="6" fill="#1e293b"/><text x="95" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Go</text>
+      <rect x="0" y="32" width="76" height="24" rx="6" fill="#1e293b"/><text x="38" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">JavaScript</text>
+      <rect x="82" y="32" width="56" height="24" rx="6" fill="#1e293b"/><text x="110" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">C / C++</text>
     </g>
   </g>
 
@@ -110,8 +110,8 @@
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="60" height="24" rx="6" fill="#1e293b"/><text x="30" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">React</text>
       <rect x="66" y="0" width="68" height="24" rx="6" fill="#1e293b"/><text x="100" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Next.js</text>
-      <rect x="0" y="32" width="74" height="24" rx="6" fill="#1e293b"/><text x="37" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Tailwind</text>
-      <rect x="80" y="32" width="70" height="24" rx="6" fill="#1e293b"/><text x="115" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">HTML/CSS</text>
+      <rect x="0" y="32" width="70" height="24" rx="6" fill="#1e293b"/><text x="35" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">SvelteKit</text>
+      <rect x="76" y="32" width="74" height="24" rx="6" fill="#1e293b"/><text x="113" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Tailwind</text>
     </g>
   </g>
 
@@ -121,7 +121,7 @@
     <text x="14" y="24" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700">BACKEND &amp; DATA</text>
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="64" height="24" rx="6" fill="#1e293b"/><text x="32" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Node.js</text>
-      <rect x="70" y="0" width="68" height="24" rx="6" fill="#1e293b"/><text x="104" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Express</text>
+      <rect x="70" y="0" width="64" height="24" rx="6" fill="#1e293b"/><text x="102" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Gin (Go)</text>
       <rect x="0" y="32" width="76" height="24" rx="6" fill="#1e293b"/><text x="38" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Supabase</text>
       <rect x="82" y="32" width="68" height="24" rx="6" fill="#1e293b"/><text x="116" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Firebase</text>
     </g>
@@ -135,7 +135,7 @@
       <rect x="0" y="0" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">OpenCV</text>
       <rect x="72" y="0" width="50" height="24" rx="6" fill="#1e293b"/><text x="97" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Git</text>
       <rect x="0" y="32" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">GitHub</text>
-      <rect x="72" y="32" width="58" height="24" rx="6" fill="#1e293b"/><text x="101" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Linux</text>
+      <rect x="72" y="32" width="60" height="24" rx="6" fill="#1e293b"/><text x="102" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Vercel</text>
     </g>
   </g>
 </g>

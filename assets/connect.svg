@@ -38,22 +38,22 @@
 
 <!-- Header / Prompt (Right side) -->
 <g transform="translate(320, 35)">
-  <text x="0" y="12" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">CONNECT // 04</text>
-  <text x="0" y="38" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Let's Build Something Great Together</text>
-  <text x="0" y="60" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="13">Have an idea, project, or opportunity? Find me across my official channels below.</text>
+  <text x="0" y="12" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">CONNECT // 05</text>
+  <text x="0" y="38" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Let's Connect &amp; Collaborate</text>
+  <text x="0" y="60" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="13">Have an idea, engineering opportunity, or project? Reach out directly:</text>
 </g>
 
 <!-- Generously Spaced Social Cards (Right Side) -->
 <g transform="translate(320, 115)">
-  <!-- LinkedIn Card (Top) -->
+  <!-- LinkedIn Card (Top - Featured prominently) -->
   <g transform="translate(0, 0)">
-    <rect width="495" height="52" rx="10" fill="#0d1424" stroke="#0A66C2" stroke-width="1.2"/>
+    <rect width="495" height="52" rx="10" fill="#0d1424" stroke="#0A66C2" stroke-width="1.4"/>
     <!-- LinkedIn Icon -->
     <rect x="14" y="11" width="30" height="30" rx="6" fill="#0A66C2"/>
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="16" font-weight="900">in</text>
     
-    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">LinkedIn</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">Mayukh Bhattacharjee · Professional Network</text>
+    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">LinkedIn Profile</text>
+    <text x="56" y="40" fill="#38bdf8" font-family="system-ui" font-size="11">Mayukh Bhattacharjee · Professional Network</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#0A66C2" font-family="system-ui" font-size="18" font-weight="800">→</text>
@@ -68,7 +68,7 @@
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-size="16">🐙</text>
     
     <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">GitHub Profile</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">@mayukhbyte · Repositories, commits &amp; open source</text>
+    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">@mayukhbyte · Repositories, commits &amp; code</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#38bdf8" font-family="system-ui" font-size="18" font-weight="800">→</text>
@@ -82,8 +82,8 @@
     <rect x="14" y="11" width="30" height="30" rx="6" fill="#ff354f"/>
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-size="14">✉️</text>
     
-    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">Direct Email</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">mayukhbhttchrj@gmail.com · Inquiries &amp; Collaborations</text>
+    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">Direct Inquiries</text>
+    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">mayukhbhttchrj@gmail.com · Collaborations &amp; Opportunities</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#ff354f" font-family="system-ui" font-size="18" font-weight="800">→</text>

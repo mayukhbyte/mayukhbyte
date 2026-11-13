@@ -13,7 +13,6 @@
   </pattern>
 </defs>
 <style>
-  /* 12s cycle: 0-4s Slide 1, 4-8s Slide 2, 8-12s Slide 3 */
   @keyframes ab-bar1 {
     0% { width: 0; }
     30%, 100% { width: 100px; }
@@ -55,7 +54,7 @@
 
 <!-- Header -->
 <text x="45" y="45" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">ABOUT // 01</text>
-<text x="45" y="75" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Capabilities &amp; Core Interests</text>
+<text x="45" y="75" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Capabilities &amp; Active Explorations</text>
 
 <!-- Left Column: Core Capabilities -->
 <g transform="translate(45, 105)">
@@ -65,8 +64,8 @@
   <g transform="translate(20, 20)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="9" y="21" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="13" font-weight="800">01</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Full-Stack Web Engineering</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">React · Next.js · Node.js · APIs</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Full-Stack &amp; Web Platforms</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">React · Next.js · Node.js · SvelteKit</text>
   </g>
 
   <!-- Divider -->
@@ -76,8 +75,8 @@
   <g transform="translate(20, 90)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="8" y="21" fill="#ff354f" font-family="ui-monospace,monospace" font-size="13" font-weight="800">02</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">AI &amp; Computer Vision</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">OpenCV · Python · Image Pipelines</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">AI Education &amp; Vision</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">GPT-4o · OpenCV · Adaptive Tutoring</text>
   </g>
 
   <!-- Divider -->
@@ -87,8 +86,8 @@
   <g transform="translate(20, 160)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="8" y="21" fill="#34d399" font-family="ui-monospace,monospace" font-size="13" font-weight="800">03</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">System Architecture &amp; Data</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">Supabase · Git Workflows · Clean Code</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Fintech &amp; Security Engineering</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">Go Concurrency · Phishing Detection</text>
   </g>
 </g>
 
@@ -113,52 +112,52 @@
 
   <!-- Slide 1 -->
   <g class="s1" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">🚀</text>
-    <text x="42" y="16" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 01 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Building AI Products</text>
+    <text x="0" y="24" font-size="28">🎓</text>
+    <text x="42" y="16" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 01</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">AI-Assisted Tutoring</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Developing smart, intelligent web tools and AI-driven
+      Creator of AI-Educator: delivering multi-level doubt
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      apps (like DreamFood AI &amp; Aizen URL Detector).
+      solving, speech explanation, and adaptive quizzes.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: Machine Learning · Edge AI · Automation
+      Stack: React 18 · TypeScript · Vite · OpenAI API
     </text>
   </g>
 
   <!-- Slide 2 -->
   <g class="s2" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">💡</text>
-    <text x="42" y="16" fill="#ff354f" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 02 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Open Source &amp; Tooling</text>
+    <text x="0" y="24" font-size="28">🛡️</text>
+    <text x="42" y="16" fill="#ff354f" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 02</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Aizen URL Safety Engine</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Crafting public repositories, modular utilities, and
+      Concurrent Go backend with 21 goroutines evaluating
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      water consumption / security analysis software.
+      39 security signals for phishing and fraud detection.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: GitHub Actions · Developer Tools · Scripts
+      Stack: Go (Gin) · SvelteKit 5 · Vercel Serverless
     </text>
   </g>
 
   <!-- Slide 3 -->
   <g class="s3" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">🔍</text>
-    <text x="42" y="16" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 03 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">System Design &amp; UI</text>
+    <text x="0" y="24" font-size="28">💳</text>
+    <text x="42" y="16" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 03</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Paypaal Pro Financials</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Engineering resilient backends, responsive layouts,
+      Autonomous agent treasury platform with AI dispute
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      and high-performance full-stack web applications.
+      synthesis, stock liquidation, and escrow payouts.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: Next.js · Supabase · Cloud Deployments
+      Stack: Node.js · Express · AI Engine · SSE Streams
     </text>
   </g>
 </g>

@@ -2,13 +2,13 @@
 <defs>
   <linearGradient id="h-bg" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#070b16"/>
-    <stop offset="50%" stop-color="#0d1424"/>
+    <stop offset="50%" stop-color="#0c1322"/>
     <stop offset="100%" stop-color="#070b16"/>
   </linearGradient>
   <linearGradient id="h-border" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#247bff" stop-opacity="0.6"/>
-    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.2"/>
-    <stop offset="100%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#247bff" stop-opacity="0.5"/>
   </linearGradient>
   <linearGradient id="h-glow" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0%" stop-color="#247bff"/>
@@ -23,7 +23,7 @@
     <circle cx="2" cy="2" r="1" fill="#247bff" fill-opacity="0.12"/>
   </pattern>
   <clipPath id="h-name-clip">
-    <rect x="50" y="80" width="520" height="60"/>
+    <rect x="50" y="75" width="520" height="65"/>
   </clipPath>
   <clipPath id="h-port-clip">
     <rect x="580" y="35" width="230" height="310" rx="20"/>
@@ -76,46 +76,42 @@
 <rect width="860" height="380" rx="16" fill="url(#h-dots)"/>
 <rect x="0.5" y="0.5" width="859" height="379" rx="15.5" stroke="url(#h-border)" stroke-width="1"/>
 
-<!-- Ambient subtle glow behind portrait -->
-<circle cx="695" cy="190" r="140" fill="#247bff" opacity="0.12" filter="blur(30px)"/>
-<circle cx="730" cy="220" r="100" fill="#ff354f" opacity="0.08" filter="blur(25px)"/>
-
-<!-- Top Status / Terminal Prompt Tag -->
-<rect x="50" y="42" width="135" height="26" rx="6" fill="#131d33" stroke="#247bff" stroke-opacity="0.3"/>
+<!-- Top Status Prompt Tag -->
+<rect x="50" y="42" width="145" height="26" rx="6" fill="#131d33" stroke="#247bff" stroke-opacity="0.3"/>
 <circle cx="62" cy="55" r="4" fill="#247bff"/>
 <text x="74" y="59" fill="#94a3b8" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="600" letter-spacing="1">HEY THERE, I'M<tspan class="h-cur" fill="#ff354f">_</tspan></text>
 
 <!-- Rising Mask Name Reveal -->
 <g clip-path="url(#h-name-clip)">
   <g class="h-name">
-    <text x="50" y="132" fill="url(#h-textgrad)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif" font-size="44" font-weight="900" letter-spacing="-1">MAYUKH</text>
-    <text x="250" y="132" fill="#ffffff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif" font-size="44" font-weight="900" letter-spacing="-1">BHATTACHARJEE</text>
+    <text x="50" y="128" fill="url(#h-textgrad)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="42" font-weight="900" letter-spacing="-1">MAYUKH</text>
+    <text x="242" y="128" fill="#ffffff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="42" font-weight="900" letter-spacing="-1">BHATTACHARJEE</text>
   </g>
 </g>
 
 <!-- Cycling Roles (CSS staggered animation) -->
-<g transform="translate(50, 172)">
+<g transform="translate(50, 168)">
   <rect x="0" y="-18" width="8" height="24" rx="2" fill="#247bff"/>
   <!-- Role 1 -->
   <text class="h-r1" x="18" y="0" fill="#38bdf8" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Full-Stack Developer</text>
   <!-- Role 2 -->
-  <text class="h-r2" x="18" y="0" fill="#ff354f" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">AI &amp; Vision Engineer</text>
+  <text class="h-r2" x="18" y="0" fill="#ff354f" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">AI &amp; Vision Systems Builder</text>
   <!-- Role 3 -->
-  <text class="h-r3" x="18" y="0" fill="#a855f7" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Open-Source Builder</text>
+  <text class="h-r3" x="18" y="0" fill="#a855f7" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Fintech &amp; Security Engineer</text>
   <!-- Role 4 -->
-  <text class="h-r4" x="18" y="0" fill="#34d399" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Software Architect</text>
+  <text class="h-r4" x="18" y="0" fill="#34d399" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Open-Source Creator</text>
 </g>
 
 <!-- One-line pitch -->
-<text x="50" y="222" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="14.5" font-weight="400">
-  Building intelligent software, scalable web architectures, and computer vision systems.
+<text x="50" y="218" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="14.5" font-weight="400">
+  Architecting intelligent applications, real-time security systems, and autonomous agent workflows.
 </text>
-<text x="50" y="246" fill="#64748b" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="400">
-  Passionate about turning complex algorithms into seamless user-facing products.
+<text x="50" y="242" fill="#64748b" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="400">
+  Specializing in Go concurrency, Next.js full-stack systems, and practical AI tooling.
 </text>
 
 <!-- Location / Info Badges -->
-<g transform="translate(50, 290)">
+<g transform="translate(50, 288)">
   <!-- Location Pill -->
   <rect x="0" y="0" width="105" height="32" rx="16" fill="#0f172a" stroke="#1e293b"/>
   <text x="14" y="20" font-size="12">📍</text>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="340" viewBox="0 0 860 340" fill="none">
+<defs>
+  <linearGradient id="pj-bg" x1="0" y1="0" x2="860" y2="340" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#070b16"/>
+    <stop offset="100%" stop-color="#0b1220"/>
+  </linearGradient>
+  <linearGradient id="pj-border" x1="0" y1="0" x2="860" y2="340" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#247bff" stop-opacity="0.5"/>
+    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.25"/>
+    <stop offset="100%" stop-color="#247bff" stop-opacity="0.4"/>
+  </linearGradient>
+  <pattern id="pj-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#247bff" fill-opacity="0.08"/>
+  </pattern>
+</defs>
+
+<rect width="860" height="340" rx="16" fill="url(#pj-bg)"/>
+<rect width="860" height="340" rx="16" fill="url(#pj-dots)"/>
+<rect x="0.5" y="0.5" width="859" height="339" rx="15.5" stroke="url(#pj-border)" stroke-width="1"/>
+
+<!-- Header -->
+<text x="45" y="40" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">FEATURED REPOSITORIES // 03</text>
+<text x="45" y="68" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800">Flagship Engineering Projects</text>
+
+<!-- 3 Structured Repo Cards -->
+<g transform="translate(45, 95)">
+  <!-- Card 1: AI Educator -->
+  <g transform="translate(0, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#247bff" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#247bff"/>
+    
+    <text x="18" y="34" font-size="20">🎓</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">ai-educator</text>
+    <text x="18" y="56" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">AI TUTOR &amp; QUIZ PLATFORM</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      Multi-level AI doubt solving,
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      speech explanations &amp; adaptive
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      quizzes for student mastery.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="28" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">React 18</text>
+      <rect x="62" y="0" width="50" height="20" rx="4" fill="#1e293b"/><text x="87" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Node.js</text>
+      <rect x="118" y="0" width="60" height="20" rx="4" fill="#1e293b"/><text x="148" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">OpenAI</text>
+    </g>
+
+    <text x="18" y="186" fill="#38bdf8" font-family="system-ui" font-size="11" font-weight="700">★ Open Source · MIT</text>
+  </g>
+
+  <!-- Card 2: Paypaal Pro -->
+  <g transform="translate(262, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#ff354f" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#ff354f"/>
+    
+    <text x="18" y="34" font-size="20">💳</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">Paypaal-pro</text>
+    <text x="18" y="56" fill="#ff354f" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">FINTECH &amp; TREASURY VAULT</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      Autonomous agent platform
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      with AI dispute synthesis, stock
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      liquidation, &amp; escrow payouts.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="60" height="20" rx="4" fill="#1e293b"/><text x="30" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Express</text>
+      <rect x="66" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="94" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Fintech</text>
+      <rect x="128" y="0" width="50" height="20" rx="4" fill="#1e293b"/><text x="153" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">SSE API</text>
+    </g>
+
+    <text x="18" y="186" fill="#ff354f" font-family="system-ui" font-size="11" font-weight="700">★ Autonomous Agent Tech</text>
+  </g>
+
+  <!-- Card 3: Aizen URL Detector -->
+  <g transform="translate(524, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#34d399" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#34d399"/>
+    
+    <text x="18" y="34" font-size="20">🛡️</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">aizen-detector</text>
+    <text x="18" y="56" fill="#34d399" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">LIVE SECURITY CRAWLER</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      21 concurrent Go goroutines
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      evaluating 39 security signals
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      for real-time phishing defense.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="48" height="20" rx="4" fill="#1e293b"/><text x="24" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Go</text>
+      <rect x="54" y="0" width="64" height="20" rx="4" fill="#1e293b"/><text x="86" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">SvelteKit</text>
+      <rect x="124" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="152" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Vercel</text>
+    </g>
+
+    <text x="18" y="186" fill="#34d399" font-family="system-ui" font-size="11" font-weight="700">★ 21 Concurrent Checks</text>
+  </g>
+</g>
+</svg>

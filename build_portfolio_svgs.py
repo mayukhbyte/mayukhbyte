@@ -18,7 +18,7 @@ def get_b64(path, max_dim=500):
 id_b64 = get_b64(os.path.join(ASSETS_DIR, "id.png"), 500)
 char_b64 = get_b64(os.path.join(ASSETS_DIR, "right_pointing.png"), 500)
 
-print("Inlining base64 assets...")
+print("Building structured and polished Playbook SVGs...")
 
 # ---------------------------------------------------------------------------
 # 1. assets/hero.svg
@@ -27,13 +27,13 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 <defs>
   <linearGradient id="h-bg" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#070b16"/>
-    <stop offset="50%" stop-color="#0d1424"/>
+    <stop offset="50%" stop-color="#0c1322"/>
     <stop offset="100%" stop-color="#070b16"/>
   </linearGradient>
   <linearGradient id="h-border" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#247bff" stop-opacity="0.6"/>
-    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.2"/>
-    <stop offset="100%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#247bff" stop-opacity="0.5"/>
   </linearGradient>
   <linearGradient id="h-glow" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0%" stop-color="#247bff"/>
@@ -48,7 +48,7 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
     <circle cx="2" cy="2" r="1" fill="#247bff" fill-opacity="0.12"/>
   </pattern>
   <clipPath id="h-name-clip">
-    <rect x="50" y="80" width="520" height="60"/>
+    <rect x="50" y="75" width="520" height="65"/>
   </clipPath>
   <clipPath id="h-port-clip">
     <rect x="580" y="35" width="230" height="310" rx="20"/>
@@ -101,46 +101,42 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 <rect width="860" height="380" rx="16" fill="url(#h-dots)"/>
 <rect x="0.5" y="0.5" width="859" height="379" rx="15.5" stroke="url(#h-border)" stroke-width="1"/>
 
-<!-- Ambient subtle glow behind portrait -->
-<circle cx="695" cy="190" r="140" fill="#247bff" opacity="0.12" filter="blur(30px)"/>
-<circle cx="730" cy="220" r="100" fill="#ff354f" opacity="0.08" filter="blur(25px)"/>
-
-<!-- Top Status / Terminal Prompt Tag -->
-<rect x="50" y="42" width="135" height="26" rx="6" fill="#131d33" stroke="#247bff" stroke-opacity="0.3"/>
+<!-- Top Status Prompt Tag -->
+<rect x="50" y="42" width="145" height="26" rx="6" fill="#131d33" stroke="#247bff" stroke-opacity="0.3"/>
 <circle cx="62" cy="55" r="4" fill="#247bff"/>
 <text x="74" y="59" fill="#94a3b8" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="11" font-weight="600" letter-spacing="1">HEY THERE, I'M<tspan class="h-cur" fill="#ff354f">_</tspan></text>
 
 <!-- Rising Mask Name Reveal -->
 <g clip-path="url(#h-name-clip)">
   <g class="h-name">
-    <text x="50" y="132" fill="url(#h-textgrad)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif" font-size="44" font-weight="900" letter-spacing="-1">MAYUKH</text>
-    <text x="250" y="132" fill="#ffffff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif" font-size="44" font-weight="900" letter-spacing="-1">BHATTACHARJEE</text>
+    <text x="50" y="128" fill="url(#h-textgrad)" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="42" font-weight="900" letter-spacing="-1">MAYUKH</text>
+    <text x="242" y="128" fill="#ffffff" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="42" font-weight="900" letter-spacing="-1">BHATTACHARJEE</text>
   </g>
 </g>
 
 <!-- Cycling Roles (CSS staggered animation) -->
-<g transform="translate(50, 172)">
+<g transform="translate(50, 168)">
   <rect x="0" y="-18" width="8" height="24" rx="2" fill="#247bff"/>
   <!-- Role 1 -->
   <text class="h-r1" x="18" y="0" fill="#38bdf8" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Full-Stack Developer</text>
   <!-- Role 2 -->
-  <text class="h-r2" x="18" y="0" fill="#ff354f" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">AI &amp; Vision Engineer</text>
+  <text class="h-r2" x="18" y="0" fill="#ff354f" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">AI &amp; Vision Systems Builder</text>
   <!-- Role 3 -->
-  <text class="h-r3" x="18" y="0" fill="#a855f7" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Open-Source Builder</text>
+  <text class="h-r3" x="18" y="0" fill="#a855f7" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Fintech &amp; Security Engineer</text>
   <!-- Role 4 -->
-  <text class="h-r4" x="18" y="0" fill="#34d399" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Software Architect</text>
+  <text class="h-r4" x="18" y="0" fill="#34d399" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" letter-spacing="0.5">Open-Source Creator</text>
 </g>
 
 <!-- One-line pitch -->
-<text x="50" y="222" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="14.5" font-weight="400">
-  Building intelligent software, scalable web architectures, and computer vision systems.
+<text x="50" y="218" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="14.5" font-weight="400">
+  Architecting intelligent applications, real-time security systems, and autonomous agent workflows.
 </text>
-<text x="50" y="246" fill="#64748b" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="400">
-  Passionate about turning complex algorithms into seamless user-facing products.
+<text x="50" y="242" fill="#64748b" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="400">
+  Specializing in Go concurrency, Next.js full-stack systems, and practical AI tooling.
 </text>
 
 <!-- Location / Info Badges -->
-<g transform="translate(50, 290)">
+<g transform="translate(50, 288)">
   <!-- Location Pill -->
   <rect x="0" y="0" width="105" height="32" rx="16" fill="#0f172a" stroke="#1e293b"/>
   <text x="14" y="20" font-size="12">📍</text>
@@ -197,7 +193,6 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
   </pattern>
 </defs>
 <style>
-  /* 12s cycle: 0-4s Slide 1, 4-8s Slide 2, 8-12s Slide 3 */
   @keyframes ab-bar1 {{
     0% {{ width: 0; }}
     30%, 100% {{ width: 100px; }}
@@ -239,7 +234,7 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
 
 <!-- Header -->
 <text x="45" y="45" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">ABOUT // 01</text>
-<text x="45" y="75" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Capabilities &amp; Core Interests</text>
+<text x="45" y="75" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Capabilities &amp; Active Explorations</text>
 
 <!-- Left Column: Core Capabilities -->
 <g transform="translate(45, 105)">
@@ -249,8 +244,8 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
   <g transform="translate(20, 20)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="9" y="21" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="13" font-weight="800">01</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Full-Stack Web Engineering</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">React · Next.js · Node.js · APIs</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Full-Stack &amp; Web Platforms</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">React · Next.js · Node.js · SvelteKit</text>
   </g>
 
   <!-- Divider -->
@@ -260,8 +255,8 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
   <g transform="translate(20, 90)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="8" y="21" fill="#ff354f" font-family="ui-monospace,monospace" font-size="13" font-weight="800">02</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">AI &amp; Computer Vision</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">OpenCV · Python · Image Pipelines</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">AI Education &amp; Vision</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">GPT-4o · OpenCV · Adaptive Tutoring</text>
   </g>
 
   <!-- Divider -->
@@ -271,8 +266,8 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
   <g transform="translate(20, 160)">
     <rect width="32" height="32" rx="8" fill="#1e293b"/>
     <text x="8" y="21" fill="#34d399" font-family="ui-monospace,monospace" font-size="13" font-weight="800">03</text>
-    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">System Architecture &amp; Data</text>
-    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">Supabase · Git Workflows · Clean Code</text>
+    <text x="44" y="16" fill="#f1f5f9" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="700">Fintech &amp; Security Engineering</text>
+    <text x="44" y="32" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="12">Go Concurrency · Phishing Detection</text>
   </g>
 </g>
 
@@ -297,52 +292,52 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="360"
 
   <!-- Slide 1 -->
   <g class="s1" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">🚀</text>
-    <text x="42" y="16" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 01 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Building AI Products</text>
+    <text x="0" y="24" font-size="28">🎓</text>
+    <text x="42" y="16" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 01</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">AI-Assisted Tutoring</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Developing smart, intelligent web tools and AI-driven
+      Creator of AI-Educator: delivering multi-level doubt
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      apps (like DreamFood AI &amp; Aizen URL Detector).
+      solving, speech explanation, and adaptive quizzes.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: Machine Learning · Edge AI · Automation
+      Stack: React 18 · TypeScript · Vite · OpenAI API
     </text>
   </g>
 
   <!-- Slide 2 -->
   <g class="s2" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">💡</text>
-    <text x="42" y="16" fill="#ff354f" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 02 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Open Source &amp; Tooling</text>
+    <text x="0" y="24" font-size="28">🛡️</text>
+    <text x="42" y="16" fill="#ff354f" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 02</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Aizen URL Safety Engine</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Crafting public repositories, modular utilities, and
+      Concurrent Go backend with 21 goroutines evaluating
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      water consumption / security analysis software.
+      39 security signals for phishing and fraud detection.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: GitHub Actions · Developer Tools · Scripts
+      Stack: Go (Gin) · SvelteKit 5 · Vercel Serverless
     </text>
   </g>
 
   <!-- Slide 3 -->
   <g class="s3" transform="translate(25, 55)">
-    <text x="0" y="24" font-size="28">🔍</text>
-    <text x="42" y="16" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">INTEREST 03 / 03</text>
-    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">System Design &amp; UI</text>
+    <text x="0" y="24" font-size="28">💳</text>
+    <text x="42" y="16" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700" letter-spacing="1">PROJECT DOMAIN 03</text>
+    <text x="42" y="36" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="800">Paypaal Pro Financials</text>
     
     <text x="0" y="80" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      Engineering resilient backends, responsive layouts,
+      Autonomous agent treasury platform with AI dispute
     </text>
     <text x="0" y="102" fill="#cbd5e1" font-family="system-ui,-apple-system,sans-serif" font-size="13.5" font-weight="400">
-      and high-performance full-stack web applications.
+      synthesis, stock liquidation, and escrow payouts.
     </text>
     <text x="0" y="130" fill="#64748b" font-family="ui-monospace,monospace" font-size="11">
-      Focus: Next.js · Supabase · Cloud Deployments
+      Stack: Node.js · Express · AI Engine · SSE Streams
     </text>
   </g>
 </g>
@@ -401,13 +396,13 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
   <!-- Outer Glow -->
   <circle cx="0" cy="0" r="150" fill="#247bff" opacity="0.06" filter="blur(35px)"/>
 
-  <!-- Orbit 1 (Major: 340, Minor: 110, tilt -15deg) -->
+  <!-- Orbit 1 (Major: 330, Minor: 85, tilt -12deg) -->
   <ellipse cx="0" cy="0" rx="330" ry="85" fill="none" stroke="#247bff" stroke-width="1.2" stroke-opacity="0.35" stroke-dasharray="6 4" transform="rotate(-12)"/>
   
-  <!-- Orbit 2 (Major: 240, Minor: 70, tilt 10deg) -->
+  <!-- Orbit 2 (Major: 230, Minor: 65, tilt 14deg) -->
   <ellipse cx="0" cy="0" rx="230" ry="65" fill="none" stroke="#ff354f" stroke-width="1.2" stroke-opacity="0.3" stroke-dasharray="5 3" transform="rotate(14)"/>
 
-  <!-- Orbit 3 (Major: 140, Minor: 48, tilt -25deg) -->
+  <!-- Orbit 3 (Major: 135, Minor: 46, tilt -22deg) -->
   <ellipse cx="0" cy="0" rx="135" ry="46" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(-22)"/>
 
   <!-- Nucleus / Core -->
@@ -431,8 +426,8 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
     <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">⚛️ React</text>
   </g>
   <g class="ob2" transform="translate(170, -50)">
-    <rect x="-40" y="-14" width="80" height="28" rx="14" fill="#0f172a" stroke="#339933" stroke-width="1.2"/>
-    <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">🟢 Node.js</text>
+    <rect x="-40" y="-14" width="80" height="28" rx="14" fill="#0f172a" stroke="#00ADD8" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="11" font-weight="700">🐹 Go (Golang)</text>
   </g>
 
   <!-- Badges on Orbit 3 -->
@@ -454,9 +449,9 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
     <text x="14" y="24" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">LANGUAGES</text>
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Python</text>
-      <rect x="72" y="0" width="76" height="24" rx="6" fill="#1e293b"/><text x="110" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">JavaScript</text>
-      <rect x="0" y="32" width="72" height="24" rx="6" fill="#1e293b"/><text x="36" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">TypeScript</text>
-      <rect x="78" y="32" width="56" height="24" rx="6" fill="#1e293b"/><text x="106" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">C / C++</text>
+      <rect x="72" y="0" width="46" height="24" rx="6" fill="#1e293b"/><text x="95" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Go</text>
+      <rect x="0" y="32" width="76" height="24" rx="6" fill="#1e293b"/><text x="38" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">JavaScript</text>
+      <rect x="82" y="32" width="56" height="24" rx="6" fill="#1e293b"/><text x="110" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">C / C++</text>
     </g>
   </g>
 
@@ -467,8 +462,8 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="60" height="24" rx="6" fill="#1e293b"/><text x="30" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">React</text>
       <rect x="66" y="0" width="68" height="24" rx="6" fill="#1e293b"/><text x="100" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Next.js</text>
-      <rect x="0" y="32" width="74" height="24" rx="6" fill="#1e293b"/><text x="37" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Tailwind</text>
-      <rect x="80" y="32" width="70" height="24" rx="6" fill="#1e293b"/><text x="115" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">HTML/CSS</text>
+      <rect x="0" y="32" width="70" height="24" rx="6" fill="#1e293b"/><text x="35" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">SvelteKit</text>
+      <rect x="76" y="32" width="74" height="24" rx="6" fill="#1e293b"/><text x="113" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Tailwind</text>
     </g>
   </g>
 
@@ -478,7 +473,7 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
     <text x="14" y="24" fill="#a855f7" font-family="ui-monospace,monospace" font-size="11" font-weight="700">BACKEND &amp; DATA</text>
     <g transform="translate(14, 40)">
       <rect x="0" y="0" width="64" height="24" rx="6" fill="#1e293b"/><text x="32" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Node.js</text>
-      <rect x="70" y="0" width="68" height="24" rx="6" fill="#1e293b"/><text x="104" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Express</text>
+      <rect x="70" y="0" width="64" height="24" rx="6" fill="#1e293b"/><text x="102" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Gin (Go)</text>
       <rect x="0" y="32" width="76" height="24" rx="6" fill="#1e293b"/><text x="38" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Supabase</text>
       <rect x="82" y="32" width="68" height="24" rx="6" fill="#1e293b"/><text x="116" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Firebase</text>
     </g>
@@ -492,7 +487,7 @@ stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="420"
       <rect x="0" y="0" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">OpenCV</text>
       <rect x="72" y="0" width="50" height="24" rx="6" fill="#1e293b"/><text x="97" y="16" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Git</text>
       <rect x="0" y="32" width="66" height="24" rx="6" fill="#1e293b"/><text x="33" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">GitHub</text>
-      <rect x="72" y="32" width="58" height="24" rx="6" fill="#1e293b"/><text x="101" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Linux</text>
+      <rect x="72" y="32" width="60" height="24" rx="6" fill="#1e293b"/><text x="102" y="48" text-anchor="middle" fill="#e2e8f0" font-family="system-ui" font-size="11">Vercel</text>
     </g>
   </g>
 </g>
@@ -503,7 +498,129 @@ with open(os.path.join(ASSETS_DIR, "stack.svg"), "w", encoding="utf-8") as f:
 print("wrote assets/stack.svg")
 
 # ---------------------------------------------------------------------------
-# 4. assets/id-dashboard.svg
+# 4. assets/projects.svg (Dedicated Showcase for the 3 Repos!)
+# ---------------------------------------------------------------------------
+projects_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="340" viewBox="0 0 860 340" fill="none">
+<defs>
+  <linearGradient id="pj-bg" x1="0" y1="0" x2="860" y2="340" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#070b16"/>
+    <stop offset="100%" stop-color="#0b1220"/>
+  </linearGradient>
+  <linearGradient id="pj-border" x1="0" y1="0" x2="860" y2="340" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#247bff" stop-opacity="0.5"/>
+    <stop offset="50%" stop-color="#ff354f" stop-opacity="0.25"/>
+    <stop offset="100%" stop-color="#247bff" stop-opacity="0.4"/>
+  </linearGradient>
+  <pattern id="pj-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#247bff" fill-opacity="0.08"/>
+  </pattern>
+</defs>
+
+<rect width="860" height="340" rx="16" fill="url(#pj-bg)"/>
+<rect width="860" height="340" rx="16" fill="url(#pj-dots)"/>
+<rect x="0.5" y="0.5" width="859" height="339" rx="15.5" stroke="url(#pj-border)" stroke-width="1"/>
+
+<!-- Header -->
+<text x="45" y="40" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">FEATURED REPOSITORIES // 03</text>
+<text x="45" y="68" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800">Flagship Engineering Projects</text>
+
+<!-- 3 Structured Repo Cards -->
+<g transform="translate(45, 95)">
+  <!-- Card 1: AI Educator -->
+  <g transform="translate(0, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#247bff" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#247bff"/>
+    
+    <text x="18" y="34" font-size="20">🎓</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">ai-educator</text>
+    <text x="18" y="56" fill="#38bdf8" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">AI TUTOR &amp; QUIZ PLATFORM</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      Multi-level AI doubt solving,
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      speech explanations &amp; adaptive
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      quizzes for student mastery.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="28" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">React 18</text>
+      <rect x="62" y="0" width="50" height="20" rx="4" fill="#1e293b"/><text x="87" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Node.js</text>
+      <rect x="118" y="0" width="60" height="20" rx="4" fill="#1e293b"/><text x="148" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">OpenAI</text>
+    </g>
+
+    <text x="18" y="186" fill="#38bdf8" font-family="system-ui" font-size="11" font-weight="700">★ Open Source · MIT</text>
+  </g>
+
+  <!-- Card 2: Paypaal Pro -->
+  <g transform="translate(262, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#ff354f" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#ff354f"/>
+    
+    <text x="18" y="34" font-size="20">💳</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">Paypaal-pro</text>
+    <text x="18" y="56" fill="#ff354f" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">FINTECH &amp; TREASURY VAULT</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      Autonomous agent platform
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      with AI dispute synthesis, stock
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      liquidation, &amp; escrow payouts.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="60" height="20" rx="4" fill="#1e293b"/><text x="30" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Express</text>
+      <rect x="66" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="94" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Fintech</text>
+      <rect x="128" y="0" width="50" height="20" rx="4" fill="#1e293b"/><text x="153" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">SSE API</text>
+    </g>
+
+    <text x="18" y="186" fill="#ff354f" font-family="system-ui" font-size="11" font-weight="700">★ Autonomous Agent Tech</text>
+  </g>
+
+  <!-- Card 3: Aizen URL Detector -->
+  <g transform="translate(524, 0)">
+    <rect width="245" height="205" rx="12" fill="#0d1424" stroke="#34d399" stroke-width="1.2"/>
+    <rect width="245" height="6" rx="3" fill="#34d399"/>
+    
+    <text x="18" y="34" font-size="20">🛡️</text>
+    <text x="48" y="32" fill="#ffffff" font-family="system-ui,sans-serif" font-size="16" font-weight="800">aizen-detector</text>
+    <text x="18" y="56" fill="#34d399" font-family="ui-monospace,monospace" font-size="10.5" font-weight="600">LIVE SECURITY CRAWLER</text>
+    
+    <text x="18" y="82" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      21 concurrent Go goroutines
+    </text>
+    <text x="18" y="98" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      evaluating 39 security signals
+    </text>
+    <text x="18" y="114" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12" font-weight="400">
+      for real-time phishing defense.
+    </text>
+
+    <!-- Chips -->
+    <g transform="translate(18, 140)">
+      <rect x="0" y="0" width="48" height="20" rx="4" fill="#1e293b"/><text x="24" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Go</text>
+      <rect x="54" y="0" width="64" height="20" rx="4" fill="#1e293b"/><text x="86" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">SvelteKit</text>
+      <rect x="124" y="0" width="56" height="20" rx="4" fill="#1e293b"/><text x="152" y="14" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="10">Vercel</text>
+    </g>
+
+    <text x="18" y="186" fill="#34d399" font-family="system-ui" font-size="11" font-weight="700">★ 21 Concurrent Checks</text>
+  </g>
+</g>
+</svg>'''
+
+with open(os.path.join(ASSETS_DIR, "projects.svg"), "w", encoding="utf-8") as f:
+    f.write(projects_svg)
+print("wrote assets/projects.svg")
+
+# ---------------------------------------------------------------------------
+# 5. assets/id-dashboard.svg
 # ---------------------------------------------------------------------------
 id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="400" viewBox="0 0 860 400" fill="none">
 <defs>
@@ -530,7 +647,6 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
   </linearGradient>
 </defs>
 <style>
-  /* Drop into place, settle with damped pendulum motion, then gentle +/-1.7-deg swing */
   @keyframes id-swing {{
     0% {{ transform: rotate(0deg); }}
     50% {{ transform: rotate(1.7deg); }}
@@ -554,7 +670,7 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
 <rect x="0.5" y="0.5" width="859" height="399" rx="15.5" stroke="url(#id-border)" stroke-width="1"/>
 
 <!-- Header -->
-<text x="45" y="38" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">VERIFIED CREDENTIALS // 03</text>
+<text x="45" y="38" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">VERIFIED CREDENTIALS // 04</text>
 <text x="45" y="65" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="800">Lanyard ID &amp; Developer Dashboard</text>
 
 <!-- Hanging Lanyard Assembly (Left) -->
@@ -652,9 +768,9 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
   <!-- Tile 3: Focus -->
   <g transform="translate(0, 140)">
     <rect width="250" height="120" rx="12" fill="#0d1424" stroke="#1e293b"/>
-    <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">CORE FOCUS</text>
-    <text x="20" y="68" fill="#ffffff" font-family="system-ui" font-size="20" font-weight="800">Full-Stack &amp; AI</text>
-    <text x="20" y="96" fill="#34d399" font-family="system-ui" font-size="12" font-weight="600">● Modern Web &amp; Vision</text>
+    <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">FLAGSHIP REPOSITORIES</text>
+    <text x="20" y="68" fill="#ffffff" font-family="system-ui" font-size="17" font-weight="800">ai-educator · Paypaal</text>
+    <text x="20" y="96" fill="#34d399" font-family="system-ui" font-size="12" font-weight="600">● aizen-detector</text>
   </g>
 
   <!-- Tile 4: Status -->
@@ -662,7 +778,7 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
     <rect width="250" height="120" rx="12" fill="#0d1424" stroke="#247bff" stroke-opacity="0.3"/>
     <text x="20" y="32" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="11" font-weight="700">COLLABORATION STATUS</text>
     <text x="20" y="68" fill="#f8fafc" font-family="system-ui" font-size="20" font-weight="800">Open to Projects</text>
-    <text x="20" y="96" fill="#38bdf8" font-family="system-ui" font-size="12" font-weight="500">Freelance · Full-Time · Mentorship</text>
+    <text x="20" y="96" fill="#38bdf8" font-family="system-ui" font-size="12" font-weight="500">Freelance · Full-Time · AI Systems</text>
   </g>
 </g>
 </svg>'''
@@ -672,7 +788,7 @@ with open(os.path.join(ASSETS_DIR, "id-dashboard.svg"), "w", encoding="utf-8") a
 print("wrote assets/id-dashboard.svg")
 
 # ---------------------------------------------------------------------------
-# 5. assets/connect.svg
+# 6. assets/connect.svg
 # ---------------------------------------------------------------------------
 connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="320" viewBox="0 0 860 320" fill="none">
 <defs>
@@ -714,22 +830,22 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="32
 
 <!-- Header / Prompt (Right side) -->
 <g transform="translate(320, 35)">
-  <text x="0" y="12" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">CONNECT // 04</text>
-  <text x="0" y="38" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Let's Build Something Great Together</text>
-  <text x="0" y="60" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="13">Have an idea, project, or opportunity? Find me across my official channels below.</text>
+  <text x="0" y="12" fill="#247bff" font-family="ui-monospace,SFMono-Regular,monospace" font-size="12" font-weight="700" letter-spacing="1.5">CONNECT // 05</text>
+  <text x="0" y="38" fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-size="24" font-weight="800">Let's Connect &amp; Collaborate</text>
+  <text x="0" y="60" fill="#94a3b8" font-family="system-ui,-apple-system,sans-serif" font-size="13">Have an idea, engineering opportunity, or project? Reach out directly:</text>
 </g>
 
 <!-- Generously Spaced Social Cards (Right Side) -->
 <g transform="translate(320, 115)">
-  <!-- LinkedIn Card (Top) -->
+  <!-- LinkedIn Card (Top - Featured prominently) -->
   <g transform="translate(0, 0)">
-    <rect width="495" height="52" rx="10" fill="#0d1424" stroke="#0A66C2" stroke-width="1.2"/>
+    <rect width="495" height="52" rx="10" fill="#0d1424" stroke="#0A66C2" stroke-width="1.4"/>
     <!-- LinkedIn Icon -->
     <rect x="14" y="11" width="30" height="30" rx="6" fill="#0A66C2"/>
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="16" font-weight="900">in</text>
     
-    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">LinkedIn</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">Mayukh Bhattacharjee · Professional Network</text>
+    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">LinkedIn Profile</text>
+    <text x="56" y="40" fill="#38bdf8" font-family="system-ui" font-size="11">Mayukh Bhattacharjee · Professional Network</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#0A66C2" font-family="system-ui" font-size="18" font-weight="800">→</text>
@@ -744,7 +860,7 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="32
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-size="16">🐙</text>
     
     <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">GitHub Profile</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">@mayukhbyte · Repositories, commits &amp; open source</text>
+    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">@mayukhbyte · Repositories, commits &amp; code</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#38bdf8" font-family="system-ui" font-size="18" font-weight="800">→</text>
@@ -758,8 +874,8 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="32
     <rect x="14" y="11" width="30" height="30" rx="6" fill="#ff354f"/>
     <text x="29" y="31" text-anchor="middle" fill="#ffffff" font-size="14">✉️</text>
     
-    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">Direct Email</text>
-    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">mayukhbhttchrj@gmail.com · Inquiries &amp; Collaborations</text>
+    <text x="56" y="24" fill="#f8fafc" font-family="system-ui" font-size="13.5" font-weight="700">Direct Inquiries</text>
+    <text x="56" y="40" fill="#94a3b8" font-family="system-ui" font-size="11">mayukhbhttchrj@gmail.com · Collaborations &amp; Opportunities</text>
     
     <g class="nudge-arrow" transform="translate(455, 30)">
       <text x="0" y="0" fill="#ff354f" font-family="system-ui" font-size="18" font-weight="800">→</text>
@@ -771,3 +887,4 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="32
 with open(os.path.join(ASSETS_DIR, "connect.svg"), "w", encoding="utf-8") as f:
     f.write(connect_svg)
 print("wrote assets/connect.svg")
+print("All 6 cards generated successfully!")
