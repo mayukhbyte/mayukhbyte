@@ -106,36 +106,39 @@ hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="380" 
 </g>
 
 <!-- Big Bold Typography matching Reel -->
-<!-- Row 1: "MAYUKH" (White) + "///" + "BUILD. BEYOND." positioned SAFELY next to it -->
-<g transform="translate(48, 122)">
-  <text x="0" y="0" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="46" font-weight="900" letter-spacing="-1">MAYUKH</text>
-  
-  <!-- "/// BUILD. BEYOND." starts at x=205 and ends at x=315 (245px before photo at x=560!) -->
-  <g transform="translate(205, -34)">
-    <rect x="0" y="5" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-    <rect x="6" y="5" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-    <rect x="12" y="5" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-    <text x="22" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1">BUILD.</text>
-    <text x="22" y="26" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1">BEYOND.</text>
-  </g>
+<!-- Row 1: "MAYUKH" (White, font-size=44, baseline at y=118) -->
+<g transform="translate(48, 118)">
+  <text x="0" y="0" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="44" font-weight="900" letter-spacing="-1">MAYUKH</text>
 </g>
 
-<!-- Row 2: "BHATTACHARJEE" in Radiant Neon Cyan/Blue (Width ~330px, ends at x=378) -->
-<g transform="translate(48, 168)">
-  <text x="0" y="0" fill="url(#h-cyan-glow)" font-family="{FONT_DISPLAY}" font-size="39" font-weight="900" letter-spacing="-0.5">BHATTACHARJEE</text>
+<!-- "/// BUILD. BEYOND." — independent block at absolute (x=252, y=74) -->
+<!-- MAYUKH cap ≈ y=118-32=86. BUILD.BEYOND. at y=74-100. -->
+<!-- BHATTACHARJEE cap ≈ y=178-26=152. Gap to BUILD.BEYOND bottom (y=100) = 52px. SAFE. -->
+<g transform="translate(252, 74)">
+  <rect x="0" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
+  <rect x="5" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
+  <rect x="10" y="4" width="3" height="16" fill="#ff0055" transform="skewX(-20)"/>
+  <text x="18" y="13" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1.2">BUILD.</text>
+  <text x="18" y="26" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="900" letter-spacing="1.2">BEYOND.</text>
+</g>
+
+<!-- Row 2: "BHATTACHARJEE" in Radiant Neon Cyan/Blue, baseline at y=178, font-size=36 -->
+<!-- Width ≈ 13*36*0.62=291px → x=48 to x=339. No collision with BUILD.BEYOND (y=74-100). -->
+<g transform="translate(48, 178)">
+  <text x="0" y="0" fill="url(#h-cyan-glow)" font-family="{FONT_DISPLAY}" font-size="36" font-weight="900" letter-spacing="-0.5">BHATTACHARJEE</text>
 </g>
 
 <!-- Role Subtitle & Bio -->
-<text x="48" y="208" fill="#00f0ff" font-family="{FONT_MONO}" font-size="12" font-weight="700" letter-spacing="0.8">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
-<text x="48" y="235" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="400">
-  Building scalable software, intelligent AI systems &amp; web applications.
+<text x="48" y="212" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700" letter-spacing="0.8">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
+<text x="48" y="237" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="13" font-weight="400">
+  Building scalable software, intelligent AI systems &amp; web apps.
 </text>
-<text x="48" y="257" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="400">
+<text x="48" y="258" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="12" font-weight="400">
   Creator of ai-educator, Paypaal-pro &amp; aizen-detector.
 </text>
 
 <!-- Bottom Metric Pills -->
-<g transform="translate(48, 298)">
+<g transform="translate(48, 296)">
   <rect x="0" y="0" width="85" height="28" rx="6" fill="#081022" stroke="#1e293b"/>
   <text x="12" y="18" font-size="11">📍</text>
   <text x="30" y="18" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11" font-weight="600">India</text>
@@ -566,8 +569,8 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
 <circle cx="650" cy="220" r="180" fill="url(#id-glow-crimson)"/>
 <rect x="0.5" y="0.5" width="859" height="429" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
 
-<!-- Header -->
-<g transform="translate(45, 34)">
+<!-- Header — positioned on the RIGHT side (x=285) so lanyard card does NOT overlap it -->
+<g transform="translate(285, 30)">
   <text x="0" y="0" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">04 / BUILDER CREDENTIALS</text>
   <text x="0" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">REAL WORK. REAL IMPACT.</text>
   <text x="0" y="44" fill="#64748b" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="2">PUBLIC SNAPSHOT // 2026</text>
@@ -654,7 +657,7 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" heigh
 </g>
 
 <!-- RIGHT: Dashboard Grid (Starts at x=285, ends safely at x=819) -->
-<g transform="translate(285, 95)">
+<g transform="translate(285, 100)">
   <!-- 3 Metric Boxes -->
   <g transform="translate(0, 0)">
     <rect width="170" height="85" rx="8" fill="#050a16" stroke="#ff0055" stroke-width="1" stroke-opacity="0.5"/>

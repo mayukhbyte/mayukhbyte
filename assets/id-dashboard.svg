@@ -56,8 +56,8 @@
 <circle cx="650" cy="220" r="180" fill="url(#id-glow-crimson)"/>
 <rect x="0.5" y="0.5" width="859" height="429" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
 
-<!-- Header -->
-<g transform="translate(45, 34)">
+<!-- Header — positioned on the RIGHT side (x=285) so lanyard card does NOT overlap it -->
+<g transform="translate(285, 30)">
   <text x="0" y="0" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="1.5">04 / BUILDER CREDENTIALS</text>
   <text x="0" y="26" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="0.5">REAL WORK. REAL IMPACT.</text>
   <text x="0" y="44" fill="#64748b" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10" font-weight="700" letter-spacing="2">PUBLIC SNAPSHOT // 2026</text>
@@ -144,7 +144,7 @@
 </g>
 
 <!-- RIGHT: Dashboard Grid (Starts at x=285, ends safely at x=819) -->
-<g transform="translate(285, 95)">
+<g transform="translate(285, 100)">
   <!-- 3 Metric Boxes -->
   <g transform="translate(0, 0)">
     <rect width="170" height="85" rx="8" fill="#050a16" stroke="#ff0055" stroke-width="1" stroke-opacity="0.5"/>
