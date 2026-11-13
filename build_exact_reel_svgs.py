@@ -1,12 +1,32 @@
-import base64
 import os
-from PIL import Image
+import base64
 import io
+from PIL import Image, ImageFilter
 
 ASSETS_DIR = r"C:\Users\meyon moyukh\.gemini\antigravity\scratch\mayukhbyte\assets"
 os.makedirs(ASSETS_DIR, exist_ok=True)
 
-def get_b64(path, max_dim=520):
+# 1. Prepare char_sticker.png with 4px white outline and high resolution
+char_raw = Image.open(os.path.join(ASSETS_DIR, "right_pointing.png")).convert("RGBA")
+alpha = char_raw.split()[3]
+dilated = alpha.filter(ImageFilter.MaxFilter(9))
+white_outline = Image.new("RGBA", char_raw.size, (255, 255, 255, 255))
+white_outline.putalpha(dilated)
+sticker = Image.alpha_composite(white_outline, char_raw)
+bbox = sticker.getbbox()
+if bbox:
+    sticker = sticker.crop(bbox)
+sticker.save(os.path.join(ASSETS_DIR, "char_sticker.png"))
+
+# 2. Prepare id_pass_photo.png (Mayukh's head & shoulders with dark cyber background)
+id_raw = Image.open(os.path.join(ASSETS_DIR, "id.png")).convert("RGBA")
+w, h = id_raw.size
+id_crop = id_raw.crop((int(w * 0.1), int(h * 0.22), int(w * 0.9), int(h * 0.85)))
+bg = Image.new("RGBA", id_crop.size, (9, 19, 39, 255))
+id_pass_photo = Image.alpha_composite(bg, id_crop)
+id_pass_photo.save(os.path.join(ASSETS_DIR, "id_pass_photo.png"))
+
+def get_b64(path, max_dim=540):
     im = Image.open(path)
     ratio = max_dim / max(im.size)
     if ratio < 1.0:
@@ -15,170 +35,125 @@ def get_b64(path, max_dim=520):
     im.save(buf, format="PNG", optimize=True)
     return base64.b64encode(buf.getvalue()).decode("utf-8")
 
-id_b64 = get_b64(os.path.join(ASSETS_DIR, "id.png"), 520)
-char_b64 = get_b64(os.path.join(ASSETS_DIR, "right_pointing.png"), 520)
-
-print("Compiling pure neon cyberpunk SVGs with universal radial gradients...")
+hero_id_b64 = get_b64(os.path.join(ASSETS_DIR, "id.png"), 540)
+id_pass_b64 = get_b64(os.path.join(ASSETS_DIR, "id_pass_photo.png"), 520)
+sticker_b64 = get_b64(os.path.join(ASSETS_DIR, "char_sticker.png"), 520)
 
 FONT_DISPLAY = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 FONT_MONO = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
 
-# ---------------------------------------------------------------------------
-# 1. assets/hero.svg (Deep Neon Dark + Vibrant Glow + Fixed Text Positions)
-# ---------------------------------------------------------------------------
+print("Assets prepared. Generating refined SVGs...")
+
+# ==============================================================================
+# 1. hero.svg (14 Public Repos, top projects, Mayukh cutout)
+# ==============================================================================
 hero_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="400" viewBox="0 0 860 400" fill="none">
 <defs>
-  <!-- Deep Cyberpunk Neon Gradient Background -->
   <linearGradient id="h-bg" x1="0" y1="0" x2="860" y2="400" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="35%" stop-color="#050a18"/>
-    <stop offset="70%" stop-color="#081026"/>
+    <stop offset="40%" stop-color="#050a18"/>
+    <stop offset="80%" stop-color="#081026"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
-  
-  <!-- Vibrant Neon Glowing Border -->
   <linearGradient id="h-border" x1="0" y1="0" x2="860" y2="400" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.9"/>
     <stop offset="45%" stop-color="#247bff" stop-opacity="0.5"/>
     <stop offset="75%" stop-color="#ff0055" stop-opacity="0.6"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.8"/>
   </linearGradient>
-
-  <!-- Glowing Text Gradients -->
-  <linearGradient id="h-cyan-glow" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#00f0ff"/>
-    <stop offset="50%" stop-color="#38bdf8"/>
-    <stop offset="100%" stop-color="#00d2ff"/>
-  </linearGradient>
-
-  <!-- Universal Radial Glows -->
   <radialGradient id="h-glow-cyan" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.32"/>
-    <stop offset="50%" stop-color="#00d2ff" stop-opacity="0.14"/>
+    <stop offset="50%" stop-color="#00d2ff" stop-opacity="0.12"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
   </radialGradient>
-
   <radialGradient id="h-glow-crimson" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="#ff0055" stop-opacity="0.28"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.08"/>
+    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.06"/>
     <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
   </radialGradient>
-
-  <radialGradient id="h-glow-blue" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#247bff" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#247bff" stop-opacity="0.06"/>
-    <stop offset="100%" stop-color="#247bff" stop-opacity="0"/>
-  </radialGradient>
-
-  <!-- Cyberpunk Dot Grid -->
   <pattern id="h-grid" width="22" height="22" patternUnits="userSpaceOnUse">
     <circle cx="2" cy="2" r="1.1" fill="#00f0ff" fill-opacity="0.13"/>
   </pattern>
-
   <clipPath id="h-port-clip">
     <rect x="560" y="20" width="268" height="358" rx="18"/>
   </clipPath>
 </defs>
 
-<style>
-  @keyframes blink {{ 0%, 49% {{ opacity: 1; }} 50%, 100% {{ opacity: 0; }} }}
-  .blink-cur {{ animation: blink 1s infinite; }}
-</style>
-
-<!-- Neon Base Background -->
 <rect width="860" height="400" rx="16" fill="url(#h-bg)"/>
 <rect width="860" height="400" rx="16" fill="url(#h-grid)"/>
 
-<!-- Glowing Ambient Lighting -->
 <circle cx="680" cy="195" r="200" fill="url(#h-glow-cyan)"/>
 <circle cx="750" cy="250" r="170" fill="url(#h-glow-crimson)"/>
-<circle cx="200" cy="150" r="190" fill="url(#h-glow-blue)"/>
 
-<!-- Neon Hairline Card Border -->
 <rect x="0.5" y="0.5" width="859" height="399" rx="15.5" stroke="url(#h-border)" stroke-width="1.2"/>
 
-<!-- LEFT COLUMN (Safe bounds: x=48 to 490, photo starts at x=560) -->
-<!-- Top Tag -->
-<g transform="translate(48, 44)">
-  <rect width="140" height="25" rx="5" fill="#081329" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.6"/>
-  <circle cx="13" cy="12.5" r="3.5" fill="#00f0ff"/>
-  <text x="25" y="16.5" fill="#38bdf8" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="1">PORTFOLIO // 2026<tspan class="blink-cur" fill="#ff0055">_</tspan></text>
+<!-- LEFT COLUMN -->
+<!-- Status Pill -->
+<g transform="translate(48, 36)">
+  <rect width="186" height="28" rx="14" fill="#030b1c" stroke="#00f0ff" stroke-width="1.2"/>
+  <circle cx="16" cy="14" r="4.5" fill="#00f0ff"/>
+  <text x="28" y="18" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700" letter-spacing="1.5">PORTFOLIO // 2026</text>
 </g>
 
-<!-- Big Bold Typography matching Reel -->
-<!-- Row 1: "MAYUKH" (White, font-size=44, baseline at y=116) -->
-<g transform="translate(48, 116)">
-  <text x="0" y="0" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="44" font-weight="900" letter-spacing="-1">MAYUKH</text>
-</g>
-
-<!-- "/// BUILD. BEYOND." — perfectly positioned badge with clean clearance from MAYUKH (starts at x=272, y=68) -->
-<g transform="translate(272, 68)">
-  <rect x="0" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-  <rect x="6" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-  <rect x="12" y="4" width="3.5" height="18" fill="#ff0055" transform="skewX(-20)"/>
-  <text x="22" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11" font-weight="900" letter-spacing="1.2">BUILD.</text>
-  <text x="22" y="28" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="11" font-weight="900" letter-spacing="1.2">BEYOND.</text>
-</g>
-
-<!-- Row 2: "BHATTACHARJEE" baseline at y=176, font-size=36 -->
-<g transform="translate(48, 176)">
-  <text x="0" y="0" fill="url(#h-cyan-glow)" font-family="{FONT_DISPLAY}" font-size="36" font-weight="900" letter-spacing="-0.5">BHATTACHARJEE</text>
-</g>
-
-<!-- Role Subtitle & Bio -->
-<text x="48" y="210" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700" letter-spacing="0.8">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
-<text x="48" y="233" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="13" font-weight="400">
-  Building scalable software, intelligent AI systems &amp; web apps.
-</text>
-<text x="48" y="253" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="12" font-weight="400">
-  Creator of Paypaal-pro, ai-educator &amp; Aizen-detector-url.
-</text>
-
-<!-- Bottom Metric Pills -->
-<g transform="translate(48, 296)">
-  <rect x="0" y="0" width="85" height="28" rx="6" fill="#081022" stroke="#1e293b"/>
-  <text x="12" y="18" font-size="11">📍</text>
-  <text x="30" y="18" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11" font-weight="600">India</text>
-
-  <rect x="95" y="0" width="135" height="28" rx="6" fill="#081022" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
-  <text x="108" y="18" font-size="11">⭐</text>
-  <text x="126" y="18" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700">11 Public Repos</text>
-
-  <rect x="240" y="0" width="145" height="28" rx="6" fill="#081022" stroke="#1e293b"/>
-  <circle cx="254" cy="14" r="3.5" fill="#10b981"/>
-  <text x="265" y="18" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11" font-weight="600">Open to Projects</text>
-</g>
-
-<!-- RIGHT CONTENT: Stylized Photo Cutout with Badge (Starts at x=560) -->
-<g>
-  <rect x="560" y="20" width="268" height="358" rx="18" fill="#050a16" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.6"/>
-  <g clip-path="url(#h-port-clip)">
-    <image x="555" y="12" width="278" height="368" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+<!-- Big Name Heading -->
+<g transform="translate(48, 126)">
+  <text x="0" y="0" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="64" font-weight="900" letter-spacing="-1">MAYUKH</text>
+  <!-- Red accent stripes -->
+  <g transform="translate(325, -42)">
+    <line x1="0" y1="26" x2="7" y2="4" stroke="#ff0055" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="9" y1="26" x2="16" y2="4" stroke="#ff0055" stroke-width="4.5" stroke-linecap="round"/>
+    <line x1="18" y1="26" x2="25" y2="4" stroke="#ff0055" stroke-width="4.5" stroke-linecap="round"/>
+    <text x="36" y="12" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="1">BUILD.</text>
+    <text x="36" y="25" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="1">BEYOND.</text>
   </g>
-  <rect x="560.5" y="20.5" width="267" height="357" rx="17.5" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
-  
-  <!-- Overlay Pill Badge centered on photo bottom -->
-  <g transform="translate(595, 332)">
-    <rect width="190" height="34" rx="8" fill="#060f24" stroke="#00f0ff" stroke-width="1.2"/>
-    <rect x="12" y="10" width="4" height="14" fill="#00f0ff" rx="1"/>
-    <rect x="18" y="10" width="4" height="14" fill="#ff0055" rx="1"/>
-    <text x="28" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.8">ENGINEER / BUILDER</text>
-  </g>
+  <text x="0" y="66" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="58" font-weight="900" letter-spacing="-1">BHATTACHARJEE</text>
+</g>
+
+<!-- Subtitle Role -->
+<text x="48" y="234" fill="#00f0ff" font-family="{FONT_MONO}" font-size="12.5" font-weight="800" letter-spacing="2">FULL-STACK DEVELOPER &amp; AI BUILDER</text>
+
+<!-- Bio -->
+<text x="48" y="265" fill="#e2e8f0" font-family="{FONT_DISPLAY}" font-size="15" font-weight="500">Building scalable software, intelligent AI systems &amp; web apps.</text>
+<text x="48" y="290" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="500">Creator of <tspan fill="#ffffff" font-weight="700">Paypaal-pro</tspan>, <tspan fill="#ffffff" font-weight="700">ai-educator</tspan> &amp; <tspan fill="#ffffff" font-weight="700">Aizen-detector-url</tspan>.</text>
+
+<!-- Quick Stats Badges: 14 Public Repos -->
+<g transform="translate(48, 324)">
+  <rect x="0" y="0" width="105" height="34" rx="8" fill="#050d22" stroke="#1e293b"/>
+  <text x="52" y="22" text-anchor="middle" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12" font-weight="600">India</text>
+
+  <rect x="117" y="0" width="168" height="34" rx="8" fill="#050d22" stroke="#00f0ff" stroke-opacity="0.4"/>
+  <text x="201" y="22" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="12" font-weight="700">14 Public Repos</text>
+
+  <rect x="297" y="0" width="180" height="34" rx="8" fill="#050d22" stroke="#10b981" stroke-opacity="0.5"/>
+  <circle cx="317" cy="17" r="4" fill="#10b981"/>
+  <text x="394" y="22" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="600">Open to Projects</text>
+</g>
+
+<!-- RIGHT COLUMN: Photo Card -->
+<g clip-path="url(#h-port-clip)">
+  <image x="560" y="10" width="268" height="370" href="data:image/png;base64,{hero_id_b64}" xlink:href="data:image/png;base64,{hero_id_b64}" preserveAspectRatio="xMidYMid slice"/>
+</g>
+<rect x="560" y="20" width="268" height="358" rx="18" fill="none" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.6"/>
+
+<!-- Pill Badge over Photo -->
+<g transform="translate(605, 335)">
+  <rect width="180" height="32" rx="16" fill="#030816" stroke="#00f0ff" stroke-width="1.2"/>
+  <text x="90" y="20" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="10.5" font-weight="800" letter-spacing="1">FULL-STACK / AI</text>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "hero.svg"), "w", encoding="utf-8") as f:
     f.write(hero_svg)
-print("wrote assets/hero.svg")
+print("wrote hero.svg")
 
-# ---------------------------------------------------------------------------
-# 2. assets/about-life.svg (Neon Cyberpunk Dual Card)
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# 2. about-life.svg (Built Different & Life Outside Commit)
+# ==============================================================================
 about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="390" viewBox="0 0 860 390" fill="none">
 <defs>
   <linearGradient id="ab-bg" x1="0" y1="0" x2="860" y2="390" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="50%" stop-color="#050c1e"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
   <linearGradient id="ab-border" x1="0" y1="0" x2="860" y2="390" gradientUnits="userSpaceOnUse">
@@ -186,637 +161,578 @@ about_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.
     <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
   </linearGradient>
-  <radialGradient id="ab-glow-cyan" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.05"/>
-    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="ab-glow-crimson" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.22"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.04"/>
-    <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
-  </radialGradient>
-  <pattern id="ab-dots" width="20" height="20" patternUnits="userSpaceOnUse">
-    <circle cx="2" cy="2" r="1.1" fill="#00f0ff" fill-opacity="0.11"/>
-  </pattern>
-  <clipPath id="thumb-clip">
-    <rect x="0" y="0" width="95" height="95" rx="8"/>
+  <clipPath id="ab-photo-clip">
+    <rect x="0" y="0" width="140" height="150" rx="10"/>
   </clipPath>
 </defs>
 
-<!-- Outer Container -->
 <rect width="860" height="390" rx="16" fill="url(#ab-bg)"/>
-<rect width="860" height="390" rx="16" fill="url(#ab-dots)"/>
-<circle cx="220" cy="180" r="160" fill="url(#ab-glow-cyan)"/>
-<circle cx="640" cy="180" r="160" fill="url(#ab-glow-crimson)"/>
 <rect x="0.5" y="0.5" width="859" height="389" rx="15.5" stroke="url(#ab-border)" stroke-width="1.2"/>
 
-<!-- LEFT CARD (x=30, width=385) -->
-<g transform="translate(30, 25)">
-  <rect width="385" height="340" rx="14" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
-  
-  <text x="22" y="28" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">01 / HOW I DO THINGS</text>
-  <text x="22" y="54" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="19" font-weight="900" letter-spacing="-0.5">BUILT DIFFERENT.</text>
+<!-- LEFT COLUMN (Built Different) -->
+<g transform="translate(32, 28)">
+  <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">01 / PHILOSOPHY</text>
+  <text x="0" y="36" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">BUILT DIFFERENT.</text>
 
-  <!-- Blue Code-Bar Box -->
-  <g transform="translate(22, 70)">
-    <rect width="341" height="94" rx="8" fill="#091326" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="14" y="20" fill="#38bdf8" font-family="{FONT_MONO}" font-size="9">github.com / mayukhbyte / build</text>
-    <text x="14" y="37" fill="#ffffff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">curiosity_into_impact() {{</text>
+  <!-- Shell terminal container -->
+  <g transform="translate(0, 52)">
+    <rect width="375" height="110" rx="8" fill="#040915" stroke="#1e293b"/>
+    <text x="14" y="24" fill="#64748b" font-family="{FONT_MONO}" font-size="10">mayukh@dev:~$ ./build</text>
+    <text x="14" y="44" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700">curiosity_into_impact() &#123;</text>
     
-    <!-- Step Pills -->
-    <g transform="translate(14, 50)">
-      <rect x="0" y="0" width="80" height="28" rx="5" fill="#0d1f3d" stroke="#00f0ff" stroke-width="0.8"/>
-      <text x="8" y="13" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">01</text>
-      <text x="8" y="22" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="7.5">DISCOVER</text>
-
-      <text x="86" y="18" fill="#64748b" font-family="{FONT_DISPLAY}" font-size="11">→</text>
-
-      <rect x="98" y="0" width="90" height="28" rx="5" fill="#0d1f3d" stroke="#00f0ff" stroke-width="0.8"/>
-      <text x="106" y="13" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">02</text>
-      <text x="106" y="22" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="7.5">ENGINEER</text>
-
-      <text x="194" y="18" fill="#64748b" font-family="{FONT_DISPLAY}" font-size="11">→</text>
-
-      <rect x="206" y="0" width="80" height="28" rx="5" fill="#240e1a" stroke="#ff0055" stroke-width="1.2"/>
-      <text x="214" y="13" fill="#ff0055" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">03</text>
-      <text x="214" y="22" fill="#ffffff" font-family="{FONT_MONO}" font-size="7.5" font-weight="700">SHIP</text>
+    <!-- 3 Pipeline Step Boxes -->
+    <g transform="translate(14, 56)">
+      <rect x="0" y="0" width="80" height="36" rx="6" fill="#07152d" stroke="#00f0ff" stroke-width="0.8"/>
+      <text x="40" y="16" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="800">01</text>
+      <text x="40" y="28" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700">DISCOVER</text>
+      
+      <text x="88" y="22" fill="#64748b" font-family="{FONT_MONO}" font-size="12">→</text>
+      
+      <rect x="105" y="0" width="80" height="36" rx="6" fill="#07152d" stroke="#00f0ff" stroke-width="0.8"/>
+      <text x="145" y="16" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="800">02</text>
+      <text x="145" y="28" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700">ENGINEER</text>
+      
+      <text x="193" y="22" fill="#64748b" font-family="{FONT_MONO}" font-size="12">→</text>
+      
+      <rect x="210" y="0" width="80" height="36" rx="6" fill="#1c0715" stroke="#ff0055" stroke-width="1"/>
+      <text x="250" y="16" text-anchor="middle" fill="#ff0055" font-family="{FONT_MONO}" font-size="9" font-weight="800">03</text>
+      <text x="250" y="28" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700">SHIP</text>
     </g>
   </g>
 
-  <!-- 3 Capabilities Rows -->
-  <g transform="translate(22, 184)">
-    <rect x="0" y="6" width="6" height="2" fill="#00f0ff"/>
-    <text x="14" y="10" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="800">Modern Web &amp; App Dev</text>
-    <text x="14" y="25" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">From first interaction to production.</text>
-
-    <rect x="0" y="48" width="6" height="2" fill="#38bdf8"/>
-    <text x="14" y="52" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="800">AI &amp; Cloud Integration</text>
-    <text x="14" y="67" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Scalable systems. Useful intelligence.</text>
-
-    <rect x="0" y="90" width="6" height="2" fill="#ff0055"/>
-    <text x="14" y="94" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12.5" font-weight="800">Community Mentorship</text>
-    <text x="14" y="109" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Making the next step less uncertain.</text>
+  <!-- 3 Focus Pillars -->
+  <g transform="translate(0, 180)">
+    <g transform="translate(0, 0)">
+      <text x="0" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">— Modern Web &amp; App Dev</text>
+      <text x="14" y="32" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11.5">From first interaction to resilient production code.</text>
+    </g>
+    <g transform="translate(0, 48)">
+      <text x="0" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">— AI &amp; Intelligent Systems</text>
+      <text x="14" y="32" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11.5">Agent financial ops, automated crawlers &amp; LLMs.</text>
+    </g>
+    <g transform="translate(0, 96)">
+      <text x="0" y="14" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">— Open Source Engineering</text>
+      <text x="14" y="32" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11.5">Building high-impact public tools and frameworks.</text>
+    </g>
   </g>
 </g>
 
-<!-- RIGHT CARD (x=445, width=385) -->
-<g transform="translate(445, 25)">
-  <rect width="385" height="340" rx="14" fill="#050a16" stroke="#ff0055" stroke-width="1" stroke-opacity="0.4"/>
-  
-  <text x="22" y="28" fill="#ff0055" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">02 / LIFE OUTSIDE THE COMMIT</text>
-  <text x="22" y="54" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="19" font-weight="900" letter-spacing="-0.5">MORE THAN A JOB TITLE.</text>
-  <rect x="22" y="62" width="28" height="2.5" fill="#00f0ff"/>
-  <rect x="52" y="62" width="16" height="2.5" fill="#ff0055"/>
+<!-- VERTICAL DIVIDER -->
+<line x1="430" y1="28" x2="430" y2="362" stroke="#1e293b" stroke-width="1"/>
 
-  <!-- Upper Subsection -->
-  <g transform="translate(22, 76)">
-    <!-- Photo Thumbnail -->
-    <g>
-      <rect width="95" height="95" rx="8" fill="#0d1424" stroke="#00f0ff" stroke-width="0.8"/>
-      <g clip-path="url(#thumb-clip)">
-        <image x="-5" y="-5" width="105" height="105" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+<!-- RIGHT COLUMN (Life Outside the Commit) -->
+<g transform="translate(452, 28)">
+  <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">02 / LIFE OUTSIDE THE COMMIT</text>
+  <text x="0" y="36" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">MORE THAN A JOB TITLE.</text>
+  
+  <!-- Red & Blue underline accents -->
+  <rect x="0" y="44" width="80" height="3" fill="#00f0ff" rx="1.5"/>
+  <rect x="85" y="44" width="40" height="3" fill="#ff0055" rx="1.5"/>
+
+  <!-- Card with photo & 3 steps -->
+  <g transform="translate(0, 60)">
+    <rect width="375" height="190" rx="10" fill="#040915" stroke="#1e293b"/>
+    
+    <!-- Photo Box -->
+    <g transform="translate(16, 20)">
+      <g clip-path="url(#ab-photo-clip)">
+        <image x="0" y="-10" width="140" height="170" href="data:image/png;base64,{id_pass_b64}" xlink:href="data:image/png;base64,{id_pass_b64}" preserveAspectRatio="xMidYMid slice"/>
       </g>
-      <rect y="74" width="95" height="21" rx="0" fill="#050a16" opacity="0.9"/>
-      <text x="47" y="88" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="7.5" font-weight="700">MAYUKH / BUILDER</text>
+      <rect width="140" height="150" rx="10" fill="none" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.4"/>
+      <rect x="15" y="122" width="110" height="20" rx="10" fill="#030816" stroke="#00f0ff" stroke-width="0.8"/>
+      <text x="70" y="136" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8" font-weight="800">MAYUKH / BUILDER</text>
     </g>
 
-    <!-- 3 Red Steps matching Reel Photo 3 -->
-    <g transform="translate(115, 8)">
-      <text x="0" y="14" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">01</text>
-      <text x="24" y="14" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">FIND THE GAP</text>
-
-      <text x="0" y="44" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">02</text>
-      <text x="24" y="44" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">BUILD YOUR PLAN</text>
-
-      <text x="0" y="74" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">03</text>
-      <text x="24" y="74" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="800" letter-spacing="0.5">TAKE THE LEAP</text>
+    <!-- 3 Action Steps matching reel -->
+    <g transform="translate(175, 25)">
+      <g transform="translate(0, 0)">
+        <text x="0" y="14" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">01</text>
+        <text x="26" y="14" fill="#ffffff" font-family="{FONT_MONO}" font-size="10" font-weight="700">FIND THE GAP</text>
+        <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b"/>
+      </g>
+      <g transform="translate(0, 44)">
+        <text x="0" y="14" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">02</text>
+        <text x="26" y="14" fill="#ffffff" font-family="{FONT_MONO}" font-size="10" font-weight="700">BUILD YOUR PLAN</text>
+        <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b"/>
+      </g>
+      <g transform="translate(0, 88)">
+        <text x="0" y="14" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="800">03</text>
+        <text x="26" y="14" fill="#ffffff" font-family="{FONT_MONO}" font-size="10" font-weight="700">TAKE THE LEAP</text>
+        <line x1="0" y1="24" x2="180" y2="24" stroke="#1e293b"/>
+      </g>
     </g>
   </g>
 
-  <!-- Lower Subsection -->
-  <g transform="translate(22, 205)">
-    <line x1="0" y1="0" x2="341" y2="0" stroke="#1e293b"/>
-    <text x="0" y="24" fill="#64748b" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">MAKE THE NEXT MOVE.</text>
-    <text x="0" y="50" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="17" font-weight="900">1:1 Engineering &amp; Collab</text>
-    <text x="0" y="70" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11.5">A clearer roadmap. A stronger engineer.</text>
-    <text x="0" y="94" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700">01 / 03</text>
+  <!-- Bottom Tagline -->
+  <g transform="translate(0, 270)">
+    <text x="0" y="10" fill="#64748b" font-family="{FONT_MONO}" font-size="9" font-weight="700" letter-spacing="1">MAKE THE NEXT MOVE.</text>
+    <text x="0" y="32" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="16" font-weight="800">Building With Intent &amp; Impact</text>
+    <text x="0" y="48" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11.5">Autonomous fintech, intelligent education tools &amp; web infrastructure.</text>
   </g>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "about-life.svg"), "w", encoding="utf-8") as f:
     f.write(about_svg)
-print("wrote assets/about-life.svg")
+print("wrote about-life.svg")
 
-# ---------------------------------------------------------------------------
-# 3. assets/stack.svg (Neon Engine Room & Orbital Tech Tree)
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# 3. stack.svg (Real tech from Mayukh's actual work: TS, JS, Py, Go, React, Next, Supabase, Express, MCP)
+# ==============================================================================
 stack_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="420" viewBox="0 0 860 420" fill="none">
 <defs>
   <linearGradient id="st-bg" x1="0" y1="0" x2="860" y2="420" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="50%" stop-color="#060e22"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
   <linearGradient id="st-border" x1="0" y1="0" x2="860" y2="420" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
-    <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
-    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
+    <stop offset="50%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#ff0055" stop-opacity="0.6"/>
   </linearGradient>
-  <radialGradient id="st-glow-cyan" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.28"/>
-    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.06"/>
+  <radialGradient id="st-glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25"/>
+    <stop offset="60%" stop-color="#247bff" stop-opacity="0.08"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="st-glow-crimson" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.22"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.04"/>
-    <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="st-glow-blue" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#247bff" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#247bff" stop-opacity="0.05"/>
-    <stop offset="100%" stop-color="#247bff" stop-opacity="0"/>
-  </radialGradient>
-  <pattern id="st-dots" width="20" height="20" patternUnits="userSpaceOnUse">
-    <circle cx="2" cy="2" r="1.1" fill="#00f0ff" fill-opacity="0.11"/>
-  </pattern>
 </defs>
 
-<style>
-  @keyframes orb-pulse {{ 0%, 100% {{ opacity: 0.4; }} 50% {{ opacity: 0.9; }} }}
-  @keyframes spin-cw {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
-  @keyframes float-cube {{ 0%, 100% {{ transform: translateY(0); }} 50% {{ transform: translateY(-4px); }} }}
-  .orbit-track {{ animation: orb-pulse 4s ease-in-out infinite; }}
-  .floating-core {{ animation: float-cube 3s ease-in-out infinite; }}
-</style>
-
 <rect width="860" height="420" rx="16" fill="url(#st-bg)"/>
-<rect width="860" height="420" rx="16" fill="url(#st-dots)"/>
-<circle cx="215" cy="245" r="170" fill="url(#st-glow-cyan)"/>
-<circle cx="620" cy="230" r="170" fill="url(#st-glow-crimson)"/>
 <rect x="0.5" y="0.5" width="859" height="419" rx="15.5" stroke="url(#st-border)" stroke-width="1.2"/>
 
 <!-- Header -->
-<g transform="translate(45, 36)">
-  <text x="0" y="0" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">03 / MY ENGINE ROOM</text>
-  <text x="0" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">TOOLS CHANGE. CURIOSITY DOESN'T.</text>
-  <text x="0" y="46" fill="#64748b" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="2">LANGUAGES / SYSTEMS / INTELLIGENCE</text>
+<g transform="translate(36, 28)">
+  <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">03 / MY ENGINE ROOM</text>
+  <text x="0" y="38" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="25" font-weight="900" letter-spacing="0.5">TOOLS CHANGE. CURIOSITY DOESN'T.</text>
+  <text x="0" y="58" fill="#64748b" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">LANGUAGES / SYSTEMS / INTELLIGENCE</text>
 </g>
 
-<!-- LEFT: Cyberpunk Constellation / Orbital Tree (Center at x=215, y=242) -->
-<g transform="translate(215, 242)">
-  <!-- Tree Branch Beams connecting Core to Outer Tech Nodes -->
-  <line x1="0" y1="-20" x2="0" y2="-92" stroke="#ff9900" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="-18" y1="-10" x2="-80" y2="-55" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="-24" y1="0" x2="-132" y2="-10" stroke="#3178c6" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="-18" y1="14" x2="-85" y2="60" stroke="#61dafb" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="18" y1="-10" x2="75" y2="-50" stroke="#00add8" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="24" y1="4" x2="130" y2="15" stroke="#ff0055" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
-  <line x1="16" y1="18" x2="60" y2="70" stroke="#22c55e" stroke-width="1.2" stroke-opacity="0.6" stroke-dasharray="3,3"/>
+<!-- LEFT: 3D Constellation Orbit Diagram (Mayukh's Stack) -->
+<g transform="translate(40, 110)">
+  <circle cx="170" cy="120" r="130" fill="url(#st-glow)"/>
 
-  <!-- Orbital Rings -->
-  <ellipse class="orbit-track" cx="0" cy="0" rx="146" ry="62" fill="none" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.45" transform="rotate(-24)"/>
-  <ellipse class="orbit-track" cx="0" cy="0" rx="136" ry="52" fill="none" stroke="#ff0055" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(26)"/>
-  <ellipse class="orbit-track" cx="0" cy="0" rx="114" ry="42" fill="none" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.5" transform="rotate(-64)"/>
+  <!-- Orbits -->
+  <ellipse cx="170" cy="120" rx="140" ry="55" fill="none" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(-25 170 120)"/>
+  <ellipse cx="170" cy="120" rx="140" ry="55" fill="none" stroke="#247bff" stroke-width="1.2" stroke-opacity="0.4" transform="rotate(35 170 120)"/>
+  <ellipse cx="170" cy="120" rx="130" ry="50" fill="none" stroke="#ff0055" stroke-width="1" stroke-opacity="0.3" transform="rotate(85 170 120)"/>
 
-  <!-- Satellite Particles on Tracks -->
-  <circle cx="-110" cy="38" r="3" fill="#00f0ff"/>
-  <circle cx="100" cy="-34" r="2.5" fill="#ff0055"/>
-  <circle cx="-42" cy="-78" r="2" fill="#38bdf8"/>
-  <circle cx="120" cy="40" r="2.5" fill="#f59e0b"/>
-
-  <!-- Center: 3D Isometric Neon Core Cube with "MB" -->
-  <g class="floating-core">
+  <!-- Center Isometric 3D Cube (MB) -->
+  <g transform="translate(170, 120)">
     <!-- Top Face -->
-    <polygon points="0,-28 24,-14 0,0 -24,-14" fill="#0c234a" stroke="#00f0ff" stroke-width="1.4"/>
+    <polygon points="0,-28 24,-14 0,0 -24,-14" fill="#0c2d64" stroke="#00f0ff" stroke-width="1.2"/>
     <!-- Left Face -->
-    <polygon points="-24,-14 0,0 0,26 -24,12" fill="#061226" stroke="#00f0ff" stroke-width="1.4"/>
+    <polygon points="-24,-14 0,0 0,28 -24,14" fill="#081d42" stroke="#00f0ff" stroke-width="1.2"/>
     <!-- Right Face -->
-    <polygon points="0,0 24,-14 24,12 0,26" fill="#091b38" stroke="#00f0ff" stroke-width="1.4"/>
-    <!-- Center Monogram -->
-    <text x="0" y="15" text-anchor="middle" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="900" letter-spacing="1">MB</text>
+    <polygon points="0,0 24,-14 24,14 0,28" fill="#061633" stroke="#00f0ff" stroke-width="1.2"/>
+    <!-- MB Monogram -->
+    <text x="0" y="7" text-anchor="middle" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="1">MB</text>
   </g>
 
-  <!-- Node 1: AWS / Cloud (Top) -->
-  <g transform="translate(0, -92)">
-    <rect x="-20" y="-12" width="40" height="24" rx="5" fill="#0a162c" stroke="#ff9900" stroke-width="1.2"/>
-    <text x="0" y="4" text-anchor="middle" fill="#ff9900" font-family="{FONT_MONO}" font-size="9" font-weight="800">AWS</text>
+  <!-- Constellation Nodes (From Mayukh's actual repos) -->
+  <!-- Top: Python -->
+  <g transform="translate(170, 30)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#fbbf24" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#fbbf24" font-family="{FONT_MONO}" font-size="9" font-weight="800">Python</text>
   </g>
 
-  <!-- Node 2: Python (Top-Left) -->
-  <g transform="translate(-80, -55)">
-    <circle cx="0" cy="0" r="15" fill="#050e1f" stroke="#38bdf8" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#38bdf8" font-family="{FONT_MONO}" font-size="9" font-weight="800">Py</text>
+  <!-- Left: TypeScript -->
+  <g transform="translate(50, 110)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#3178c6" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#3178c6" font-family="{FONT_MONO}" font-size="10" font-weight="900">TS</text>
   </g>
 
-  <!-- Node 3: TypeScript (Far-Left) -->
-  <g transform="translate(-132, -10)">
-    <rect x="-14" y="-14" width="28" height="28" rx="6" fill="#07132a" stroke="#3178c6" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#38bdf8" font-family="{FONT_MONO}" font-size="9.5" font-weight="900">TS</text>
+  <!-- Right: Go (from Aizen-detector-url) -->
+  <g transform="translate(290, 110)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#00add8" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#00add8" font-family="{FONT_MONO}" font-size="10" font-weight="900">Go</text>
   </g>
 
-  <!-- Node 4: React (Bottom-Left) -->
-  <g transform="translate(-85, 60)">
-    <circle cx="0" cy="0" r="15" fill="#050e1f" stroke="#61dafb" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#61dafb" font-family="{FONT_MONO}" font-size="11" font-weight="800">⚛</text>
+  <!-- Bottom-Left: React -->
+  <g transform="translate(90, 185)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#61dafb" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#61dafb" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">React</text>
   </g>
 
-  <!-- Node 5: Golang (Top-Right) -->
-  <g transform="translate(75, -50)">
-    <circle cx="0" cy="0" r="15" fill="#050e1f" stroke="#00add8" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#00add8" font-family="{FONT_MONO}" font-size="9" font-weight="800">Go</text>
+  <!-- Bottom-Right: Node / Supabase -->
+  <g transform="translate(250, 185)">
+    <circle cx="0" cy="0" r="18" fill="#0a1a36" stroke="#3ecf8e" stroke-width="1.2"/>
+    <text x="0" y="4" text-anchor="middle" fill="#3ecf8e" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">Node</text>
   </g>
 
-  <!-- Node 6: AI / Agent Engine (Far-Right) -->
-  <g transform="translate(130, 15)">
-    <circle cx="0" cy="0" r="15" fill="#1a0a16" stroke="#ff0055" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#ff0055" font-family="{FONT_MONO}" font-size="9" font-weight="900">AI</text>
-  </g>
+  <!-- Connecting Rays -->
+  <line x1="170" y1="48" x2="170" y2="92" stroke="#fbbf24" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="68" y1="110" x2="146" y2="120" stroke="#3178c6" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="272" y1="110" x2="194" y2="120" stroke="#00add8" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="108" y1="185" x2="155" y2="135" stroke="#61dafb" stroke-width="0.8" stroke-dasharray="3,3"/>
+  <line x1="232" y1="185" x2="185" y2="135" stroke="#3ecf8e" stroke-width="0.8" stroke-dasharray="3,3"/>
 
-  <!-- Node 7: Node.js (Bottom-Right) -->
-  <g transform="translate(60, 70)">
-    <circle cx="0" cy="0" r="15" fill="#051410" stroke="#22c55e" stroke-width="1.3"/>
-    <text x="0" y="4" text-anchor="middle" fill="#22c55e" font-family="{FONT_MONO}" font-size="9" font-weight="800">No</text>
-  </g>
+  <!-- Orbiting Satellite Particle -->
+  <circle cx="310" cy="70" r="5" fill="#ff0055"/>
+  <circle cx="310" cy="70" r="10" fill="#ff0055" fill-opacity="0.3"/>
 
-  <!-- Bottom Tree Caption -->
-  <text x="0" y="145" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="9" font-weight="700" letter-spacing="1">CODE IS THE TOOL. IMPACT IS THE POINT.</text>
+  <text x="170" y="245" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="9" font-weight="700" letter-spacing="1">CODE IS THE TOOL. IMPACT IS THE POINT.</text>
 </g>
 
-<!-- RIGHT: Categorized Tech Grid matching Reel Photo 1 (Starts at x=445) -->
-<g transform="translate(445, 105)">
+<!-- RIGHT: Real Categorized Tech Cards (From Mayukh's actual repos) -->
+<g transform="translate(420, 100)">
   <!-- 01 / LANGUAGES -->
-  <text x="0" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">01 / LANGUAGES</text>
-  <g transform="translate(0, 20)">
-    <!-- TypeScript -->
-    <rect x="0" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <rect x="10" y="9" width="16" height="16" rx="3" fill="#0c1e3d"/>
-    <text x="18" y="21" text-anchor="middle" fill="#38bdf8" font-family="{FONT_MONO}" font-size="9" font-weight="800">TS</text>
-    <text x="32" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">TypeScript</text>
-    <text x="12" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">TYPED RUNTIME</text>
+  <g transform="translate(0, 0)">
+    <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">01 / LANGUAGES</text>
+    <g transform="translate(0, 18)">
+      <!-- TypeScript -->
+      <rect x="0" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="8" y="11" width="20" height="20" rx="3" fill="#3178c6"/>
+      <text x="18" y="25" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="10" font-weight="900">TS</text>
+      <text x="34" y="20" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="700">TypeScript</text>
+      <text x="34" y="31" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5">TYPED RUNTIME</text>
 
-    <!-- Python -->
-    <rect x="124" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="134" y="22" font-size="12">🐍</text>
-    <text x="154" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">Python</text>
-    <text x="134" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">AI &amp; AUTOMATION</text>
+      <!-- JavaScript -->
+      <rect x="105" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="113" y="11" width="20" height="20" rx="3" fill="#f7df1e"/>
+      <text x="123" y="25" text-anchor="middle" fill="#000000" font-family="{FONT_MONO}" font-size="10" font-weight="900">JS</text>
+      <text x="139" y="20" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="700">JavaScript</text>
+      <text x="139" y="31" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5">MODERN ES6+</text>
 
-    <!-- Golang -->
-    <rect x="248" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="258" y="22" font-size="12">🐹</text>
-    <text x="278" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">Golang</text>
-    <text x="258" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">CONCURRENT GO</text>
+      <!-- Python -->
+      <rect x="210" y="0" width="95" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="218" y="11" width="20" height="20" rx="3" fill="#3776ab"/>
+      <text x="228" y="25" text-anchor="middle" fill="#ffd343" font-family="{FONT_MONO}" font-size="10" font-weight="900">Py</text>
+      <text x="244" y="20" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="700">Python</text>
+      <text x="244" y="31" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5">SCRIPTS &amp; AI</text>
+
+      <!-- Go -->
+      <rect x="315" y="0" width="85" height="42" rx="6" fill="#061226" stroke="#1e293b"/>
+      <rect x="323" y="11" width="20" height="20" rx="3" fill="#00add8"/>
+      <text x="333" y="25" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="9" font-weight="900">GO</text>
+      <text x="349" y="20" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="700">Golang</text>
+      <text x="349" y="31" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5">FAST CRAWLER</text>
+    </g>
   </g>
 
-  <!-- 02 / FRONTEND & RUNTIME -->
-  <text x="0" y="88" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">02 / FRONTEND &amp; RUNTIME</text>
-  <g transform="translate(0, 96)">
-    <!-- React 18 -->
-    <rect x="0" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="12" y="22" font-size="12">⚛️</text>
-    <text x="32" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">React 18</text>
-    <text x="12" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">INTERACTIVE UI</text>
+  <!-- 02 / FRONTEND -->
+  <g transform="translate(0, 80)">
+    <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">02 / FRONTEND</text>
+    <g transform="translate(0, 18)">
+      <!-- React -->
+      <rect x="0" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" fill="#61dafb" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">React</text>
+      <text x="14" y="35" fill="#64748b" font-family="{FONT_MONO}" font-size="8">INTERACTIVE SPA</text>
 
-    <!-- Next.js -->
-    <rect x="124" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="134" y="22" font-size="12">▲</text>
-    <text x="154" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">Next.js</text>
-    <text x="134" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">SSR PLATFORMS</text>
+      <!-- Next.js -->
+      <rect x="135" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(135,0)" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">Next.js</text>
+      <text x="14" y="35" transform="translate(135,0)" fill="#64748b" font-family="{FONT_MONO}" font-size="8">SSR PLATFORMS</text>
 
-    <!-- Node.js -->
-    <rect x="248" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="258" y="22" font-size="12">🟢</text>
-    <text x="278" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">Node.js</text>
-    <text x="258" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">V8 RUNTIME</text>
+      <!-- Tailwind / Framer -->
+      <rect x="270" y="0" width="130" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(270,0)" fill="#38bdf8" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">Tailwind &amp; UI</text>
+      <text x="14" y="35" transform="translate(270,0)" fill="#64748b" font-family="{FONT_MONO}" font-size="8">3D &amp; MOTION UI</text>
+    </g>
   </g>
 
-  <!-- 03 / BACKEND, CLOUD & AI -->
-  <text x="0" y="164" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">03 / BACKEND, CLOUD &amp; AI</text>
-  <g transform="translate(0, 172)">
-    <!-- Express -->
-    <rect x="0" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="12" y="22" font-size="12">⚡</text>
-    <text x="32" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">Express</text>
-    <text x="12" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">REST &amp; SSE APIS</text>
+  <!-- 03 / BACKEND -->
+  <g transform="translate(0, 162)">
+    <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">03 / BACKEND</text>
+    <g transform="translate(0, 18)">
+      <!-- Node & Express -->
+      <rect x="0" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" fill="#22c55e" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">Node &amp; Express</text>
+      <text x="14" y="35" fill="#64748b" font-family="{FONT_MONO}" font-size="8">REST &amp; AGENT APIS</text>
 
-    <!-- AWS / Cloud -->
-    <rect x="124" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="134" y="22" font-size="12">☁️</text>
-    <text x="154" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">AWS Cloud</text>
-    <text x="134" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">INFRA &amp; DEPLOY</text>
+      <!-- Supabase & Firebase -->
+      <rect x="135" y="0" width="125" height="44" rx="6" fill="#061226" stroke="#1e293b"/>
+      <text x="14" y="22" transform="translate(135,0)" fill="#3ecf8e" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">Supabase &amp; Auth</text>
+      <text x="14" y="35" transform="translate(135,0)" fill="#64748b" font-family="{FONT_MONO}" font-size="8">FIREBASE &amp; PG</text>
 
-    <!-- LLM APIs / Agents -->
-    <rect x="248" y="0" width="114" height="46" rx="7" fill="#050a16" stroke="#1e293b"/>
-    <text x="258" y="22" font-size="12">🧠</text>
-    <text x="278" y="21" fill="#f1f5f9" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="700">LLM APIs</text>
-    <text x="258" y="37" fill="#64748b" font-family="{FONT_MONO}" font-size="8">INTELLIGENT AGENTS</text>
+      <!-- MCP & AI APIs -->
+      <rect x="270" y="0" width="130" height="44" rx="6" fill="#061226" stroke="#ff0055" stroke-opacity="0.4"/>
+      <text x="14" y="22" transform="translate(270,0)" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="12" font-weight="800">MCP &amp; LLM APIs</text>
+      <text x="14" y="35" transform="translate(270,0)" fill="#64748b" font-family="{FONT_MONO}" font-size="8">AUTONOMOUS AGENTS</text>
+    </g>
   </g>
 
-  <text x="0" y="244" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700" letter-spacing="1">BUILD / MENTOR / CREATE / REPEAT</text>
+  <!-- Bottom Tagline -->
+  <text x="0" y="255" fill="#64748b" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">BUILD / MENTOR / CREATE / REPEAT</text>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "stack.svg"), "w", encoding="utf-8") as f:
     f.write(stack_svg)
-print("wrote assets/stack.svg")
+print("wrote stack.svg")
 
-# ---------------------------------------------------------------------------
-# 4. assets/projects-table.svg (Dark Neon Projects Table matching Reel!)
-# ---------------------------------------------------------------------------
-projects_table_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="230" viewBox="0 0 860 230" fill="none">
+# ==============================================================================
+# 4. projects-table.svg (Clean Grid Table matching Image 1: Things I've built)
+# ==============================================================================
+projects_table_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="860" height="235" viewBox="0 0 860 235" fill="none">
 <defs>
-  <linearGradient id="pt-bg" x1="0" y1="0" x2="860" y2="230" gradientUnits="userSpaceOnUse">
+  <linearGradient id="pt-bg" x1="0" y1="0" x2="860" y2="235" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="50%" stop-color="#060e22"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
-  <linearGradient id="pt-border" x1="0" y1="0" x2="860" y2="230" gradientUnits="userSpaceOnUse">
+  <linearGradient id="pt-border" x1="0" y1="0" x2="860" y2="235" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
     <stop offset="50%" stop-color="#247bff" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#ff0055" stop-opacity="0.6"/>
   </linearGradient>
 </defs>
 
-<rect width="860" height="230" rx="14" fill="url(#pt-bg)"/>
-<rect x="0.5" y="0.5" width="859" height="229" rx="13.5" stroke="url(#pt-border)" stroke-width="1.2"/>
+<rect width="860" height="235" rx="14" fill="url(#pt-bg)"/>
+<rect x="0.5" y="0.5" width="859" height="234" rx="13.5" stroke="url(#pt-border)" stroke-width="1.2"/>
 
-<!-- Table Header Row -->
-<rect x="20" y="16" width="820" height="38" rx="6" fill="#071024" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
-<text x="40" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">PROJECT</text>
-<text x="230" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">WHAT IT DOES</text>
-<text x="700" y="40" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="800" letter-spacing="1">FOCUS</text>
-
-<!-- Row 1: Paypaal-pro -->
-<g transform="translate(20, 60)">
-  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
-  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">Paypaal-pro</text>
-  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
-  <rect x="670" y="11" width="130" height="24" rx="4" fill="#240c1a" stroke="#ff0055" stroke-width="0.8"/>
-  <text x="735" y="27" text-anchor="middle" fill="#ff0055" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Fintech + Agents</text>
+<!-- Section Title matching Image 1: Things I've built -->
+<g transform="translate(25, 20)">
+  <text x="0" y="8" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">03 / FEATURED REPOSITORIES</text>
+  <text x="0" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="20" font-weight="900" letter-spacing="0.5">Things I've built</text>
 </g>
 
-<!-- Row 2: ai-educator -->
-<g transform="translate(20, 112)">
-  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
-  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">ai-educator</text>
-  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
-  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081730" stroke="#00f0ff" stroke-width="0.8"/>
-  <text x="735" y="27" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">AI + Learning</text>
-</g>
+<!-- Clean Dark Grid Table matching Image 1 -->
+<g transform="translate(25, 60)">
+  <!-- Table Header -->
+  <rect x="0" y="0" width="810" height="32" fill="#08142c" stroke="#1e293b"/>
+  <text x="20" y="20" fill="#94a3b8" font-family="{FONT_MONO}" font-size="11" font-weight="700">Project</text>
+  <text x="200" y="20" fill="#94a3b8" font-family="{FONT_MONO}" font-size="11" font-weight="700">What it does</text>
+  <text x="670" y="20" fill="#94a3b8" font-family="{FONT_MONO}" font-size="11" font-weight="700">Focus</text>
 
-<!-- Row 3: Aizen-detector-url -->
-<g transform="translate(20, 164)">
-  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
-  <text x="20" y="28" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13.5" font-weight="800">Aizen-detector-url</text>
-  <text x="210" y="28" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
-  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081e18" stroke="#34d399" stroke-width="0.8"/>
-  <text x="735" y="27" text-anchor="middle" fill="#34d399" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Security + Go</text>
+  <!-- Row 1: Paypaal-pro -->
+  <rect x="0" y="32" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="58" fill="#38bdf8" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Paypaal-pro</text>
+  <text x="200" y="58" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
+  <text x="670" y="58" fill="#ff0055" font-family="{FONT_MONO}" font-size="11" font-weight="700">Fintech + Agents</text>
+
+  <!-- Row 2: ai-educator -->
+  <rect x="0" y="74" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="100" fill="#38bdf8" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">ai-educator</text>
+  <text x="200" y="100" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
+  <text x="670" y="100" fill="#00f0ff" font-family="{FONT_MONO}" font-size="11" font-weight="700">AI + Learning</text>
+
+  <!-- Row 3: Aizen-detector-url -->
+  <rect x="0" y="116" width="810" height="42" fill="#040915" stroke="#1e293b"/>
+  <text x="20" y="142" fill="#38bdf8" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Aizen-detector-url</text>
+  <text x="200" y="142" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
+  <text x="670" y="142" fill="#34d399" font-family="{FONT_MONO}" font-size="11" font-weight="700">Security + Go</text>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "projects-table.svg"), "w", encoding="utf-8") as f:
     f.write(projects_table_svg)
-print("wrote assets/projects-table.svg")
+print("wrote projects-table.svg")
 
-# ---------------------------------------------------------------------------
-# 5. assets/id-dashboard.svg (Neon Lanyard Card & Dashboard matching Image 1!)
-# ---------------------------------------------------------------------------
-id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="440" viewBox="0 0 860 440" fill="none">
+# ==============================================================================
+# 5. id-dashboard.svg (NO stars, 75 contributions in last year, 14 repos, authentic lanyard pass)
+# ==============================================================================
+id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="450" viewBox="0 0 860 450" fill="none">
 <defs>
-  <linearGradient id="id-bg" x1="0" y1="0" x2="860" y2="440" gradientUnits="userSpaceOnUse">
+  <linearGradient id="id-bg" x1="0" y1="0" x2="860" y2="450" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="50%" stop-color="#060e22"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
-  <linearGradient id="id-border" x1="0" y1="0" x2="860" y2="440" gradientUnits="userSpaceOnUse">
+  <linearGradient id="id-border" x1="0" y1="0" x2="860" y2="450" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
     <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
   </linearGradient>
-  <radialGradient id="id-glow-cyan" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.05"/>
-    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="id-glow-crimson" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.22"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.04"/>
-    <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
-  </radialGradient>
-  <clipPath id="lanyard-photo-clip">
-    <rect x="18" y="44" width="164" height="150" rx="8"/>
-  </clipPath>
-  <linearGradient id="foil-shine" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-    <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
-    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.4"/>
-    <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
-    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+  <linearGradient id="metal-clamp" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#475569"/>
+    <stop offset="35%" stop-color="#e2e8f0"/>
+    <stop offset="70%" stop-color="#94a3b8"/>
+    <stop offset="100%" stop-color="#334155"/>
   </linearGradient>
+  <linearGradient id="gold-chip" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#fbbf24"/>
+    <stop offset="50%" stop-color="#d97706"/>
+    <stop offset="100%" stop-color="#f59e0b"/>
+  </linearGradient>
+  <clipPath id="pass-photo-clip">
+    <rect x="12" y="28" width="192" height="172" rx="8"/>
+  </clipPath>
 </defs>
 
-<style>
-  @keyframes swing {{
-    0% {{ transform: rotate(0deg); }}
-    50% {{ transform: rotate(1.5deg); }}
-    100% {{ transform: rotate(-1.5deg); }}
-  }}
-  @keyframes foil {{
-    0% {{ transform: translateX(-200px); }}
-    35%, 100% {{ transform: translateX(250px); }}
-  }}
-  .lanyard-card {{
-    transform-origin: 145px 0px;
-    animation: swing 5s ease-in-out infinite alternate;
-  }}
-  .foil-sweep {{
-    animation: foil 6s ease-in-out infinite;
-  }}
-</style>
+<rect width="860" height="450" rx="16" fill="url(#id-bg)"/>
+<rect x="0.5" y="0.5" width="859" height="449" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
 
-<rect width="860" height="440" rx="16" fill="url(#id-bg)"/>
-<circle cx="150" cy="210" r="170" fill="url(#id-glow-cyan)"/>
-<circle cx="650" cy="220" r="180" fill="url(#id-glow-crimson)"/>
-<rect x="0.5" y="0.5" width="859" height="439" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
+<!-- Ambient background text behind Lanyard matching Image 1: THE -->
+<text x="25" y="140" fill="#081836" font-family="{FONT_DISPLAY}" font-size="64" font-weight="900">THE</text>
 
-<!-- Header — positioned on the RIGHT side (x=285) matching Image 1! -->
-<g transform="translate(285, 26)">
-  <text x="0" y="0" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">04 / BUILDER CREDENTIALS</text>
-  <text x="0" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">REAL WORK. REAL IMPACT.</text>
-  <text x="0" y="44" fill="#64748b" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="2">PUBLIC SNAPSHOT // 2026</text>
+<!-- ============================================================ -->
+<!-- LEFT: Hanging Builder Lanyard Pass matching Image 1          -->
+<!-- ============================================================ -->
+<g transform="translate(30, 0)">
+  <!-- Blue Lanyard Ribbon coming straight down from top -->
+  <rect x="94" y="0" width="34" height="68" fill="#1d4ed8"/>
+  <rect x="94" y="0" width="34" height="68" fill="#000000" fill-opacity="0.1"/>
+  <!-- White text on ribbon -->
+  <text x="111" y="42" text-anchor="middle" fill="#ffffff" font-family="{FONT_MONO}" font-size="8" font-weight="800" transform="rotate(-90 111 42)" letter-spacing="1">MB0510 // BUILDER</text>
+
+  <!-- Metallic Buckle / Clasp Ring -->
+  <g transform="translate(94, 62)">
+    <rect x="-1" y="0" width="36" height="16" rx="4" fill="url(#metal-clamp)" stroke="#64748b" stroke-width="0.8"/>
+    <rect x="8" y="4" width="18" height="8" rx="2" fill="#0a1224"/>
+  </g>
+
+  <!-- The ID Pass Card (x=3, y=74, width=216, height=316) -->
+  <g transform="translate(3, 74)">
+    <!-- Base Card Body -->
+    <rect width="216" height="316" rx="12" fill="#091428" stroke="#1e293b" stroke-width="1.2"/>
+    <!-- Top red accent line matching Image 1 -->
+    <line x1="16" y1="2" x2="200" y2="2" stroke="#ff0055" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Header Row -->
+    <text x="14" y="19" fill="#ffffff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800" letter-spacing="0.5">MB / BUILDER PASS</text>
+    <text x="202" y="19" text-anchor="end" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">0510</text>
+
+    <!-- Photo Frame & Mayukh's Photo -->
+    <rect x="12" y="28" width="192" height="172" rx="8" fill="#050c1c" stroke="#1e293b"/>
+    <g clip-path="url(#pass-photo-clip)">
+      <image x="12" y="28" width="192" height="172" href="data:image/png;base64,{id_pass_b64}" xlink:href="data:image/png;base64,{id_pass_b64}" preserveAspectRatio="xMidYMid slice"/>
+    </g>
+    <rect x="12" y="28" width="192" height="172" rx="8" fill="none" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.4"/>
+
+    <!-- Bright Blue Pill Badge on Photo matching Image 1 -->
+    <g transform="translate(18, 168)">
+      <rect width="112" height="22" rx="11" fill="#0066ff" stroke="#38bdf8" stroke-width="0.8"/>
+      <circle cx="12" cy="11" r="3.5" fill="#ffffff"/>
+      <text x="22" y="15" fill="#ffffff" font-family="{FONT_MONO}" font-size="9" font-weight="800" letter-spacing="0.5">FULL-STACK / AI</text>
+    </g>
+
+    <!-- Name & Details Below Photo -->
+    <text x="14" y="222" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.5">MAYUKH BHATTACHARJEE</text>
+    <text x="14" y="236" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
+
+    <!-- Golden SIM Smart Chip matching Image 1 -->
+    <g transform="translate(166, 212)">
+      <rect width="36" height="26" rx="4" fill="url(#gold-chip)" stroke="#b45309" stroke-width="0.6"/>
+      <!-- Etched chip contacts -->
+      <line x1="0" y1="13" x2="36" y2="13" stroke="#92400e" stroke-width="0.8"/>
+      <line x1="18" y1="0" x2="18" y2="26" stroke="#92400e" stroke-width="0.8"/>
+      <rect x="11" y="7" width="14" height="12" rx="2" fill="none" stroke="#92400e" stroke-width="0.8"/>
+    </g>
+
+    <!-- Crisp Authentic Barcode matching Image 1 -->
+    <g transform="translate(14, 250)">
+      <rect x="0" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="4" y="0" width="4" height="24" fill="#cbd5e1"/>
+      <rect x="11" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="15" y="0" width="3" height="24" fill="#cbd5e1"/>
+      <rect x="21" y="0" width="5" height="24" fill="#cbd5e1"/>
+      <rect x="29" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="33" y="0" width="3" height="24" fill="#cbd5e1"/>
+      <rect x="38" y="0" width="4.5" height="24" fill="#cbd5e1"/>
+      <rect x="45" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="49" y="0" width="6" height="24" fill="#cbd5e1"/>
+      <rect x="58" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="62" y="0" width="3.5" height="24" fill="#cbd5e1"/>
+      <rect x="68" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="73" y="0" width="5" height="24" fill="#cbd5e1"/>
+      <rect x="81" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="85" y="0" width="4" height="24" fill="#cbd5e1"/>
+      <rect x="92" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="96" y="0" width="3" height="24" fill="#cbd5e1"/>
+      <rect x="101" y="0" width="6" height="24" fill="#cbd5e1"/>
+      <rect x="110" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="114" y="0" width="4" height="24" fill="#cbd5e1"/>
+      <rect x="121" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="125" y="0" width="5" height="24" fill="#cbd5e1"/>
+      <rect x="133" y="0" width="2.5" height="24" fill="#cbd5e1"/>
+      <rect x="138" y="0" width="4" height="24" fill="#cbd5e1"/>
+      <rect x="145" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="150" y="0" width="6" height="24" fill="#cbd5e1"/>
+      <rect x="159" y="0" width="1.5" height="24" fill="#cbd5e1"/>
+      <rect x="163" y="0" width="3.5" height="24" fill="#cbd5e1"/>
+      <rect x="169" y="0" width="4" height="24" fill="#cbd5e1"/>
+      <rect x="176" y="0" width="2" height="24" fill="#cbd5e1"/>
+      <rect x="181" y="0" width="5" height="24" fill="#cbd5e1"/>
+    </g>
+
+    <!-- Footer label -->
+    <text x="108" y="292" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5" letter-spacing="1">INDEPENDENT CREATOR ID - MB0510</text>
+  </g>
+
+  <!-- BEHIND THE CODE. text directly below the card matching Image 1 -->
+  <text x="111" y="420" text-anchor="middle" fill="#38bdf8" font-family="{FONT_DISPLAY}" font-size="21" font-weight="900" letter-spacing="1.5">BEHIND THE CODE.</text>
 </g>
 
-<!-- LEFT: Lanyard Card matching Image 1! -->
-<g class="lanyard-card">
-  <!-- Strap -->
-  <rect x="135" y="0" width="22" height="32" fill="#061229" rx="2"/>
-  <line x1="146" y1="0" x2="146" y2="32" stroke="#00f0ff" stroke-width="2"/>
-  <text x="146" y="20" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="7" font-weight="700" transform="rotate(90, 146, 20)">MB // 0510</text>
+<!-- ============================================================ -->
+<!-- RIGHT: Dashboard (NO stars, 75 contributions, 14 repos)     -->
+<!-- ============================================================ -->
+<g transform="translate(285, 30)">
+  <!-- Section Title -->
+  <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">04 / BUILDER CREDENTIALS</text>
+  <text x="0" y="36" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">REAL WORK. REAL IMPACT.</text>
+  <text x="0" y="54" fill="#64748b" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">PUBLIC SNAPSHOT // 2026</text>
 
-  <!-- Clip -->
-  <rect x="128" y="30" width="36" height="14" rx="3" fill="#64748b" stroke="#cbd5e1" stroke-width="0.8"/>
-  <circle cx="146" cy="37" r="3.5" fill="#1e293b"/>
-  <ellipse cx="146" cy="48" rx="7" ry="7" fill="none" stroke="#94a3b8" stroke-width="3"/>
-
-  <!-- ID Badge Body (200 x 310) -->
-  <g transform="translate(45, 54)">
-    <rect width="200" height="310" rx="14" fill="#060d1c" stroke="#ff0055" stroke-width="1.2"/>
-    <rect width="200" height="310" rx="14" fill="#0a142c" opacity="0.6"/>
-
-    <!-- Header bar -->
-    <rect width="200" height="32" rx="14" fill="#09142b"/>
-    <text x="18" y="21" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="800" letter-spacing="1">MB / BUILDER PASS</text>
-    <text x="182" y="21" text-anchor="end" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10" font-weight="800">0510</text>
-    <line x1="0" y1="32" x2="200" y2="32" stroke="#1e293b"/>
-
-    <!-- Photo Container -->
-    <rect x="18" y="44" width="164" height="150" rx="8" fill="#040813" stroke="#1e293b"/>
-    <g clip-path="url(#lanyard-photo-clip)">
-      <image x="18" y="44" width="164" height="150" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
+  <!-- 2 Metric Boxes: 75 CONTRIBUTIONS & 14 REPOSITORIES (NO REPO STARS) -->
+  <g transform="translate(0, 70)">
+    <!-- Box 1: Contributions: 75 -->
+    <g transform="translate(0, 0)">
+      <rect width="260" height="82" rx="8" fill="#08142c" stroke="#ff0055" stroke-width="1.2" stroke-opacity="0.6"/>
+      <text x="18" y="24" fill="#ff0055" font-family="{FONT_MONO}" font-size="10" font-weight="800" letter-spacing="1">CONTRIBUTIONS</text>
+      <text x="18" y="58" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="36" font-weight="900">75</text>
+      <text x="18" y="72" fill="#94a3b8" font-family="{FONT_MONO}" font-size="8.5">IN LAST YEAR</text>
     </g>
 
-    <!-- Overlay pill badge on photo matching Image 1! -->
-    <g transform="translate(24, 166)">
-      <rect width="115" height="20" rx="4" fill="#08152e" stroke="#00f0ff" stroke-width="1"/>
-      <text x="57" y="14" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">FULL-STACK / AI</text>
-    </g>
-
-    <!-- Name & Info -->
-    <text x="18" y="214" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.2">MAYUKH BHATTACHARJEE</text>
-    <text x="18" y="228" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700">INDIA // DEVELOPER</text>
-
-    <!-- Golden SIM Microchip -->
-    <g transform="translate(150, 218)">
-      <rect width="32" height="24" rx="4" fill="#f59e0b" stroke="#b45309" stroke-width="0.8"/>
-      <line x1="16" y1="0" x2="16" y2="24" stroke="#d97706" stroke-width="1"/>
-      <line x1="0" y1="12" x2="32" y2="12" stroke="#d97706" stroke-width="1"/>
-    </g>
-
-    <!-- Barcode -->
-    <g transform="translate(18, 252)">
-      <rect x="0" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="4" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="11" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="15" y="0" width="5" height="24" fill="#94a3b8"/>
-      <rect x="23" y="0" width="1" height="24" fill="#94a3b8"/>
-      <rect x="27" y="0" width="3" height="24" fill="#94a3b8"/>
-      <rect x="33" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="38" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="45" y="0" width="1" height="24" fill="#94a3b8"/>
-      <rect x="48" y="0" width="5" height="24" fill="#94a3b8"/>
-      <rect x="56" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="61" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="68" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="73" y="0" width="5" height="24" fill="#94a3b8"/>
-      <rect x="81" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="86" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="93" y="0" width="1" height="24" fill="#94a3b8"/>
-      <rect x="97" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="104" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="109" y="0" width="5" height="24" fill="#94a3b8"/>
-      <rect x="117" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="122" y="0" width="3" height="24" fill="#94a3b8"/>
-      <rect x="128" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="135" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="140" y="0" width="4" height="24" fill="#94a3b8"/>
-      <rect x="147" y="0" width="3" height="24" fill="#94a3b8"/>
-      <rect x="153" y="0" width="2" height="24" fill="#94a3b8"/>
-      <rect x="158" y="0" width="4" height="24" fill="#94a3b8"/>
-    </g>
-    <!-- Subtext matching Image 1: INDEPENDENT CREATOR ID - MB0510 -->
-    <text x="100" y="292" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5" letter-spacing="1">INDEPENDENT CREATOR ID - MB0510</text>
-
-    <!-- Foil Shine -->
-    <g clip-path="url(#lanyard-photo-clip)">
-      <rect class="foil-sweep" x="0" y="44" width="80" height="150" fill="url(#foil-shine)"/>
-    </g>
-  </g>
-</g>
-
-<!-- "BEHIND THE CODE." text matching Image 1! -->
-<text x="145" y="405" text-anchor="middle" fill="#1e3a8a" font-family="{FONT_DISPLAY}" font-size="20" font-weight="900" letter-spacing="1.5">BEHIND THE CODE.</text>
-
-<!-- RIGHT: Dashboard Grid (Starts at x=285) matching Image 1! -->
-<g transform="translate(285, 96)">
-  <!-- 3 Metric Boxes matching Image 1 -->
-  <!-- Box 1: Contributions / Bookings (Red number 37+) -->
-  <g transform="translate(0, 0)">
-    <rect width="170" height="85" rx="8" fill="#050a16" stroke="#ff0055" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="14" y="24" fill="#ff0055" font-family="{FONT_MONO}" font-size="9" font-weight="700">CONTRIBUTIONS</text>
-    <text x="14" y="58" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">37+</text>
-    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">ANNUAL RELEASES</text>
-  </g>
-
-  <!-- Box 2: Repositories (Cyan number 11) -->
-  <g transform="translate(182, 0)">
-    <rect width="170" height="85" rx="8" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="14" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700">REPOSITORIES</text>
-    <text x="14" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">11</text>
-    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">PUBLIC ACTIVE</text>
-  </g>
-
-  <!-- Box 3: Stars (Cyan number 12) -->
-  <g transform="translate(364, 0)">
-    <rect width="170" height="85" rx="8" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="14" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700">REPO STARS</text>
-    <text x="14" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">12</text>
-    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">RECEIVED</text>
-  </g>
-
-  <!-- Middle: MOST-STARRED / PUBLIC REPOSITORIES matching Image 1! -->
-  <g transform="translate(0, 105)">
-    <text x="0" y="14" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">MOST-STARRED / PUBLIC REPOSITORIES</text>
-    <text x="520" y="14" fill="#ff0055" font-size="12">★</text>
-
-    <!-- Bar 1: Paypaal-pro (Top 1) -->
-    <g transform="translate(0, 24)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">Paypaal-pro</text>
-      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
-      <rect x="0" y="18" width="490" height="8" rx="4" fill="#0070f3"/>
-      <rect x="0" y="18" width="490" height="8" rx="4" fill="url(#id-border)" opacity="0.8"/>
-    </g>
-
-    <!-- Bar 2: ai-educator (Top 2) -->
-    <g transform="translate(0, 58)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">ai-educator</text>
-      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
-      <rect x="0" y="18" width="420" height="8" rx="4" fill="#0070f3"/>
-    </g>
-
-    <!-- Bar 3: Aizen-detector-url (Top 3) -->
-    <g transform="translate(0, 92)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">Aizen-detector-url</text>
-      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
-      <rect x="0" y="18" width="340" height="8" rx="4" fill="#0070f3"/>
+    <!-- Box 2: Repositories: 14 -->
+    <g transform="translate(275, 0)">
+      <rect width="260" height="82" rx="8" fill="#08142c" stroke="#00f0ff" stroke-width="1.2" stroke-opacity="0.6"/>
+      <text x="18" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10" font-weight="800" letter-spacing="1">REPOSITORIES</text>
+      <text x="18" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="36" font-weight="900">14</text>
+      <text x="18" y="72" fill="#94a3b8" font-family="{FONT_MONO}" font-size="8.5">PUBLIC GITHUB</text>
     </g>
   </g>
 
-  <!-- Bottom: Announcement Card matching Image 1! -->
-  <g transform="translate(0, 236)">
-    <rect width="534" height="66" rx="8" fill="#071228" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
+  <!-- Repositories List with solid glowing blue progress bars (NO stars) -->
+  <g transform="translate(0, 172)">
+    <text x="0" y="14" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="1">MOST-STARRED / PUBLIC REPOSITORIES</text>
+
+    <!-- Bar 1: Paypaal-pro -->
+    <g transform="translate(0, 26)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700">Paypaal-pro</text>
+      <rect x="0" y="18" width="535" height="9" rx="4.5" fill="#0c1832"/>
+      <rect x="0" y="18" width="510" height="9" rx="4.5" fill="#0070f3"/>
+    </g>
+
+    <!-- Bar 2: ai-educator -->
+    <g transform="translate(0, 64)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700">ai-educator</text>
+      <rect x="0" y="18" width="535" height="9" rx="4.5" fill="#0c1832"/>
+      <rect x="0" y="18" width="410" height="9" rx="4.5" fill="#0070f3"/>
+    </g>
+
+    <!-- Bar 3: Aizen-detector-url -->
+    <g transform="translate(0, 102)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11.5" font-weight="700">Aizen-detector-url</text>
+      <rect x="0" y="18" width="535" height="9" rx="4.5" fill="#0c1832"/>
+      <rect x="0" y="18" width="310" height="9" rx="4.5" fill="#0070f3"/>
+    </g>
+  </g>
+
+  <!-- Bottom: Announcement Card matching Image 1 -->
+  <g transform="translate(0, 318)">
+    <rect width="535" height="66" rx="8" fill="#08142c" stroke="#1e293b" stroke-width="1"/>
+    <!-- Red NOW Pill -->
     <rect x="14" y="14" width="38" height="18" rx="4" fill="#ff0055"/>
     <text x="33" y="26" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="9" font-weight="800">NOW</text>
     
     <text x="60" y="27" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Building scalable software &amp; AI systems</text>
-    <text x="14" y="48" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Engineering autonomous fintech, AI agents &amp; security crawlers.</text>
+    <text x="14" y="48" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Creator of Paypaal-pro, ai-educator &amp; Aizen-detector-url.</text>
   </g>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "id-dashboard.svg"), "w", encoding="utf-8") as f:
     f.write(id_dashboard_svg)
-print("wrote assets/id-dashboard.svg")
+print("wrote id-dashboard.svg")
 
-# ---------------------------------------------------------------------------
-# 6. assets/connect.svg (Neon Connect Card matching Image 2!)
-# ---------------------------------------------------------------------------
+# ==============================================================================
+# 6. connect.svg (ONLY LinkedIn, GitHub, Instagram - NO YouTube, NO 1:1 Mentorship)
+# ==============================================================================
 connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="380" viewBox="0 0 860 380" fill="none">
 <defs>
   <linearGradient id="cn-bg" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
-    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="50%" stop-color="#060e22"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
   <linearGradient id="cn-border" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
@@ -824,115 +740,85 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://ww
     <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
   </linearGradient>
-  <radialGradient id="cn-glow-cyan" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.32"/>
-    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.06"/>
-    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
-  </radialGradient>
-  <radialGradient id="cn-glow-crimson" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.05"/>
-    <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
-  </radialGradient>
-  <clipPath id="cn-char-clip">
-    <rect x="25" y="20" width="280" height="340" rx="14"/>
-  </clipPath>
+  <linearGradient id="insta-grad" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0%" stop-color="#f58529"/>
+    <stop offset="35%" stop-color="#dd2a7b"/>
+    <stop offset="70%" stop-color="#8134af"/>
+    <stop offset="100%" stop-color="#515bd4"/>
+  </linearGradient>
 </defs>
 
-<style>
-  @keyframes nudge {{ 0%, 100% {{ transform: translateX(0); }} 50% {{ transform: translateX(6px); }} }}
-  .nudge-arrow {{ animation: nudge 1.8s ease-in-out infinite; }}
-</style>
-
 <rect width="860" height="380" rx="16" fill="url(#cn-bg)"/>
-<circle cx="160" cy="190" r="180" fill="url(#cn-glow-cyan)"/>
-<circle cx="650" cy="190" r="190" fill="url(#cn-glow-crimson)"/>
 <rect x="0.5" y="0.5" width="859" height="379" rx="15.5" stroke="url(#cn-border)" stroke-width="1.2"/>
 
-<!-- Left Background Ambient Typography: "LET'S CONNECT." matching Image 2! -->
+<!-- Left Background Ambient Typography: "LET'S CONNECT." matching Image 2 -->
 <g transform="translate(30, 0)">
-  <text x="0" y="140" fill="#0c1f44" font-family="{FONT_DISPLAY}" font-size="64" font-weight="900" letter-spacing="-1">LET'S</text>
-  <text x="0" y="195" fill="#091838" font-family="{FONT_DISPLAY}" font-size="52" font-weight="900" letter-spacing="-1">CONNECT.</text>
+  <text x="0" y="130" fill="#0d2248" font-family="{FONT_DISPLAY}" font-size="64" font-weight="900" letter-spacing="-1">LET'S</text>
+  <text x="0" y="195" fill="#091836" font-family="{FONT_DISPLAY}" font-size="54" font-weight="900" letter-spacing="-1">CONNECT.</text>
 </g>
 
-<!-- Left: Character Cutout with Glowing Silhouette pointing towards connect buttons matching Image 2! -->
-<g clip-path="url(#cn-char-clip)">
-  <image x="15" y="25" width="295" height="345" href="data:image/png;base64,{char_b64}" xlink:href="data:image/png;base64,{char_b64}" preserveAspectRatio="xMidYMid slice"/>
-</g>
-<rect x="24" y="19" width="282" height="342" rx="14" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.3"/>
+<!-- Left: Mayukh's Cutout with Crisp White Glowing Sticker Outline matching Image 2 -->
+<image x="15" y="45" width="280" height="325" href="data:image/png;base64,{sticker_b64}" xlink:href="data:image/png;base64,{sticker_b64}" preserveAspectRatio="xMidYMid meet"/>
 
-<!-- Header -->
-<g transform="translate(330, 28)">
+<!-- RIGHT: Header matching Image 2 -->
+<g transform="translate(330, 26)">
   <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">05 / START A CONVERSATION</text>
   <text x="0" y="36" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">BUILD SOMETHING GREAT.</text>
   <text x="0" y="56" fill="#64748b" font-family="{FONT_MONO}" font-size="11" font-weight="700">Ideas. Opportunities. Your next move.</text>
+  
+  <!-- Red slashes on far right matching Image 2 -->
+  <text x="490" y="36" text-anchor="end" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="22" font-weight="900">///</text>
 </g>
 
-<!-- 4 Stacked Social Cards matching Image 2! -->
-<g transform="translate(330, 98)">
+<!-- 3 Stacked Cards (ONLY LinkedIn, GitHub, Instagram - NO YouTube, NO 1:1 Mentorship) -->
+<g transform="translate(330, 96)">
   <!-- Card 1: LinkedIn -->
   <g transform="translate(0, 0)">
-    <rect width="485" height="50" rx="8" fill="#071226" stroke="#0A66C2" stroke-width="1.2"/>
-    <rect x="12" y="9" width="32" height="32" rx="6" fill="#0A66C2"/>
-    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="16" font-weight="900">in</text>
+    <rect width="490" height="58" rx="8" fill="#061226" stroke="#0A66C2" stroke-width="1.2"/>
+    <rect x="14" y="12" width="34" height="34" rx="6" fill="#0A66C2"/>
+    <text x="31" y="34" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="900">in</text>
     
-    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">LinkedIn Profile</text>
-    <text x="54" y="38" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10">Mayukh Bhattacharjee · Connect &amp; exchange ideas</text>
+    <text x="60" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="14" font-weight="800">LinkedIn</text>
+    <text x="60" y="44" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5">Connect &amp; exchange ideas</text>
     
-    <g class="nudge-arrow" transform="translate(450, 29)">
-      <text x="0" y="0" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
-    </g>
+    <text x="468" y="35" text-anchor="middle" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
   </g>
 
-  <!-- Card 2: YouTube / Media -->
-  <g transform="translate(0, 58)">
-    <rect width="485" height="50" rx="8" fill="#071226" stroke="#ff0000" stroke-width="1"/>
-    <rect x="12" y="9" width="32" height="32" rx="6" fill="#ff0000"/>
-    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="14">▶</text>
+  <!-- Card 2: GitHub -->
+  <g transform="translate(0, 72)">
+    <rect width="490" height="58" rx="8" fill="#061226" stroke="#475569" stroke-width="1.2"/>
+    <rect x="14" y="12" width="34" height="34" rx="6" fill="#181717" stroke="#334155" stroke-width="0.8"/>
+    <!-- GitHub SVG Icon -->
+    <path transform="translate(21, 19) scale(0.85)" fill="#ffffff" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
     
-    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">YouTube Channel</text>
-    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">@mayukhbyte · Tech walkthroughs &amp; dev insights</text>
+    <text x="60" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="14" font-weight="800">GitHub</text>
+    <text x="60" y="44" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="10.5">@mayukhbyte · Repositories &amp; code</text>
     
-    <g class="nudge-arrow" transform="translate(450, 29)">
-      <text x="0" y="0" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
-    </g>
+    <text x="468" y="35" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
   </g>
 
-  <!-- Card 3: Instagram / GitHub -->
-  <g transform="translate(0, 116)">
-    <rect width="485" height="50" rx="8" fill="#071226" stroke="#E1306C" stroke-width="1"/>
-    <rect x="12" y="9" width="32" height="32" rx="6" fill="#E1306C"/>
-    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="15">📸</text>
+  <!-- Card 3: Instagram -->
+  <g transform="translate(0, 144)">
+    <rect width="490" height="58" rx="8" fill="#061226" stroke="#E1306C" stroke-width="1.2"/>
+    <rect x="14" y="12" width="34" height="34" rx="6" fill="url(#insta-grad)"/>
+    <!-- Instagram camera icon -->
+    <circle cx="31" cy="29" r="6" fill="none" stroke="#ffffff" stroke-width="1.8"/>
+    <circle cx="37" cy="22" r="1.5" fill="#ffffff"/>
+    <rect x="22" y="20" width="18" height="18" rx="4" fill="none" stroke="#ffffff" stroke-width="1.8"/>
     
-    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Instagram</text>
-    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">@mayukhbyte · Builder updates &amp; life outside commit</text>
+    <text x="60" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="14" font-weight="800">Instagram</text>
+    <text x="60" y="44" fill="#e2e8f0" font-family="{FONT_MONO}" font-size="10.5">@mayukhbyte · Builder updates &amp; life outside commit</text>
     
-    <g class="nudge-arrow" transform="translate(450, 29)">
-      <text x="0" y="0" fill="#E1306C" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
-    </g>
+    <text x="468" y="35" text-anchor="middle" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
   </g>
 
-  <!-- Card 4: Topmate / Direct Mentorship -->
-  <g transform="translate(0, 174)">
-    <rect width="485" height="50" rx="8" fill="#071226" stroke="#00f0ff" stroke-width="1"/>
-    <rect x="12" y="9" width="32" height="32" rx="6" fill="#ff5722"/>
-    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="15">🤝</text>
-    
-    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">1:1 Mentorship &amp; Collaborations</text>
-    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">mayukhbhttchrj@gmail.com · Book a session</text>
-    
-    <g class="nudge-arrow" transform="translate(450, 29)">
-      <text x="0" y="0" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
-    </g>
-  </g>
-
-  <!-- Footer tagline matching Image 2 -->
-  <text x="0" y="246" fill="#64748b" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">GOOD PEOPLE. GOOD IDEAS. LET'S TALK.</text>
+  <!-- Footer Tagline matching Image 2 -->
+  <text x="0" y="235" fill="#64748b" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="1">GOOD PEOPLE. GOOD IDEAS. LET'S TALK.</text>
 </g>
 </svg>'''
 
 with open(os.path.join(ASSETS_DIR, "connect.svg"), "w", encoding="utf-8") as f:
     f.write(connect_svg)
-print("wrote assets/connect.svg")
+print("wrote connect.svg")
 
-print("All 6 neon cyberpunk SVGs compiled successfully!")
+print("All SVGs compiled successfully!")
