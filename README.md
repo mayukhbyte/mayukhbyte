@@ -1,36 +1,26 @@
 <div align="center">
 
-![Hero](./assets/hero.svg?v=3)
+![Hero](./assets/hero.svg?v=5)
 
 <br>
 
-![About & Capabilities](./assets/about-life.svg?v=3)
+![About & Capabilities](./assets/about-life.svg?v=5)
 
 <br>
 
-![Engine Room & Tech Stack](./assets/stack.svg?v=3)
+![Engine Room & Tech Stack](./assets/stack.svg?v=5)
 
 <br>
 
-</div>
-
-### 🚀 Featured Repositories
-
-| Project | What it does | Focus |
-| :--- | :--- | :---: |
-| [**ai-educator**](https://github.com/mayukhbyte/ai-educator) | AI-powered tutoring system with multi-level doubt solving, natural speech explanations & adaptive quizzes | `AI + Learning` |
-| [**Paypaal-pro**](https://github.com/mayukhbyte/Paypaal-pro) | Autonomous agent financial operations engine with AI dispute synthesis, stock liquidation & escrow payouts | `Fintech + AI Agents` |
-| [**aizen-detector**](https://github.com/mayukhbyte/aizen-detector) | Real-time URL safety & phishing crawler evaluating 21 concurrent Go goroutines and 39 security signals | `Security + Go` |
+![Featured Repositories](./assets/projects-table.svg?v=5)
 
 <br>
 
-<div align="center">
-
-![Builder Credentials](./assets/id-dashboard.svg?v=3)
+![Builder Credentials](./assets/id-dashboard.svg?v=5)
 
 <br>
 
-![Connect](./assets/connect.svg?v=3)
+![Connect](./assets/connect.svg?v=5)
 
 <br>
 
@@ -43,6 +33,6 @@
 <br>
 <br>
 
-<sub>Designed &amp; Maintained by <b>Mayukh Bhattacharjee</b> (<a href="https://github.com/mayukhbyte">@mayukhbyte</a>) · Engineered with Deep Navy &amp; Electric Blue / Crimson Aesthetics.</sub>
+<sub>Designed &amp; Maintained by <b>Mayukh Bhattacharjee</b> (<a href="https://github.com/mayukhbyte">@mayukhbyte</a>) · Engineered with Deep Navy &amp; Electric Cyan / Crimson Neon Aesthetics.</sub>
 
 </div>

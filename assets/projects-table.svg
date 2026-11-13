@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="230" viewBox="0 0 860 230" fill="none">
+<defs>
+  <linearGradient id="pt-bg" x1="0" y1="0" x2="860" y2="230" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#02040a"/>
+    <stop offset="50%" stop-color="#060d1f"/>
+    <stop offset="100%" stop-color="#02040a"/>
+  </linearGradient>
+  <linearGradient id="pt-border" x1="0" y1="0" x2="860" y2="230" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
+    <stop offset="50%" stop-color="#247bff" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#ff0055" stop-opacity="0.6"/>
+  </linearGradient>
+</defs>
+
+<rect width="860" height="230" rx="14" fill="url(#pt-bg)"/>
+<rect x="0.5" y="0.5" width="859" height="229" rx="13.5" stroke="url(#pt-border)" stroke-width="1.2"/>
+
+<!-- Table Header Row -->
+<rect x="20" y="16" width="820" height="38" rx="6" fill="#071024" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.5"/>
+<text x="40" y="40" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="800" letter-spacing="1">PROJECT</text>
+<text x="210" y="40" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="800" letter-spacing="1">WHAT IT DOES</text>
+<text x="700" y="40" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="11" font-weight="800" letter-spacing="1">FOCUS</text>
+
+<!-- Row 1: ai-educator -->
+<g transform="translate(20, 60)">
+  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
+  <text x="20" y="28" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="800">ai-educator</text>
+  <text x="190" y="28" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">AI tutoring system with multi-level doubt solving &amp; adaptive quizzes</text>
+  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081730" stroke="#00f0ff" stroke-width="0.8"/>
+  <text x="735" y="27" text-anchor="middle" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700">AI + Learning</text>
+</g>
+
+<!-- Row 2: Paypaal-pro -->
+<g transform="translate(20, 112)">
+  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
+  <text x="20" y="28" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="800">Paypaal-pro</text>
+  <text x="190" y="28" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">Autonomous agent financial operations engine with AI dispute synthesis</text>
+  <rect x="670" y="11" width="130" height="24" rx="4" fill="#240c1a" stroke="#ff0055" stroke-width="0.8"/>
+  <text x="735" y="27" text-anchor="middle" fill="#ff0055" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700">Fintech + Agents</text>
+</g>
+
+<!-- Row 3: aizen-detector -->
+<g transform="translate(20, 164)">
+  <rect width="820" height="46" rx="6" fill="#050a16" stroke="#1e293b"/>
+  <text x="20" y="28" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="800">aizen-detector</text>
+  <text x="190" y="28" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12">Real-time URL threat crawler with 21 concurrent Go goroutines &amp; 39 signals</text>
+  <rect x="670" y="11" width="130" height="24" rx="4" fill="#081e18" stroke="#34d399" stroke-width="0.8"/>
+  <text x="735" y="27" text-anchor="middle" fill="#34d399" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="10.5" font-weight="700">Security + Go</text>
+</g>
+</svg>
