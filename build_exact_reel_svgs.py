@@ -581,16 +581,16 @@ with open(os.path.join(ASSETS_DIR, "projects-table.svg"), "w", encoding="utf-8")
 print("wrote assets/projects-table.svg")
 
 # ---------------------------------------------------------------------------
-# 5. assets/id-dashboard.svg (Neon Lanyard Card & Dashboard)
+# 5. assets/id-dashboard.svg (Neon Lanyard Card & Dashboard matching Image 1!)
 # ---------------------------------------------------------------------------
-id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="430" viewBox="0 0 860 430" fill="none">
+id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="440" viewBox="0 0 860 440" fill="none">
 <defs>
-  <linearGradient id="id-bg" x1="0" y1="0" x2="860" y2="430" gradientUnits="userSpaceOnUse">
+  <linearGradient id="id-bg" x1="0" y1="0" x2="860" y2="440" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
     <stop offset="50%" stop-color="#060d1f"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
-  <linearGradient id="id-border" x1="0" y1="0" x2="860" y2="430" gradientUnits="userSpaceOnUse">
+  <linearGradient id="id-border" x1="0" y1="0" x2="860" y2="440" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
     <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
@@ -605,8 +605,8 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
     <stop offset="60%" stop-color="#ff0055" stop-opacity="0.04"/>
     <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
   </radialGradient>
-  <clipPath id="lanyard-port">
-    <rect x="18" y="52" width="164" height="145" rx="8"/>
+  <clipPath id="lanyard-photo-clip">
+    <rect x="18" y="44" width="164" height="150" rx="8"/>
   </clipPath>
   <linearGradient id="foil-shine" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
@@ -620,8 +620,8 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
 <style>
   @keyframes swing {{
     0% {{ transform: rotate(0deg); }}
-    50% {{ transform: rotate(1.7deg); }}
-    100% {{ transform: rotate(-1.7deg); }}
+    50% {{ transform: rotate(1.5deg); }}
+    100% {{ transform: rotate(-1.5deg); }}
   }}
   @keyframes foil {{
     0% {{ transform: translateX(-200px); }}
@@ -636,24 +636,26 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
   }}
 </style>
 
-<rect width="860" height="430" rx="16" fill="url(#id-bg)"/>
-<circle cx="150" cy="200" r="160" fill="url(#id-glow-cyan)"/>
+<rect width="860" height="440" rx="16" fill="url(#id-bg)"/>
+<circle cx="150" cy="210" r="170" fill="url(#id-glow-cyan)"/>
 <circle cx="650" cy="220" r="180" fill="url(#id-glow-crimson)"/>
-<rect x="0.5" y="0.5" width="859" height="429" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
+<rect x="0.5" y="0.5" width="859" height="439" rx="15.5" stroke="url(#id-border)" stroke-width="1.2"/>
 
-<!-- Header — positioned on the RIGHT side (x=285) so lanyard card does NOT overlap it -->
-<g transform="translate(285, 30)">
+<!-- Header — positioned on the RIGHT side (x=285) matching Image 1! -->
+<g transform="translate(285, 26)">
   <text x="0" y="0" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">04 / BUILDER CREDENTIALS</text>
   <text x="0" y="26" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">REAL WORK. REAL IMPACT.</text>
   <text x="0" y="44" fill="#64748b" font-family="{FONT_MONO}" font-size="10" font-weight="700" letter-spacing="2">PUBLIC SNAPSHOT // 2026</text>
 </g>
 
-<!-- LEFT: Lanyard Card -->
+<!-- LEFT: Lanyard Card matching Image 1! -->
 <g class="lanyard-card">
+  <!-- Strap -->
   <rect x="135" y="0" width="22" height="32" fill="#061229" rx="2"/>
   <line x1="146" y1="0" x2="146" y2="32" stroke="#00f0ff" stroke-width="2"/>
-  <text x="146" y="20" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="7" font-weight="700" transform="rotate(90, 146, 20)">MAYUKH</text>
+  <text x="146" y="20" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="7" font-weight="700" transform="rotate(90, 146, 20)">MB // 0510</text>
 
+  <!-- Clip -->
   <rect x="128" y="30" width="36" height="14" rx="3" fill="#64748b" stroke="#cbd5e1" stroke-width="0.8"/>
   <circle cx="146" cy="37" r="3.5" fill="#1e293b"/>
   <ellipse cx="146" cy="48" rx="7" ry="7" fill="none" stroke="#94a3b8" stroke-width="3"/>
@@ -663,21 +665,25 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
     <rect width="200" height="310" rx="14" fill="#060d1c" stroke="#ff0055" stroke-width="1.2"/>
     <rect width="200" height="310" rx="14" fill="#0a142c" opacity="0.6"/>
 
+    <!-- Header bar -->
     <rect width="200" height="32" rx="14" fill="#09142b"/>
     <text x="18" y="21" fill="#cbd5e1" font-family="{FONT_DISPLAY}" font-size="10.5" font-weight="800" letter-spacing="1">MB / BUILDER PASS</text>
     <text x="182" y="21" text-anchor="end" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10" font-weight="800">0510</text>
     <line x1="0" y1="32" x2="200" y2="32" stroke="#1e293b"/>
 
+    <!-- Photo Container -->
     <rect x="18" y="44" width="164" height="150" rx="8" fill="#040813" stroke="#1e293b"/>
-    <g clip-path="url(#lanyard-port)">
-      <image x="18" y="38" width="164" height="160" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
-    </g>
-    <g transform="translate(24, 168)">
-      <rect width="95" height="18" rx="4" fill="#08152e" stroke="#00f0ff" stroke-width="0.8"/>
-      <text x="47" y="12" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">FULL-STACK / AI</text>
+    <g clip-path="url(#lanyard-photo-clip)">
+      <image x="18" y="44" width="164" height="150" href="data:image/png;base64,{id_b64}" xlink:href="data:image/png;base64,{id_b64}" preserveAspectRatio="xMidYMid slice"/>
     </g>
 
-    <!-- Name: Font size 12 so "MAYUKH BHATTACHARJEE" never overflows -->
+    <!-- Overlay pill badge on photo matching Image 1! -->
+    <g transform="translate(24, 166)">
+      <rect width="115" height="20" rx="4" fill="#08152e" stroke="#00f0ff" stroke-width="1"/>
+      <text x="57" y="14" text-anchor="middle" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="800">FULL-STACK / AI</text>
+    </g>
+
+    <!-- Name & Info -->
     <text x="18" y="214" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.2">MAYUKH BHATTACHARJEE</text>
     <text x="18" y="228" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700">INDIA // DEVELOPER</text>
 
@@ -719,25 +725,31 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
       <rect x="153" y="0" width="2" height="24" fill="#94a3b8"/>
       <rect x="158" y="0" width="4" height="24" fill="#94a3b8"/>
     </g>
-    <text x="100" y="292" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5" letter-spacing="1">MB-2026-AUTH-PASS-SECURED</text>
+    <!-- Subtext matching Image 1: INDEPENDENT CREATOR ID - MB0510 -->
+    <text x="100" y="292" text-anchor="middle" fill="#64748b" font-family="{FONT_MONO}" font-size="7.5" letter-spacing="1">INDEPENDENT CREATOR ID - MB0510</text>
 
     <!-- Foil Shine -->
-    <g clip-path="url(#lanyard-port)">
+    <g clip-path="url(#lanyard-photo-clip)">
       <rect class="foil-sweep" x="0" y="44" width="80" height="150" fill="url(#foil-shine)"/>
     </g>
   </g>
 </g>
 
-<!-- RIGHT: Dashboard Grid (Starts at x=285, ends safely at x=819) -->
-<g transform="translate(285, 100)">
-  <!-- 3 Metric Boxes -->
+<!-- "BEHIND THE CODE." text matching Image 1! -->
+<text x="145" y="405" text-anchor="middle" fill="#1e3a8a" font-family="{FONT_DISPLAY}" font-size="20" font-weight="900" letter-spacing="1.5">BEHIND THE CODE.</text>
+
+<!-- RIGHT: Dashboard Grid (Starts at x=285) matching Image 1! -->
+<g transform="translate(285, 96)">
+  <!-- 3 Metric Boxes matching Image 1 -->
+  <!-- Box 1: Contributions / Bookings (Red number 37+) -->
   <g transform="translate(0, 0)">
     <rect width="170" height="85" rx="8" fill="#050a16" stroke="#ff0055" stroke-width="1" stroke-opacity="0.5"/>
-    <text x="14" y="24" fill="#ff0055" font-family="{FONT_MONO}" font-size="9" font-weight="700">FEATURED</text>
-    <text x="14" y="58" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">3</text>
-    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">FLAGSHIP PLATFORMS</text>
+    <text x="14" y="24" fill="#ff0055" font-family="{FONT_MONO}" font-size="9" font-weight="700">CONTRIBUTIONS</text>
+    <text x="14" y="58" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">37+</text>
+    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">ANNUAL RELEASES</text>
   </g>
 
+  <!-- Box 2: Repositories (Cyan number 11) -->
   <g transform="translate(182, 0)">
     <rect width="170" height="85" rx="8" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
     <text x="14" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700">REPOSITORIES</text>
@@ -745,51 +757,50 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
     <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">PUBLIC ACTIVE</text>
   </g>
 
+  <!-- Box 3: Stars (Cyan number 12) -->
   <g transform="translate(364, 0)">
-    <rect width="170" height="85" rx="8" fill="#050a16" stroke="#1e293b"/>
-    <text x="14" y="24" fill="#94a3b8" font-family="{FONT_MONO}" font-size="9" font-weight="700">CONTRIBUTIONS</text>
-    <text x="14" y="58" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">64+</text>
-    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">ANNUAL METRICS</text>
+    <rect width="170" height="85" rx="8" fill="#050a16" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="14" y="24" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9" font-weight="700">REPO STARS</text>
+    <text x="14" y="58" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="32" font-weight="900">12</text>
+    <text x="14" y="74" fill="#cbd5e1" font-family="{FONT_MONO}" font-size="8.5">RECEIVED</text>
   </g>
 
-  <!-- Middle: MOST-STARRED / PUBLIC REPOSITORIES -->
-  <g transform="translate(0, 108)">
+  <!-- Middle: MOST-STARRED / PUBLIC REPOSITORIES matching Image 1! -->
+  <g transform="translate(0, 105)">
     <text x="0" y="14" fill="#00f0ff" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">MOST-STARRED / PUBLIC REPOSITORIES</text>
     <text x="520" y="14" fill="#ff0055" font-size="12">★</text>
 
-    <!-- Bar 1: Paypaal-pro -->
-    <g transform="translate(0, 26)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">Paypaal-pro</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 1</text>
-      <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="480" height="7" rx="3.5" fill="#ff0055"/>
+    <!-- Bar 1: Paypaal-pro (Top 1) -->
+    <g transform="translate(0, 24)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">Paypaal-pro</text>
+      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
+      <rect x="0" y="18" width="490" height="8" rx="4" fill="#0070f3"/>
+      <rect x="0" y="18" width="490" height="8" rx="4" fill="url(#id-border)" opacity="0.8"/>
     </g>
 
-    <!-- Bar 2: ai-educator -->
-    <g transform="translate(0, 62)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">ai-educator</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 2</text>
-      <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="410" height="7" rx="3.5" fill="#00f0ff"/>
+    <!-- Bar 2: ai-educator (Top 2) -->
+    <g transform="translate(0, 58)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">ai-educator</text>
+      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
+      <rect x="0" y="18" width="420" height="8" rx="4" fill="#0070f3"/>
     </g>
 
-    <!-- Bar 3: Aizen-detector-url -->
-    <g transform="translate(0, 98)">
-      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11">Aizen-detector-url</text>
-      <text x="520" y="12" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700">Top 3</text>
-      <rect x="0" y="18" width="510" height="7" rx="3.5" fill="#0a142c"/>
-      <rect x="0" y="18" width="340" height="7" rx="3.5" fill="#34d399"/>
+    <!-- Bar 3: Aizen-detector-url (Top 3) -->
+    <g transform="translate(0, 92)">
+      <text x="0" y="12" fill="#ffffff" font-family="{FONT_MONO}" font-size="11" font-weight="700">Aizen-detector-url</text>
+      <rect x="0" y="18" width="510" height="8" rx="4" fill="#0a142c"/>
+      <rect x="0" y="18" width="340" height="8" rx="4" fill="#0070f3"/>
     </g>
   </g>
 
-  <!-- Bottom: Announcement Card -->
-  <g transform="translate(0, 240)">
-    <rect width="534" height="64" rx="8" fill="#071228" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
+  <!-- Bottom: Announcement Card matching Image 1! -->
+  <g transform="translate(0, 236)">
+    <rect width="534" height="66" rx="8" fill="#071228" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
     <rect x="14" y="14" width="38" height="18" rx="4" fill="#ff0055"/>
     <text x="33" y="26" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="9" font-weight="800">NOW</text>
     
     <text x="60" y="27" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Building scalable software &amp; AI systems</text>
-    <text x="14" y="48" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Open to high-impact engineering roles, full-stack builds &amp; open source.</text>
+    <text x="14" y="48" fill="#94a3b8" font-family="{FONT_DISPLAY}" font-size="11">Engineering autonomous fintech, AI agents &amp; security crawlers.</text>
   </g>
 </g>
 </svg>'''
@@ -799,32 +810,32 @@ with open(os.path.join(ASSETS_DIR, "id-dashboard.svg"), "w", encoding="utf-8") a
 print("wrote assets/id-dashboard.svg")
 
 # ---------------------------------------------------------------------------
-# 6. assets/connect.svg (Neon Connect Card)
+# 6. assets/connect.svg (Neon Connect Card matching Image 2!)
 # ---------------------------------------------------------------------------
-connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="320" viewBox="0 0 860 320" fill="none">
+connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="860" height="380" viewBox="0 0 860 380" fill="none">
 <defs>
-  <linearGradient id="cn-bg" x1="0" y1="0" x2="860" y2="320" gradientUnits="userSpaceOnUse">
+  <linearGradient id="cn-bg" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#02040a"/>
     <stop offset="50%" stop-color="#060d1f"/>
     <stop offset="100%" stop-color="#02040a"/>
   </linearGradient>
-  <linearGradient id="cn-border" x1="0" y1="0" x2="860" y2="320" gradientUnits="userSpaceOnUse">
+  <linearGradient id="cn-border" x1="0" y1="0" x2="860" y2="380" gradientUnits="userSpaceOnUse">
     <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8"/>
     <stop offset="50%" stop-color="#ff0055" stop-opacity="0.4"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.6"/>
   </linearGradient>
   <radialGradient id="cn-glow-cyan" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25"/>
-    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.05"/>
+    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.32"/>
+    <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.06"/>
     <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="cn-glow-crimson" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.22"/>
-    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.04"/>
+    <stop offset="0%" stop-color="#ff0055" stop-opacity="0.25"/>
+    <stop offset="60%" stop-color="#ff0055" stop-opacity="0.05"/>
     <stop offset="100%" stop-color="#ff0055" stop-opacity="0"/>
   </radialGradient>
   <clipPath id="cn-char-clip">
-    <rect x="25" y="20" width="265" height="280" rx="14"/>
+    <rect x="25" y="20" width="280" height="340" rx="14"/>
   </clipPath>
 </defs>
 
@@ -833,67 +844,90 @@ connect_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://ww
   .nudge-arrow {{ animation: nudge 1.8s ease-in-out infinite; }}
 </style>
 
-<rect width="860" height="320" rx="16" fill="url(#cn-bg)"/>
-<circle cx="160" cy="160" r="160" fill="url(#cn-glow-cyan)"/>
-<circle cx="650" cy="160" r="180" fill="url(#cn-glow-crimson)"/>
-<rect x="0.5" y="0.5" width="859" height="319" rx="15.5" stroke="url(#cn-border)" stroke-width="1.2"/>
+<rect width="860" height="380" rx="16" fill="url(#cn-bg)"/>
+<circle cx="160" cy="190" r="180" fill="url(#cn-glow-cyan)"/>
+<circle cx="650" cy="190" r="190" fill="url(#cn-glow-crimson)"/>
+<rect x="0.5" y="0.5" width="859" height="379" rx="15.5" stroke="url(#cn-border)" stroke-width="1.2"/>
 
-<!-- Left: Character pointing towards connect buttons -->
-<g clip-path="url(#cn-char-clip)">
-  <image x="15" y="10" width="280" height="300" href="data:image/png;base64,{char_b64}" xlink:href="data:image/png;base64,{char_b64}" preserveAspectRatio="xMidYMid slice"/>
+<!-- Left Background Ambient Typography: "LET'S CONNECT." matching Image 2! -->
+<g transform="translate(30, 0)">
+  <text x="0" y="140" fill="#0c1f44" font-family="{FONT_DISPLAY}" font-size="64" font-weight="900" letter-spacing="-1">LET'S</text>
+  <text x="0" y="195" fill="#091838" font-family="{FONT_DISPLAY}" font-size="52" font-weight="900" letter-spacing="-1">CONNECT.</text>
 </g>
-<rect x="24" y="19" width="267" height="282" rx="14" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.4"/>
+
+<!-- Left: Character Cutout with Glowing Silhouette pointing towards connect buttons matching Image 2! -->
+<g clip-path="url(#cn-char-clip)">
+  <image x="15" y="25" width="295" height="345" href="data:image/png;base64,{char_b64}" xlink:href="data:image/png;base64,{char_b64}" preserveAspectRatio="xMidYMid slice"/>
+</g>
+<rect x="24" y="19" width="282" height="342" rx="14" fill="none" stroke="#00f0ff" stroke-width="1" stroke-opacity="0.3"/>
 
 <!-- Header -->
-<g transform="translate(320, 32)">
+<g transform="translate(330, 28)">
   <text x="0" y="10" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10.5" font-weight="700" letter-spacing="1.5">05 / START A CONVERSATION</text>
   <text x="0" y="36" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="24" font-weight="900" letter-spacing="0.5">BUILD SOMETHING GREAT.</text>
   <text x="0" y="56" fill="#64748b" font-family="{FONT_MONO}" font-size="11" font-weight="700">Ideas. Opportunities. Your next move.</text>
 </g>
 
-<!-- Social Cards -->
-<g transform="translate(320, 110)">
-  <!-- LinkedIn Card (Top) -->
+<!-- 4 Stacked Social Cards matching Image 2! -->
+<g transform="translate(330, 98)">
+  <!-- Card 1: LinkedIn -->
   <g transform="translate(0, 0)">
-    <rect width="495" height="54" rx="8" fill="#071226" stroke="#0A66C2" stroke-width="1.2"/>
-    <rect x="14" y="11" width="32" height="32" rx="6" fill="#0A66C2"/>
-    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="16" font-weight="900">in</text>
+    <rect width="485" height="50" rx="8" fill="#071226" stroke="#0A66C2" stroke-width="1.2"/>
+    <rect x="12" y="9" width="32" height="32" rx="6" fill="#0A66C2"/>
+    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="16" font-weight="900">in</text>
     
-    <text x="58" y="24" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">LinkedIn Profile</text>
-    <text x="58" y="41" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10">Mayukh Bhattacharjee · Connect Professionally</text>
+    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">LinkedIn Profile</text>
+    <text x="54" y="38" fill="#00f0ff" font-family="{FONT_MONO}" font-size="10">Mayukh Bhattacharjee · Connect &amp; exchange ideas</text>
     
-    <g class="nudge-arrow" transform="translate(458, 32)">
+    <g class="nudge-arrow" transform="translate(450, 29)">
       <text x="0" y="0" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
     </g>
   </g>
 
-  <!-- GitHub Card (Middle) -->
-  <g transform="translate(0, 66)">
-    <rect width="495" height="54" rx="8" fill="#071226" stroke="#00f0ff" stroke-width="1"/>
-    <rect x="14" y="11" width="32" height="32" rx="6" fill="#1e293b"/>
-    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-size="16">🐙</text>
+  <!-- Card 2: YouTube / Media -->
+  <g transform="translate(0, 58)">
+    <rect width="485" height="50" rx="8" fill="#071226" stroke="#ff0000" stroke-width="1"/>
+    <rect x="12" y="9" width="32" height="32" rx="6" fill="#ff0000"/>
+    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="14">▶</text>
     
-    <text x="58" y="24" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">GitHub Profile</text>
-    <text x="58" y="41" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">@mayukhbyte · Repositories, commits &amp; architecture</text>
+    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">YouTube Channel</text>
+    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">@mayukhbyte · Tech walkthroughs &amp; dev insights</text>
     
-    <g class="nudge-arrow" transform="translate(458, 32)">
-      <text x="0" y="0" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
-    </g>
-  </g>
-
-  <!-- Email Card (Bottom) -->
-  <g transform="translate(0, 132)">
-    <rect width="495" height="54" rx="8" fill="#071226" stroke="#ff0055" stroke-width="1"/>
-    <rect x="14" y="11" width="32" height="32" rx="6" fill="#ff0055"/>
-    <text x="30" y="32" text-anchor="middle" fill="#ffffff" font-size="15">✉️</text>
-    
-    <text x="58" y="24" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Direct Inquiries</text>
-    <text x="58" y="41" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">mayukhbhttchrj@gmail.com · Collaborations</text>
-    
-    <g class="nudge-arrow" transform="translate(458, 32)">
+    <g class="nudge-arrow" transform="translate(450, 29)">
       <text x="0" y="0" fill="#ff0055" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
     </g>
   </g>
+
+  <!-- Card 3: Instagram / GitHub -->
+  <g transform="translate(0, 116)">
+    <rect width="485" height="50" rx="8" fill="#071226" stroke="#E1306C" stroke-width="1"/>
+    <rect x="12" y="9" width="32" height="32" rx="6" fill="#E1306C"/>
+    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="15">📸</text>
+    
+    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">Instagram</text>
+    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">@mayukhbyte · Builder updates &amp; life outside commit</text>
+    
+    <g class="nudge-arrow" transform="translate(450, 29)">
+      <text x="0" y="0" fill="#E1306C" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
+    </g>
+  </g>
+
+  <!-- Card 4: Topmate / Direct Mentorship -->
+  <g transform="translate(0, 174)">
+    <rect width="485" height="50" rx="8" fill="#071226" stroke="#00f0ff" stroke-width="1"/>
+    <rect x="12" y="9" width="32" height="32" rx="6" fill="#ff5722"/>
+    <text x="28" y="30" text-anchor="middle" fill="#ffffff" font-size="15">🤝</text>
+    
+    <text x="54" y="22" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="13" font-weight="800">1:1 Mentorship &amp; Collaborations</text>
+    <text x="54" y="38" fill="#94a3b8" font-family="{FONT_MONO}" font-size="10">mayukhbhttchrj@gmail.com · Book a session</text>
+    
+    <g class="nudge-arrow" transform="translate(450, 29)">
+      <text x="0" y="0" fill="#00f0ff" font-family="{FONT_DISPLAY}" font-size="18" font-weight="800">→</text>
+    </g>
+  </g>
+
+  <!-- Footer tagline matching Image 2 -->
+  <text x="0" y="246" fill="#64748b" font-family="{FONT_MONO}" font-size="9.5" font-weight="700" letter-spacing="1">GOOD PEOPLE. GOOD IDEAS. LET'S TALK.</text>
 </g>
 </svg>'''
 
