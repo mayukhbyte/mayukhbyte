@@ -198,3 +198,4 @@ if __name__ == "__main__":
     with open(OUT_PATH, "w") as f:
         f.write(svg)
     print(f"wrote {OUT_PATH} ({len(svg)} bytes)")
+
