@@ -597,9 +597,10 @@ id_dashboard_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http
       <text x="22" y="15" fill="#ffffff" font-family="{FONT_MONO}" font-size="9" font-weight="800" letter-spacing="0.5">FULL-STACK / AI</text>
     </g>
 
-    <!-- Name & Details Below Photo -->
-    <text x="14" y="222" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.5">MAYUKH BHATTACHARJEE</text>
-    <text x="14" y="236" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
+    <!-- Name & Details Below Photo (stacked so BHATTACHARJEE is fully visible and not hidden by the SIM chip) -->
+    <text x="14" y="218" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="900" letter-spacing="0.5">MAYUKH</text>
+    <text x="14" y="232" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="900" letter-spacing="0.5">BHATTACHARJEE</text>
+    <text x="14" y="244" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
 
     <!-- Golden SIM Smart Chip matching Image 1 -->
     <g transform="translate(166, 212)">

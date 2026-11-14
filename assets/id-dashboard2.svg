@@ -87,15 +87,16 @@
     <circle cx="30" cy="181" r="3.5" fill="#ffffff"/>
     <text x="41" y="185" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9" font-weight="800" letter-spacing="0.5">FULL-STACK / AI</text>
 
-    <!-- Name & Location -->
-    <text x="14" y="224" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.5">MAYUKH BHATTACHARJEE</text>
-    <text x="14" y="238" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
+    <!-- Name & Location (stacked so BHATTACHARJEE is fully visible and not hidden by the SIM chip) -->
+    <text x="14" y="218" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="900" letter-spacing="0.5">MAYUKH</text>
+    <text x="14" y="232" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="900" letter-spacing="0.5">BHATTACHARJEE</text>
+    <text x="14" y="244" fill="#00f0ff" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
 
     <!-- Gold SIM Chip -->
-    <rect x="170" y="213" width="38" height="28" rx="4" fill="url(#gold-chip)" stroke="#b45309" stroke-width="0.6"/>
-    <line x1="170" y1="227" x2="208" y2="227" stroke="#92400e" stroke-width="0.8"/>
-    <line x1="189" y1="213" x2="189" y2="241" stroke="#92400e" stroke-width="0.8"/>
-    <rect x="181" y="220" width="16" height="14" rx="2" fill="none" stroke="#92400e" stroke-width="0.8"/>
+    <rect x="170" y="214" width="38" height="28" rx="4" fill="url(#gold-chip)" stroke="#b45309" stroke-width="0.6"/>
+    <line x1="170" y1="228" x2="208" y2="228" stroke="#92400e" stroke-width="0.8"/>
+    <line x1="189" y1="214" x2="189" y2="242" stroke="#92400e" stroke-width="0.8"/>
+    <rect x="181" y="221" width="16" height="14" rx="2" fill="none" stroke="#92400e" stroke-width="0.8"/>
 
     <!-- Barcode -->
     <g transform="translate(14, 254)">
