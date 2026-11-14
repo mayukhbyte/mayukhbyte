@@ -28,7 +28,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayukh_Bhattacharjee-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayukh-bhattacharjee-607522389?utm_source=share_via&utm_content=profile&utm_medium=member_android)
 [![GitHub](https://img.shields.io/badge/GitHub-mayukhbyte-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mayukhbyte)
-[![Instagram](https://img.shields.io/badge/Instagram-@mayukhbyte-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/mayukhbyte)
+[![Instagram](https://img.shields.io/badge/Instagram-@mayukhiverse-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/mayukhiverse?psln=djRxNHp5N3h6bGQz)
 
 <br>
 <br>
