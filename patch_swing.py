@@ -66,7 +66,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
   <animateTransform
     attributeName="transform"
     type="rotate"
-    values="-9,142,0; 9,142,0; -9,142,0"
+    values="-3.5,142,0; 3.5,142,0; -3.5,142,0"
     dur="3.6s"
     repeatCount="indefinite"
     calcMode="spline"
@@ -83,7 +83,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
   <rect x="136" y="66" width="16" height="6" rx="2" fill="#0a1224"/>
 
   <!-- ID Pass Card -->
-  <g transform="translate(31, 74)">
+  <g transform="translate(34, 74)">
     <rect width="222" height="318" rx="12" fill="#091428" stroke="#1e293b" stroke-width="1.2"/>
     <!-- Top red accent line -->
     <line x1="16" y1="2" x2="206" y2="2" stroke="#ff0055" stroke-width="2.5" stroke-linecap="round"/>
@@ -112,16 +112,16 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
     <circle cx="30" cy="181" r="3.5" fill="#ffffff"/>
     <text x="41" y="185" fill="#ffffff" font-family="{FONT_MONO}" font-size="9" font-weight="800" letter-spacing="0.5">FULL-STACK / AI</text>
 
-    <!-- Name & Location (stacked so BHATTACHARJEE is fully visible and not hidden by the SIM chip) -->
-    <text x="14" y="218" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="900" letter-spacing="0.5">MAYUKH</text>
-    <text x="14" y="232" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="11.5" font-weight="900" letter-spacing="0.5">BHATTACHARJEE</text>
-    <text x="14" y="244" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
-
-    <!-- Gold SIM Chip -->
+    <!-- Gold SIM Chip (placed first in DOM so text is always on top) -->
     <rect x="170" y="214" width="38" height="28" rx="4" fill="url(#gold-chip)" stroke="#b45309" stroke-width="0.6"/>
     <line x1="170" y1="228" x2="208" y2="228" stroke="#92400e" stroke-width="0.8"/>
     <line x1="189" y1="214" x2="189" y2="242" stroke="#92400e" stroke-width="0.8"/>
     <rect x="181" y="221" width="16" height="14" rx="2" fill="none" stroke="#92400e" stroke-width="0.8"/>
+
+    <!-- Name & Location (stacked, prominent, 100% clear of the SIM chip) -->
+    <text x="16" y="218" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.5">MAYUKH</text>
+    <text x="16" y="232" fill="#ffffff" font-family="{FONT_DISPLAY}" font-size="12" font-weight="900" letter-spacing="0.5">BHATTACHARJEE</text>
+    <text x="16" y="244" fill="#00f0ff" font-family="{FONT_MONO}" font-size="8.5" font-weight="700" letter-spacing="0.5">INDIA // DEVELOPER</text>
 
     <!-- Barcode -->
     <g transform="translate(14, 254)">
@@ -210,7 +210,10 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org
 </g>
 </svg>'''
 
-out = os.path.join(ASSETS_DIR, "id-dashboard2.svg")
-with open(out, "w", encoding="utf-8") as f:
+out2 = os.path.join(ASSETS_DIR, "id-dashboard2.svg")
+with open(out2, "w", encoding="utf-8") as f:
     f.write(svg)
-print("Wrote id-dashboard2.svg with SMIL pendulum swing")
+out3 = os.path.join(ASSETS_DIR, "id-dashboard3.svg")
+with open(out3, "w", encoding="utf-8") as f:
+    f.write(svg)
+print("Wrote id-dashboard2.svg and id-dashboard3.svg with SMIL pendulum swing")

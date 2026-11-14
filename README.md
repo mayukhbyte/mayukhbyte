@@ -16,7 +16,7 @@
 
 <br>
 
-![Builder Credentials](./assets/id-dashboard2.svg)
+![Builder Credentials](./assets/id-dashboard3.svg)
 
 <br>
 
